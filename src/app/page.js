@@ -1,3 +1,4 @@
+import Chip from "./components/Chip.client.js";
 import CounterButton from "./components/CounterButton.client.js";
 import Image from "next/image";
 import styles from "./page.module.css";
@@ -5,6 +6,7 @@ import styles from "./page.module.css";
 export default function Home() {
   return (
     <main className={styles.main}>
+      <Chip />
       <CounterButton />
       <div className={styles.description}>
         <p>

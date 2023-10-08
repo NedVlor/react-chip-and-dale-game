@@ -4,6 +4,14 @@ import styled from "styled-components";
 
 import React, { useState } from "react";
 
+const Button = styled.button`
+  background-color: blue;
+  color: white;
+`;
+const Container = styled.div`
+  background-color: tomato;
+`;
+
 function CounterButton() {
   const [count, setCount] = useState(0);
 
@@ -12,10 +20,10 @@ function CounterButton() {
   };
 
   return (
-    <div>
-      <button onClick={handleButtonClick}>Нажми на меня!</button>
+    <Container>
+      <Button onClick={handleButtonClick}>Нажми на меня!</Button>
       <p>Текущий счет: {count}</p>
-    </div>
+    </Container>
   );
 }
 
