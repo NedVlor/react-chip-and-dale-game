@@ -10,6 +10,8 @@ const Button = styled.button`
 `;
 const Container = styled.div`
   background-color: tomato;
+  height: 80px;
+  width: 80px;
 `;
 
 function CounterButton() {

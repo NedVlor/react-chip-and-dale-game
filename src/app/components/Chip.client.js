@@ -6,6 +6,12 @@ import React, { useState } from "react";
 
 const Container = styled.div`
   background-color: tomato;
+  height: 60px;
+  width: 60px;
+  background-image: url("/main-sprite.png");
+  background-repeat: no-repeat;
+  background-size: 1500px;
+  background-position: 0px -316px;
 `;
 
 function Chip() {
@@ -15,11 +21,7 @@ function Chip() {
   //setCount((prevCount) => prevCount + 1);
   //};
 
-  return (
-    <Container>
-      <img src="/vercel.svg" />
-    </Container>
-  );
+  return <Container style={{ backgroundColor: "green" }}></Container>;
 }
 
 export default Chip;
