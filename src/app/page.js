@@ -4,9 +4,12 @@ import Image from "next/image";
 import styles from "./page.module.css";
 
 export default function Home() {
+  const data = {
+    action: "run",
+  };
   return (
     <main className={styles.main}>
-      <Chip />
+      <Chip data={data} />
       <CounterButton />
       <div className={styles.description}>
         <p>
