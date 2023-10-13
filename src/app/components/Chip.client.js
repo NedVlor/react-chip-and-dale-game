@@ -39,7 +39,7 @@ function Chip(props) {
   const [color, setColor] = useState("green");
   const [still, setStill] = useState(0);
   const [pointer, setPointer] = useState(0);
-  let style = {};
+  const [style, setStyle] = useState({});
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -55,30 +55,28 @@ function Chip(props) {
     }, 1000);
 
     return () => clearInterval(intervalId); // Очищаем интервал, когда компонент размонтируется
-  }, [props.data.action]); // Пустой массив зависимостей означает, что этот useEffect будет запущен один раз при монтировании компонент
+  }, [props.data.action]);
 
-  // Отдельный useEffect для слежения за изменениями pointer
   useEffect(() => {
     // Предполагая, что action.run - это массив и вы хотите сбросить указатель, когда достигнет его конца
-    if (props.data.action === "run" && pointer >= action.run.length - 1) {
+    if (props.data.action === "run" && pointer > action.run.length - 1) {
       setPointer(0);
     }
-  }, [pointer, props.data.action]); // Зависимости этого эффекта
+  }, [pointer, props.data.action]);
 
   useEffect(() => {
-    console.log(still);
-    console.log(props); // Отслеживаем изменение переменной "still"
+    console.log("still", still);
     console.log("pointer", pointer, action.run[pointer]);
-
     setStill((prevStill) => action.run[pointer]);
-  }, [pointer]); // Этот useEffect будет запускаться каждый раз, когда значение "still" изменяется
+  }, [pointer]);
 
-  //useEffect(() => {
-  style = {
-    backgroundColor: color,
-    backgroundPosition: `${stills[still].x}px ${stills[still].y}px`,
-  };
-  //}, [still]);
+  useEffect(() => {
+    if (still)
+      setStyle({
+        backgroundColor: color,
+        backgroundPosition: `${stills[still].x}px ${stills[still].y}px`,
+      });
+  }, [still]);
 
   return <Container style={style}>{still}</Container>;
 }
