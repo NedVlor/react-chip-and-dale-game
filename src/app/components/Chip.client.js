@@ -71,11 +71,16 @@ function Chip(props) {
 
   useEffect(() => {
     if (still)
-      setStyle({
-        //   backgroundColor: color,
+      setStyle((prevStyle) => ({
+        ...prevStyle,
         backgroundPosition: `${stills[still].x}px ${stills[still].y}px`,
-      });
+      }));
   }, [still]);
+
+  useEffect(() => {
+    if (props.data.direction == "left")
+      setStyle((prevStyle) => ({ ...prevStyle, transform: "scaleX(-1)" }));
+  }, [props.data.direction]);
 
   return <Container style={style}>{still}</Container>;
 }
