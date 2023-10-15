@@ -5,7 +5,6 @@ import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 
 const Container = styled.div`
-  background-color: tomato;
   height: 60px;
   width: 60px;
   background-image: url("/main-sprite.png");
@@ -32,11 +31,11 @@ const stills = [
   { x: -829, y: -316 },
 ];
 const action = {
-  run: [4, 5, 6],
+  run: [5, 6, 7],
 };
 
 function Chip(props) {
-  const [color, setColor] = useState("green");
+  // const [color, setColor] = useState("green");
   const [still, setStill] = useState(0);
   const [pointer, setPointer] = useState(0);
   const [style, setStyle] = useState({});
@@ -51,8 +50,8 @@ function Chip(props) {
         default:
           alert("Default case");
       }
-      setColor((prevColor) => (prevColor === "green" ? "red" : "green")); // переключение между красным и зеленым
-    }, 1000);
+      //  setColor((prevColor) => (prevColor === "green" ? "red" : "green")); // переключение между красным и зеленым
+    }, 100);
 
     return () => clearInterval(intervalId); // Очищаем интервал, когда компонент размонтируется
   }, [props.data.action]);
@@ -73,7 +72,7 @@ function Chip(props) {
   useEffect(() => {
     if (still)
       setStyle({
-        backgroundColor: color,
+        //   backgroundColor: color,
         backgroundPosition: `${stills[still].x}px ${stills[still].y}px`,
       });
   }, [still]);
