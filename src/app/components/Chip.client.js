@@ -35,28 +35,31 @@ const action = {
 };
 
 function Chip(props) {
-  // const [color, setColor] = useState("green");
   const [still, setStill] = useState(0);
   const [pointer, setPointer] = useState(0);
   const [style, setStyle] = useState({});
 
   useEffect(() => {
+    console.log("effect-switch");
     const intervalId = setInterval(() => {
       switch (props.data.action) {
         case "run":
           setPointer((prevPointer) => prevPointer + 1);
           break;
+        case "standing":
+          setStill(0);
+          break;
 
         default:
-          alert("Default case");
+          alert("This action do not exist");
       }
-      //  setColor((prevColor) => (prevColor === "green" ? "red" : "green")); // переключение между красным и зеленым
     }, 100);
 
     return () => clearInterval(intervalId); // Очищаем интервал, когда компонент размонтируется
   }, [props.data.action]);
 
   useEffect(() => {
+    console.log("effect-width-run");
     // Предполагая, что action.run - это массив и вы хотите сбросить указатель, когда достигнет его конца
     if (props.data.action === "run" && pointer > action.run.length - 1) {
       setPointer(0);
@@ -64,12 +67,15 @@ function Chip(props) {
   }, [pointer, props.data.action]);
 
   useEffect(() => {
+    console.log("effect-pointer-to-still");
     console.log("still", still);
     console.log("pointer", pointer, action.run[pointer]);
-    setStill((prevStill) => action.run[pointer]);
+    if (props.data.action == "run")
+      setStill((prevStill) => action.run[pointer]);
   }, [pointer]);
 
   useEffect(() => {
+    console.log("effect image-position");
     if (still)
       setStyle((prevStyle) => ({
         ...prevStyle,
@@ -78,6 +84,7 @@ function Chip(props) {
   }, [still]);
 
   useEffect(() => {
+    console.log("effect-mirror");
     if (props.data.direction == "left")
       setStyle((prevStyle) => ({ ...prevStyle, transform: "scaleX(-1)" }));
   }, [props.data.direction]);

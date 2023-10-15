@@ -5,7 +5,8 @@ import styles from "./page.module.css";
 
 export default function Home() {
   const data = {
-    action: "run",
+    //action: "run",
+    action: "standing",
     direction: "left",
   };
   return (
