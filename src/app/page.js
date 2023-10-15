@@ -1,28 +1,13 @@
-import Chip from "./components/Chip.client.js";
 import CounterButton from "./components/CounterButton.client.js";
 import Image from "next/image";
 import styles from "./page.module.css";
+import Game from "./components/Game.client.js";
 
 export default function Home() {
-  const data = {
-    //action: "run",
-    action: "standing",
-    direction: "left",
-  };
   return (
     <main className={styles.main}>
-      <Chip data={data} />
-      <div
-        class="solid"
-        style={{
-          position: "absolute",
-          left: "400px",
-          top: "300px",
-          width: "400px",
-          height: "50px",
-          background: "brown",
-        }}
-      ></div>
+      <Game />
+      /*
       <CounterButton />
       <div className={styles.description}>
         <p>
@@ -47,6 +32,7 @@ export default function Home() {
           </a>
         </div>
       </div>
+      */
     </main>
   );
 }
