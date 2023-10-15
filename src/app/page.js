@@ -12,6 +12,17 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <Chip data={data} />
+      <div
+        class="solid"
+        style={{
+          position: "absolute",
+          left: "400px",
+          top: "300px",
+          width: "400px",
+          height: "50px",
+          background: "brown",
+        }}
+      ></div>
       <CounterButton />
       <div className={styles.description}>
         <p>

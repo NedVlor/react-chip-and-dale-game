@@ -68,8 +68,8 @@ function Chip(props) {
 
   useEffect(() => {
     console.log("effect-pointer-to-still");
-    console.log("still", still);
-    console.log("pointer", pointer, action.run[pointer]);
+    // console.log("still", still);
+    // console.log("pointer", pointer, action.run[pointer]);
     if (props.data.action == "run")
       setStill((prevStill) => action.run[pointer]);
   }, [pointer]);
