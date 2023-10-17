@@ -7,6 +7,7 @@ const GameContainer = styled.div`
   height: 800px;
   width: 1000px;
   background-color: grey;
+  position: relative;
 `;
 function Game() {
   const [char, setChar] = useState({
@@ -20,9 +21,8 @@ function Game() {
   setInterval(() => {}, 100);
 
   return (
-    <div>X</div>
-    /*  <GameContainer>
-       <Right><Chip data={char} />
+    <GameContainer>
+      <Chip data={char} />
       <div
         style={{
           position: "absolute",
@@ -33,7 +33,7 @@ function Game() {
           background: "brown",
         }}
       ></div>
-    </GameContainer> */
+    </GameContainer>
   );
 }
 export default Game;

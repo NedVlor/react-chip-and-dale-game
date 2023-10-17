@@ -11,6 +11,7 @@ const Container = styled.div`
   background-repeat: no-repeat;
   background-size: 1500px;
   background-position: 0px -316px;
+  position: absolute;
 `;
 
 const stills = [
@@ -88,6 +89,14 @@ function Chip(props) {
     if (props.data.direction == "left")
       setStyle((prevStyle) => ({ ...prevStyle, transform: "scaleX(-1)" }));
   }, [props.data.direction]);
+
+  useEffect(() => {
+    setStyle((prevStyle) => ({
+      ...prevStyle,
+      left: props.data.x + "px",
+      top: props.data.y + "px",
+    }));
+  }, [props.data.x, props.data.y]);
 
   return <Container style={style}>{still}</Container>;
 }
