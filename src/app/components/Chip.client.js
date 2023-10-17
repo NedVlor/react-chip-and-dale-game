@@ -2,7 +2,7 @@
 // CounterButton.js
 import styled from "styled-components";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, forwardRef } from "react";
 
 const Container = styled.div`
   height: 60px;
@@ -35,7 +35,7 @@ const action = {
   run: [5, 6, 7],
 };
 
-function Chip(props) {
+const Chip = forwardRef((props, ref) => {
   const [still, setStill] = useState(0);
   const [pointer, setPointer] = useState(0);
   const [style, setStyle] = useState({});
@@ -98,7 +98,11 @@ function Chip(props) {
     }));
   }, [props.data.x, props.data.y]);
 
-  return <Container style={style}>{still}</Container>;
-}
+  return (
+    <Container ref={ref} style={style}>
+      {still}
+    </Container>
+  );
+});
 
 export default Chip;
