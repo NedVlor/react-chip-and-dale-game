@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Chip from "./Chip.client.js";
 import styled from "styled-components";
 
@@ -18,15 +18,61 @@ function Game() {
     direction: "left",
   });
 
-  setInterval(() => {}, 100);
+  setInterval(() => {
+    setChar((prevChar) => ({
+      ...prevChar,
+      y: prevChar.y++,
+    }));
+  }, 100);
+
+  const element1Ref = useRef(null);
+  const element2Ref = useRef(null);
+
+  useEffect(() => {
+    const element1 = element1Ref.current;
+    const element2 = element2Ref.current;
+
+    console.log(element1, element2);
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          console.log("!!!!!!!! intersecting");
+          entry.target.style.backgroundColor = "green";
+        } else {
+          console.log("no");
+          ntry.target.style.backgroundColor = entry.target.classList.contains(
+            "element1",
+          )
+            ? "red"
+            : "blue";
+        }
+      });
+    };
+
+    const observerOptions = {
+      root: null, // null означает viewport
+      rootMargin: "0px",
+      threshold: 0.5, // Порог пересечения (50% видимости)
+    };
+
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions,
+    );
+
+    observer.observe(element1);
+    observer.observe(element2);
+  }, []);
 
   return (
     <GameContainer>
-      <Chip data={char} />
+      <Chip ref={element1Ref} data={char} />
       <div
+        ref={element2Ref}
         style={{
           position: "absolute",
-          left: "400px",
+          left: "200px",
           top: "300px",
           width: "400px",
           height: "50px",
