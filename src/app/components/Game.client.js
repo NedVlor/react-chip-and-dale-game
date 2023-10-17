@@ -18,13 +18,17 @@ function Game() {
     direction: "left",
   });
 
-  setInterval(() => {
-    setChar((prevChar) => ({
-      ...prevChar,
-      y: prevChar.y++,
-    }));
-  }, 100);
-
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setChar((prevChar) => ({
+        ...prevChar,
+        y: prevChar.y++,
+      }));
+    }, 100);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
   const element1Ref = useRef(null);
   const element2Ref = useRef(null);
 
@@ -41,7 +45,7 @@ function Game() {
           entry.target.style.backgroundColor = "green";
         } else {
           console.log("no");
-          ntry.target.style.backgroundColor = entry.target.classList.contains(
+          entry.target.style.backgroundColor = entry.target.classList.contains(
             "element1",
           )
             ? "red"
@@ -63,7 +67,7 @@ function Game() {
 
     observer.observe(element1);
     observer.observe(element2);
-  }, []);
+  }, [element1Ref, element2Ref]);
 
   return (
     <GameContainer>
