@@ -12,8 +12,8 @@ const GameContainer = styled.div`
 
 function Game() {
   const [char, setChar] = useState({
-    x: 300,
-    y: 100,
+    x: 400,
+    y: 200,
     action: "standing",
     direction: "left",
   });
@@ -29,7 +29,10 @@ function Game() {
       const rect1 = element1.getBoundingClientRect();
       const rect2 = element2.getBoundingClientRect();
 
-      if (rect1.bottom + 1 < rect2.top) {
+      if (
+        rect1.bottom + 1 < rect2.top || // вище
+        !(rect1.right > rect2.left && rect1.left < rect2.right) // мимо
+      ) {
         // Обновляем положение элемента char
         setChar((prevChar) => ({
           ...prevChar,
@@ -82,9 +85,9 @@ function Game() {
         ref={element2Ref}
         style={{
           position: "absolute",
-          left: "200px",
+          left: "0px",
           top: "300px",
-          width: "1000px",
+          width: "100px",
           height: "100px",
           background: "blue",
         }}
