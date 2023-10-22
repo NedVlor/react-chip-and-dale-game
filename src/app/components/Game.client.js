@@ -33,10 +33,17 @@ function Game() {
       let shiftY = 0;
       let shiftX = 0;
       if (
-        rect1.bottom + 1 < rect2.top || // вище
+        rect1.bottom + 1 < rect2.top || // вищe
         !(rect1.right > rect2.left && rect1.left < rect2.right) // мимо
       ) {
         shiftY = 1;
+      }
+      if (
+        rect1.top > rect2.bottom //|| // нижче
+        // (rect1.right > rect2.left && rect1.left < rect2.right) // intersection
+      ) {
+        shiftY = 1;
+        console.log("if under", rect1.top, rect2.bottom);
       }
       // Обновляем положение элемента char
       setChar((prevChar) => {
@@ -71,7 +78,7 @@ function Game() {
     const interval = setInterval(() => {
       // Проверяем пересечение при каждом обновлении положения
       checkIntersection();
-    }, 100);
+    }, 80);
 
     return () => {
       clearInterval(interval);
@@ -120,7 +127,7 @@ function Game() {
           left: "300px",
           top: "300px",
           width: "100px",
-          height: "500px",
+          height: "100px",
           background: "blue",
         }}
       >
