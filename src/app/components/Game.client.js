@@ -67,6 +67,25 @@ function Game() {
     };
   }, []);
 
+  useEffect(() => {
+    document.addEventListener("keydown", (event) => {
+      // console.log(event);
+      if (event.key == "ArrowRight") {
+        console.log("Goright");
+        setChar((prevChar) => ({
+          ...prevChar,
+          x: prevChar.x + 1,
+        }));
+      }
+      if (event.key == "ArrowLeft") {
+        console.log("Left");
+        setChar((prevChar) => ({
+          ...prevChar,
+          x: prevChar.x - 1,
+        }));
+      }
+    });
+  }, []);
   return (
     <GameContainer>
       <Chip
