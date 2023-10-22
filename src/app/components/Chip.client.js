@@ -100,7 +100,7 @@ const Chip = forwardRef((props, ref) => {
 
   return (
     <Container ref={ref} style={style}>
-      {still}
+      {still} {props.data.direction}
     </Container>
   );
 });

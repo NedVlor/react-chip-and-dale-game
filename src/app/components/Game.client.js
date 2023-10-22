@@ -94,6 +94,7 @@ function Game() {
           ...prevChar,
           //x: prevChar.x + 1,
           vector: "right",
+          direction: "right",
         }));
       }
       if (event.key == "ArrowLeft") {
@@ -102,6 +103,7 @@ function Game() {
           ...prevChar,
           // x: prevChar.x - 1,
           vector: "left",
+          direction: "left",
         }));
       }
     });
