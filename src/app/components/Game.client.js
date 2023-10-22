@@ -16,6 +16,7 @@ function Game() {
     y: 200,
     action: "standing",
     direction: "left",
+    vector: "",
   });
 
   const element1Ref = useRef(null);
@@ -29,29 +30,39 @@ function Game() {
       const rect1 = element1.getBoundingClientRect();
       const rect2 = element2.getBoundingClientRect();
 
+      let shiftY = 0;
+      let shiftX = 0;
       if (
         rect1.bottom + 1 < rect2.top || // вище
         !(rect1.right > rect2.left && rect1.left < rect2.right) // мимо
       ) {
-        // Обновляем положение элемента char
-        setChar((prevChar) => ({
-          ...prevChar,
-          y: prevChar.y + 1,
-        }));
-
-        //a.style.top=dataA().y+1+"px";
+        shiftY = 1;
       }
+      // Обновляем положение элемента char
+      setChar((prevChar) => {
+        console.log(prevChar);
+        if (prevChar.vector == "left") shiftX = -1;
+        if (prevChar.vector == "right") shiftX = 1;
+        console.log(shiftX);
+        return {
+          ...prevChar,
+          y: prevChar.y + shiftY,
+          x: prevChar.x + shiftX,
+        };
+      });
+
+      //a.style.top=dataA().y+1+"px";
 
       if (rect1.right < rect2.left) {
-        console.log("Слева+"); // Chip находится слева от element2
+        // console.log("Слева+"); // Chip находится слева от element2
       } else if (rect1.left > rect2.right) {
-        console.log("Справа+"); // Chip находится справа от element2
+        //console.log("Справа+"); // Chip находится справа от element2
       } else if (rect1.bottom < rect2.top) {
-        console.log("Сверху+"); // Chip находится сверху от element2
+        //console.log("Сверху+"); // Chip находится сверху от element2
       } else if (rect1.top > rect2.bottom) {
-        console.log("Снизу+"); // Chip находится снизу от element2
+        //console.log("Снизу+"); // Chip находится снизу от element2
       } else {
-        console.log("Пересекаются+"); // Chip и element2 пересекаются
+        // console.log("Пересекаются+"); // Chip и element2 пересекаются
       }
     }
   };
@@ -65,7 +76,7 @@ function Game() {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [char.vector]);
 
   useEffect(() => {
     document.addEventListener("keydown", (event) => {
@@ -74,14 +85,16 @@ function Game() {
         console.log("Goright");
         setChar((prevChar) => ({
           ...prevChar,
-          x: prevChar.x + 1,
+          //x: prevChar.x + 1,
+          vector: "right",
         }));
       }
       if (event.key == "ArrowLeft") {
         console.log("Left");
         setChar((prevChar) => ({
           ...prevChar,
-          x: prevChar.x - 1,
+          // x: prevChar.x - 1,
+          vector: "left",
         }));
       }
     });
@@ -104,13 +117,15 @@ function Game() {
         ref={element2Ref}
         style={{
           position: "absolute",
-          left: "0px",
+          left: "300px",
           top: "300px",
           width: "100px",
-          height: "100px",
+          height: "500px",
           background: "blue",
         }}
-      ></div>
+      >
+        {char.vector}
+      </div>
     </GameContainer>
   );
 }
