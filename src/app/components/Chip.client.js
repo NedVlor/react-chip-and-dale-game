@@ -65,19 +65,29 @@ const Chip = forwardRef((props, ref) => {
     if (props.data.action === "run" && pointer > action.run.length - 1) {
       setPointer(0);
     }
+    /*if (props.data.action == "standing") {
+      setStill(0);
+    }*/
   }, [pointer, props.data.action]);
 
   useEffect(() => {
     console.log("effect-pointer-to-still");
     // console.log("still", still);
     // console.log("pointer", pointer, action.run[pointer]);
-    if (props.data.action == "run")
+
+    console.log("****");
+    setStill(0);
+    if (props.data.action == "run") {
       setStill((prevStill) => action.run[pointer]);
+    }
+    /*if (props.data.action == "standing") {
+      setStill(0);
+    }*/
   }, [pointer]);
 
   useEffect(() => {
     console.log("effect image-position");
-    if (still)
+    if (still || still == 0)
       setStyle((prevStyle) => ({
         ...prevStyle,
         backgroundPosition: `${stills[still].x}px ${stills[still].y}px`,
@@ -88,6 +98,9 @@ const Chip = forwardRef((props, ref) => {
     console.log("effect-mirror");
     if (props.data.direction == "left")
       setStyle((prevStyle) => ({ ...prevStyle, transform: "scaleX(-1)" }));
+
+    if (props.data.direction == "right")
+      setStyle((prevStyle) => ({ ...prevStyle, transform: "scaleX(1)" }));
   }, [props.data.direction]);
 
   useEffect(() => {

@@ -95,6 +95,7 @@ function Game() {
           //x: prevChar.x + 1,
           vector: "right",
           direction: "right",
+          action: "run",
         }));
       }
       if (event.key == "ArrowLeft") {
@@ -104,8 +105,18 @@ function Game() {
           // x: prevChar.x - 1,
           vector: "left",
           direction: "left",
+          action: "run",
         }));
       }
+    });
+
+    document.addEventListener("keyup", (event) => {
+      // console.log(event);
+      setChar((prevChar) => ({
+        ...prevChar,
+        vector: "",
+        action: "standing",
+      }));
     });
   }, []);
   return (
