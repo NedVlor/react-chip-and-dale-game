@@ -14,11 +14,14 @@ function Game() {
   const [char, setChar] = useState({
     x: 400,
     y: 200,
+    prevX: 400,
+    prevY: 200,
     action: "standing",
     direction: "left",
     vector: "",
   });
-
+  let prevX = 0;
+  let prevY = 0;
   const element1Ref = useRef(null);
   const element2Ref = useRef(null);
 
@@ -47,9 +50,37 @@ function Game() {
       }
       // Обновляем положение элемента char
       setChar((prevChar) => {
-        console.log(prevChar);
-        if (prevChar.vector == "left") shiftX = -1;
-        if (prevChar.vector == "right") shiftX = 1;
+        // console.log(prevChar);
+        console.log(
+          !!(rect1.bottom > rect2.top && rect1.top < rect2.bottom),
+          !!(rect1.right > rect2.left && rect1.left < rect2.right),
+          rect1.bottom,
+          rect2.top,
+          rect1.top,
+          rect2.bottom,
+        );
+        if (
+          !(
+            !!(rect1.bottom > rect2.top && rect1.top < rect2.bottom) && //  не пересечение по верт
+            !!(rect1.right > rect2.left && rect1.left < rect2.right)
+          )
+          //мимо по горизонтали
+        ) {
+          console.log("!!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>");
+          prevX = prevChar.x;
+          prevY = prevChar.y;
+
+          if (prevChar.vector == "left") shiftX = -1;
+          if (prevChar.vector == "right") shiftX = 1;
+        } else {
+          return {
+            ...prevChar,
+            y: prevY,
+            x: prevX,
+          };
+          //  if (prevChar.vector == "left") shiftX = 1;
+          //  if (prevChar.vector == "right") shiftX = -1;
+        }
         console.log(shiftX);
         return {
           ...prevChar,
