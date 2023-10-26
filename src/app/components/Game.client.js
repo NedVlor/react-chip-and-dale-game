@@ -24,45 +24,46 @@ function Game() {
   let prevY = 0;
   const element1Ref = useRef(null);
   const element2Ref = useRef(null);
+  const element3Ref = useRef(null);
+  const element4Ref = useRef(null);
 
   const checkIntersection = () => {
-    const element1 = element1Ref.current;
+    const chipNode = element1Ref.current;
     const element2 = element2Ref.current;
 
-    if (element1 && element2) {
-      const rect1 = element1.getBoundingClientRect();
+    if (chipNode && element2) {
+      const chip = chipNode.getBoundingClientRect();
       const rect2 = element2.getBoundingClientRect();
 
       let shiftY = 0;
       let shiftX = 0;
       if (
-        rect1.bottom + 1 < rect2.top || // вищe
-        !(rect1.right > rect2.left && rect1.left < rect2.right) // мимо
+        chip.bottom + 1 < rect2.top || // вищe
+        !(chip.right > rect2.left && chip.left < rect2.right) // мимо
       ) {
         shiftY = 1;
       }
       if (
-        rect1.top > rect2.bottom //|| // нижче
-        // (rect1.right > rect2.left && rect1.left < rect2.right) // intersection
+        chip.top > rect2.bottom //|| // нижче
       ) {
         shiftY = 1;
-        console.log("if under", rect1.top, rect2.bottom);
+        console.log("if under", chip.top, rect2.bottom);
       }
       // Обновляем положение элемента char
       setChar((prevChar) => {
         // console.log(prevChar);
         console.log(
-          !!(rect1.bottom > rect2.top && rect1.top < rect2.bottom),
-          !!(rect1.right > rect2.left && rect1.left < rect2.right),
-          rect1.bottom,
+          !!(chip.bottom > rect2.top && chip.top < rect2.bottom),
+          !!(chip.right > rect2.left && chip.left < rect2.right),
+          chip.bottom,
           rect2.top,
-          rect1.top,
+          chip.top,
           rect2.bottom,
         );
         if (
           !(
-            !!(rect1.bottom > rect2.top && rect1.top < rect2.bottom) && //  не пересечение по верт
-            !!(rect1.right > rect2.left && rect1.left < rect2.right)
+            !!(chip.bottom > rect2.top && chip.top < rect2.bottom) && //  не пересечение по верт
+            !!(chip.right > rect2.left && chip.left < rect2.right)
           )
           //мимо по горизонтали
         ) {
@@ -91,13 +92,13 @@ function Game() {
 
       //a.style.top=dataA().y+1+"px";
 
-      if (rect1.right < rect2.left) {
+      if (chip.right < rect2.left) {
         // console.log("Слева+"); // Chip находится слева от element2
-      } else if (rect1.left > rect2.right) {
+      } else if (chip.left > rect2.right) {
         //console.log("Справа+"); // Chip находится справа от element2
-      } else if (rect1.bottom < rect2.top) {
+      } else if (chip.bottom < rect2.top) {
         //console.log("Сверху+"); // Chip находится сверху от element2
-      } else if (rect1.top > rect2.bottom) {
+      } else if (chip.top > rect2.bottom) {
         //console.log("Снизу+"); // Chip находится снизу от element2
       } else {
         // console.log("Пересекаются+"); // Chip и element2 пересекаются
@@ -177,6 +178,28 @@ function Game() {
       >
         {char.vector}
       </div>
+      <div
+        ref={element3Ref}
+        style={{
+          position: "absolute",
+          left: "400px",
+          top: "400px",
+          width: "100px",
+          height: "100px",
+          background: "blue",
+        }}
+      ></div>
+      <div
+        ref={element4Ref}
+        style={{
+          position: "absolute",
+          left: "500px",
+          top: "500px",
+          width: "100px",
+          height: "100px",
+          background: "blue",
+        }}
+      ></div>
     </GameContainer>
   );
 }
