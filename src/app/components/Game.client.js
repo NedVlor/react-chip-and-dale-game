@@ -28,8 +28,12 @@ function Game() {
   const element4Ref = useRef(null);
 
   const checkIntersection = () => {
+    //[].forEach((element2)=>{
+
     const chipNode = element1Ref.current;
     const element2 = element2Ref.current;
+    //   const element3 = element3ref.current;
+    // const element4 = element4ref.current;
 
     if (chipNode && element2) {
       const chip = chipNode.getBoundingClientRect();
