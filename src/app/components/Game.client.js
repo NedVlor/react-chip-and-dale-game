@@ -20,8 +20,8 @@ function Game() {
     direction: "left",
     vector: "",
   });
-  let prevX = 0;
-  let prevY = 0;
+  //  let prevX = 0;
+  // let prevY = 0;
   const element1Ref = useRef(null);
   const element2Ref = useRef(null);
   const element3Ref = useRef(null);
@@ -76,16 +76,16 @@ function Game() {
               //мимо по горизонтали
             ) {
               console.log("!!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>");
-              prevX = prevChar.x;
-              prevY = prevChar.y;
+              window.prevX = prevChar.x;
+              window.prevY = prevChar.y;
 
               if (prevChar.vector == "left") shiftX = -1;
               if (prevChar.vector == "right") shiftX = 1;
             } else {
               return {
                 ...prevChar,
-                y: prevY,
-                x: prevX,
+                y: window.prevY,
+                x: window.prevX,
               };
             }
             console.log(shiftX);
