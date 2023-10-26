@@ -28,7 +28,7 @@ function Game() {
   const element4Ref = useRef(null);
 
   const checkIntersection = () => {
-    let gravityFlag = false;
+    let barier = false;
     let shiftY = 0;
     let shiftX = 0;
 
@@ -48,26 +48,33 @@ function Game() {
             !(chip.right > rect2.left && chip.left < rect2.right) // мимо
           ) {
             //        shiftY = 1;
-            gravityFlag = true;
+            // gravityFlag = true;
+          } else {
+            console.log("first barier");
+            barier = true;
           }
           if (
             chip.top > rect2.bottom //|| // нижче
           ) {
             //shiftY = 1;
-            gravityFlag = true;
+            // gravityFlag = true;
             console.log("if under", chip.top, rect2.bottom);
+          } else {
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! UNDER OBJECT
+            //  barier = true;
+            console.log("secound barier");
           }
           // Обновляем положение элемента char
           setChar((prevChar) => {
             // console.log(prevChar);
-            console.log(
+            /*console.log(
               !!(chip.bottom > rect2.top && chip.top < rect2.bottom),
               !!(chip.right > rect2.left && chip.left < rect2.right),
               chip.bottom,
               rect2.top,
               chip.top,
               rect2.bottom,
-            );
+            );*/
             if (
               !(
                 !!(chip.bottom > rect2.top && chip.top < rect2.bottom) && //  не пересечение по верт
@@ -75,12 +82,12 @@ function Game() {
               )
               //мимо по горизонтали
             ) {
-              console.log("!!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>");
+              // console.log("!!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>");
               window.prevX = prevChar.x;
               window.prevY = prevChar.y;
 
-              if (prevChar.vector == "left") shiftX = -1;
-              if (prevChar.vector == "right") shiftX = 1;
+              if (prevChar.vector == "left") shiftX = -4;
+              if (prevChar.vector == "right") shiftX = 4;
             } else {
               return {
                 ...prevChar,
@@ -88,7 +95,7 @@ function Game() {
                 x: window.prevX,
               };
             }
-            console.log(shiftX);
+            // console.log(shiftX);
             return {
               ...prevChar,
               // y: prevchar.y + shifty,
@@ -110,7 +117,7 @@ function Game() {
         }
       },
     );
-    if (gravityFlag) shiftY = 1;
+    if (!barier) shiftY = 1;
     //place for changing cordinates
     setChar((prevChar) => {
       return {
