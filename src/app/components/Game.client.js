@@ -28,86 +28,97 @@ function Game() {
   const element4Ref = useRef(null);
 
   const checkIntersection = () => {
-    //[].forEach((element2)=>{
+    let gravityFlag = false;
+    let shiftY = 0;
+    let shiftX = 0;
 
-    const chipNode = element1Ref.current;
-    const element2 = element2Ref.current;
-    //   const element3 = element3ref.current;
-    // const element4 = element4ref.current;
+    [element2Ref.current, element3Ref.current, element4Ref.current].forEach(
+      (element2) => {
+        const chipNode = element1Ref.current;
+        //const element2 =   element2ref.current;
+        //   const element3 = element3ref.current;
+        // const element4 = element4ref.current;
 
-    if (chipNode && element2) {
-      const chip = chipNode.getBoundingClientRect();
-      const rect2 = element2.getBoundingClientRect();
+        if (chipNode && element2) {
+          const chip = chipNode.getBoundingClientRect();
+          const rect2 = element2.getBoundingClientRect();
 
-      let shiftY = 0;
-      let shiftX = 0;
-      if (
-        chip.bottom + 1 < rect2.top || // вищe
-        !(chip.right > rect2.left && chip.left < rect2.right) // мимо
-      ) {
-        shiftY = 1;
-      }
-      if (
-        chip.top > rect2.bottom //|| // нижче
-      ) {
-        shiftY = 1;
-        console.log("if under", chip.top, rect2.bottom);
-      }
-      // Обновляем положение элемента char
-      setChar((prevChar) => {
-        // console.log(prevChar);
-        console.log(
-          !!(chip.bottom > rect2.top && chip.top < rect2.bottom),
-          !!(chip.right > rect2.left && chip.left < rect2.right),
-          chip.bottom,
-          rect2.top,
-          chip.top,
-          rect2.bottom,
-        );
-        if (
-          !(
-            !!(chip.bottom > rect2.top && chip.top < rect2.bottom) && //  не пересечение по верт
-            !!(chip.right > rect2.left && chip.left < rect2.right)
-          )
-          //мимо по горизонтали
-        ) {
-          console.log("!!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>");
-          prevX = prevChar.x;
-          prevY = prevChar.y;
+          if (
+            chip.bottom + 1 < rect2.top || // вищe
+            !(chip.right > rect2.left && chip.left < rect2.right) // мимо
+          ) {
+            //        shiftY = 1;
+            gravityFlag = true;
+          }
+          if (
+            chip.top > rect2.bottom //|| // нижче
+          ) {
+            //shiftY = 1;
+            gravityFlag = true;
+            console.log("if under", chip.top, rect2.bottom);
+          }
+          // Обновляем положение элемента char
+          setChar((prevChar) => {
+            // console.log(prevChar);
+            console.log(
+              !!(chip.bottom > rect2.top && chip.top < rect2.bottom),
+              !!(chip.right > rect2.left && chip.left < rect2.right),
+              chip.bottom,
+              rect2.top,
+              chip.top,
+              rect2.bottom,
+            );
+            if (
+              !(
+                !!(chip.bottom > rect2.top && chip.top < rect2.bottom) && //  не пересечение по верт
+                !!(chip.right > rect2.left && chip.left < rect2.right)
+              )
+              //мимо по горизонтали
+            ) {
+              console.log("!!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>");
+              prevX = prevChar.x;
+              prevY = prevChar.y;
 
-          if (prevChar.vector == "left") shiftX = -1;
-          if (prevChar.vector == "right") shiftX = 1;
-        } else {
-          return {
-            ...prevChar,
-            y: prevY,
-            x: prevX,
-          };
-          //  if (prevChar.vector == "left") shiftX = 1;
-          //  if (prevChar.vector == "right") shiftX = -1;
+              if (prevChar.vector == "left") shiftX = -1;
+              if (prevChar.vector == "right") shiftX = 1;
+            } else {
+              return {
+                ...prevChar,
+                y: prevY,
+                x: prevX,
+              };
+            }
+            console.log(shiftX);
+            return {
+              ...prevChar,
+              // y: prevchar.y + shifty,
+              //x: prevchar.x + shiftx,
+            };
+          });
+
+          if (chip.right < rect2.left) {
+            // console.log("Слева+"); // Chip находится слева от element2
+          } else if (chip.left > rect2.right) {
+            //console.log("Справа+"); // Chip находится справа от element2
+          } else if (chip.bottom < rect2.top) {
+            //console.log("Сверху+"); // Chip находится сверху от element2
+          } else if (chip.top > rect2.bottom) {
+            //console.log("Снизу+"); // Chip находится снизу от element2
+          } else {
+            // console.log("Пересекаются+"); // Chip и element2 пересекаются
+          }
         }
-        console.log(shiftX);
-        return {
-          ...prevChar,
-          y: prevChar.y + shiftY,
-          x: prevChar.x + shiftX,
-        };
-      });
-
-      //a.style.top=dataA().y+1+"px";
-
-      if (chip.right < rect2.left) {
-        // console.log("Слева+"); // Chip находится слева от element2
-      } else if (chip.left > rect2.right) {
-        //console.log("Справа+"); // Chip находится справа от element2
-      } else if (chip.bottom < rect2.top) {
-        //console.log("Сверху+"); // Chip находится сверху от element2
-      } else if (chip.top > rect2.bottom) {
-        //console.log("Снизу+"); // Chip находится снизу от element2
-      } else {
-        // console.log("Пересекаются+"); // Chip и element2 пересекаются
-      }
-    }
+      },
+    );
+    if (gravityFlag) shiftY = 1;
+    //place for changing cordinates
+    setChar((prevChar) => {
+      return {
+        ...prevChar,
+        y: prevChar.y + shiftY,
+        x: prevChar.x + shiftX,
+      };
+    });
   };
 
   useEffect(() => {
