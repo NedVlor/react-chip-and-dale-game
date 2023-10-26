@@ -20,8 +20,6 @@ function Game() {
     direction: "left",
     vector: "",
   });
-  //  let prevX = 0;
-  // let prevY = 0;
   const element1Ref = useRef(null);
   const element2Ref = useRef(null);
   const element3Ref = useRef(null);
@@ -35,10 +33,6 @@ function Game() {
     [element2Ref.current, element3Ref.current, element4Ref.current].forEach(
       (element2) => {
         const chipNode = element1Ref.current;
-        //const element2 =   element2ref.current;
-        //   const element3 = element3ref.current;
-        // const element4 = element4ref.current;
-
         if (chipNode && element2) {
           const chip = chipNode.getBoundingClientRect();
           const rect2 = element2.getBoundingClientRect();
@@ -78,7 +72,9 @@ function Game() {
 
               if (prevChar.vector == "left") shiftX = -4;
               if (prevChar.vector == "right") shiftX = 4;
+              console.log("no intersection"); ///////////////////!!!!!!!!!!!!!!!!!!!!!!!! Neeeeed Flagggggggggggggggggggggggggggggggggggggggggggggggg
             } else {
+              console.log("intersection");
               return {
                 ...prevChar,
                 y: window.prevY,
@@ -121,7 +117,6 @@ function Game() {
         console.log("Goright");
         setChar((prevChar) => ({
           ...prevChar,
-          //x: prevChar.x + 1,
           vector: "right",
           direction: "right",
           action: "run",
@@ -131,7 +126,6 @@ function Game() {
         console.log("Left");
         setChar((prevChar) => ({
           ...prevChar,
-          // x: prevChar.x - 1,
           vector: "left",
           direction: "left",
           action: "run",
