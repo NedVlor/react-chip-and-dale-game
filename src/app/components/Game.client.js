@@ -207,10 +207,10 @@ function Game() {
         ref={element3Ref}
         style={{
           position: "absolute",
-          left: "400px",
-          top: "400px",
-          width: "100px",
-          height: "100px",
+          left: "479px",
+          top: "700px",
+          width: "521px",
+          height: "101px",
           background: "blue",
         }}
       ></div>
@@ -218,9 +218,9 @@ function Game() {
         ref={element4Ref}
         style={{
           position: "absolute",
-          left: "500px",
-          top: "500px",
-          width: "100px",
+          left: "0px",
+          top: "700px",
+          width: "422px",
           height: "100px",
           background: "blue",
         }}
