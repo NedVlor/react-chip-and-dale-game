@@ -34,10 +34,12 @@ function Game() {
     [element2Ref.current, element3Ref.current, element4Ref.current].forEach(
       (element2) => {
         const chipNode = element1Ref.current;
-        if (chipNode && element2) {
-          const chip = chipNode.getBoundingClientRect();
-          const rect2 = element2.getBoundingClientRect();
 
+        if (chipNode && element2) {
+          const chip = chipNode.getBoundingClientRect(); // cordinates and size for chip
+          const rect2 = element2.getBoundingClientRect(); // cordinate and size for current solid object
+
+          // graviry intersection checking 1
           if (
             chip.bottom + 1 < rect2.top || // вищe
             !(chip.right > rect2.left && chip.left < rect2.right) // мимо
@@ -46,6 +48,7 @@ function Game() {
             console.log("first barier");
             barier = true;
           }
+          // gravity intersection checking 2
           if (
             chip.top > rect2.bottom //|| // нижче
           ) {
@@ -53,14 +56,16 @@ function Game() {
           } else {
             console.log("secound barier");
           }
-          // Обновляем положение элемента char
+
           setChar((prevChar) => {
+            // horizontal intersection (actually any intersection)
+            // no vertical intersection
+            // no horizontal imtersection
             if (
               !(
-                !!(chip.bottom > rect2.top && chip.top < rect2.bottom) && //  не пересечение по верт
+                !!(chip.bottom > rect2.top && chip.top < rect2.bottom) &&
                 !!(chip.right > rect2.left && chip.left < rect2.right)
               )
-              //мимо по горизонтали
             ) {
             } else {
               intersection = true;
@@ -72,8 +77,9 @@ function Game() {
         }
       },
     );
+
     if (!barier) shiftY = 1;
-    //place for changing cordinates
+
     setChar((prevChar) => {
       if (!intersection) {
         window.prevX = prevChar.x;
