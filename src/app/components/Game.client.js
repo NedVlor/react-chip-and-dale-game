@@ -78,7 +78,7 @@ function Game() {
       },
     );
 
-    if (!barier) shiftY = 1;
+    if (!barier) shiftY = 10;
 
     setChar((prevChar) => {
       if (!intersection) {
@@ -109,7 +109,7 @@ function Game() {
     const interval = setInterval(() => {
       // Проверяем пересечение при каждом обновлении положения
       checkIntersection();
-    }, 80);
+    }, 50);
 
     return () => {
       clearInterval(interval);
