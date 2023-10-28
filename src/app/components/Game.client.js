@@ -26,7 +26,8 @@ function Game() {
   const element4Ref = useRef(null);
 
   const checkIntersection = () => {
-    let barier = false;
+    let barier = false; // for gravity
+    let intersection = false; // for X
     let shiftY = 0;
     let shiftX = 0;
 
@@ -41,8 +42,6 @@ function Game() {
             chip.bottom + 1 < rect2.top || // вищe
             !(chip.right > rect2.left && chip.left < rect2.right) // мимо
           ) {
-            //        shiftY = 1;
-            // gravityFlag = true;
           } else {
             console.log("first barier");
             barier = true;
@@ -50,12 +49,8 @@ function Game() {
           if (
             chip.top > rect2.bottom //|| // нижче
           ) {
-            //shiftY = 1;
-            // gravityFlag = true;
             console.log("if under", chip.top, rect2.bottom);
           } else {
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! UNDER OBJECT
-            //  barier = true;
             console.log("secound barier");
           }
           // Обновляем положение элемента char
@@ -67,19 +62,8 @@ function Game() {
               )
               //мимо по горизонтали
             ) {
-              window.prevX = prevChar.x;
-              window.prevY = prevChar.y;
-
-              if (prevChar.vector == "left") shiftX = -4;
-              if (prevChar.vector == "right") shiftX = 4;
-              console.log("no intersection"); ///////////////////!!!!!!!!!!!!!!!!!!!!!!!! Neeeeed Flagggggggggggggggggggggggggggggggggggggggggggggggg
             } else {
-              console.log("intersection");
-              return {
-                ...prevChar,
-                y: window.prevY,
-                x: window.prevX,
-              };
+              intersection = true;
             }
             return {
               ...prevChar,
@@ -91,6 +75,22 @@ function Game() {
     if (!barier) shiftY = 1;
     //place for changing cordinates
     setChar((prevChar) => {
+      if (!intersection) {
+        window.prevX = prevChar.x;
+        window.prevY = prevChar.y;
+
+        if (prevChar.vector == "left") shiftX = -4;
+        if (prevChar.vector == "right") shiftX = 4;
+        console.log("no intersection");
+      } else {
+        console.log("intersection");
+        return {
+          ...prevChar,
+          y: window.prevY,
+          x: window.prevX,
+        };
+      }
+
       return {
         ...prevChar,
         y: prevChar.y + shiftY,
