@@ -20,6 +20,7 @@ function Game() {
     direction: "left",
     vector: "",
     jump: false,
+    onTheGround: false,
   });
   const element1Ref = useRef(null);
   const element2Ref = useRef(null);
@@ -79,7 +80,10 @@ function Game() {
       },
     );
 
-    if (!barier) shiftY = 10;
+    if (!barier) {
+      shiftY = 10;
+    } else {
+    }
 
     setChar((prevChar) => {
       if (prevChar.jump) shiftY = -10;
@@ -112,6 +116,7 @@ function Game() {
         ...prevChar,
         y: prevChar.y + shiftY,
         x: prevChar.x + shiftX,
+        onTheGround: barier,
       };
     });
   };
@@ -133,14 +138,14 @@ function Game() {
       if (event.code == "Space") {
         setChar((prevChar) => ({
           ...prevChar,
-          jump: true,
+          jump: prevChar.onTheGround ? true : false,
         }));
         setTimeout(() => {
           setChar((prevChar) => ({
             ...prevChar,
             jump: false,
           }));
-        }, 1000);
+        }, 500);
       }
       if (event.key == "ArrowRight") {
         console.log("Goright");
