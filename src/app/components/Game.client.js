@@ -19,6 +19,7 @@ function Game() {
     action: "standing",
     direction: "left",
     vector: "",
+    jump: false,
   });
   const element1Ref = useRef(null);
   const element2Ref = useRef(null);
@@ -81,8 +82,10 @@ function Game() {
     if (!barier) shiftY = 10;
 
     setChar((prevChar) => {
-      //fall
+      if (prevChar.jump) shiftY = -10;
+
       if (prevChar.y > 900) {
+        //fall
         return {
           ...prevChar,
           y: 0,
@@ -126,7 +129,19 @@ function Game() {
 
   useEffect(() => {
     document.addEventListener("keydown", (event) => {
-      // console.log(event);
+      console.log(event);
+      if (event.code == "Space") {
+        setChar((prevChar) => ({
+          ...prevChar,
+          jump: true,
+        }));
+        setTimeout(() => {
+          setChar((prevChar) => ({
+            ...prevChar,
+            jump: false,
+          }));
+        }, 1000);
+      }
       if (event.key == "ArrowRight") {
         console.log("Goright");
         setChar((prevChar) => ({
