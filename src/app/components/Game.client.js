@@ -223,6 +223,7 @@ function Game() {
           width: "422px",
           height: "100px",
           background: "blue",
+          backgroundImage: "url(/brick-wall.jpg)",
         }}
       ></div>
     </GameContainer>
