@@ -81,6 +81,14 @@ function Game() {
     if (!barier) shiftY = 10;
 
     setChar((prevChar) => {
+      //fall
+      if (prevChar.y > 900) {
+        return {
+          ...prevChar,
+          y: 0,
+          x: 300,
+        };
+      }
       if (!intersection) {
         window.prevX = prevChar.x;
         window.prevY = prevChar.y;
