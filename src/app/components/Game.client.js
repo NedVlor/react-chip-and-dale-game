@@ -6,7 +6,7 @@ import styled from "styled-components";
 const GameContainer = styled.div`
   height: 800px;
   width: 1000px;
-   backgroundImage: "url(/city.png)",
+  background-image: url(/city.png);
   position: relative;
 `;
 
@@ -22,10 +22,14 @@ function Game() {
     jump: false,
     onTheGround: false,
   });
-  const element1Ref = useRef(null);
-  const element2Ref = useRef(null);
-  const element3Ref = useRef(null);
-  const element4Ref = useRef(null);
+  const rChar = useRef(null);
+  const r0 = useRef(null);
+  const r1 = useRef(null);
+  const r2 = useRef(null);
+  const r3 = useRef(null);
+  const r4 = useRef(null);
+  const r5 = useRef(null);
+  const r6 = useRef(null);
 
   const checkIntersection = () => {
     let barier = false; // for gravity
@@ -33,53 +37,51 @@ function Game() {
     let shiftY = 0;
     let shiftX = 0;
 
-    [element2Ref.current, element3Ref.current, element4Ref.current].forEach(
-      (element2) => {
-        const chipNode = element1Ref.current;
+    [r0, r1, r2, r3, r4, r5, r6].forEach((el) => {
+      const chipNode = rChar.current;
+      const element2 = el.current;
+      if (chipNode && element2) {
+        const chip = chipNode.getBoundingClientRect(); // cordinates and size for chip
+        const rect2 = element2.getBoundingClientRect(); // cordinate and size for current solid object
 
-        if (chipNode && element2) {
-          const chip = chipNode.getBoundingClientRect(); // cordinates and size for chip
-          const rect2 = element2.getBoundingClientRect(); // cordinate and size for current solid object
-
-          // graviry intersection checking 1
-          if (
-            chip.bottom + 1 < rect2.top || // вищe
-            !(chip.right > rect2.left && chip.left < rect2.right) // мимо
-          ) {
-          } else {
-            console.log("first barier");
-            barier = true;
-          }
-          // gravity intersection checking 2
-          if (
-            chip.top > rect2.bottom //|| // нижче
-          ) {
-            console.log("if under", chip.top, rect2.bottom);
-            barier = false;
-          } else {
-            console.log("secound barier");
-          }
-
-          setChar((prevChar) => {
-            // horizontal intersection (actually any intersection)
-            // no vertical intersection
-            // no horizontal imtersection
-            if (
-              !(
-                !!(chip.bottom > rect2.top && chip.top < rect2.bottom) &&
-                !!(chip.right > rect2.left && chip.left < rect2.right)
-              )
-            ) {
-            } else {
-              intersection = true;
-            }
-            return {
-              ...prevChar,
-            };
-          });
+        // graviry intersection checking 1
+        if (
+          chip.bottom + 1 < rect2.top || // вищe
+          !(chip.right > rect2.left && chip.left < rect2.right) // мимо
+        ) {
+        } else {
+          console.log("first barier");
+          barier = true;
         }
-      },
-    );
+        // gravity intersection checking 2
+        if (
+          chip.top > rect2.bottom //|| // нижче
+        ) {
+          console.log("if under", chip.top, rect2.bottom);
+          barier = false;
+        } else {
+          console.log("secound barier");
+        }
+
+        setChar((prevChar) => {
+          // horizontal intersection (actually any intersection)
+          // no vertical intersection
+          // no horizontal imtersection
+          if (
+            !(
+              !!(chip.bottom > rect2.top && chip.top < rect2.bottom) &&
+              !!(chip.right > rect2.left && chip.left < rect2.right)
+            )
+          ) {
+          } else {
+            intersection = true;
+          }
+          return {
+            ...prevChar,
+          };
+        });
+      }
+    });
 
     if (!barier) {
       shiftY = 10;
@@ -180,7 +182,7 @@ function Game() {
   return (
     <GameContainer>
       <Chip
-        ref={element1Ref}
+        ref={rChar}
         data={char}
         style={{
           position: "absolute",
@@ -191,8 +193,37 @@ function Game() {
           background: "red",
         }}
       />
+
       <div
-        ref={element2Ref}
+        ref={r0}
+        style={{
+          position: "absolute",
+          left: "500px",
+          top: "474px",
+          width: "283px",
+          height: "17px",
+          background: "blue",
+        }}
+      >
+        {char.vector}
+      </div>
+
+      <div
+        ref={r1}
+        style={{
+          position: "absolute",
+          left: "300px",
+          top: "300px",
+          width: "100px",
+          height: "100px",
+          background: "blue",
+        }}
+      >
+        {char.vector}
+      </div>
+
+      <div
+        ref={r2}
         style={{
           position: "absolute",
           left: "300px",
@@ -205,7 +236,7 @@ function Game() {
         {char.vector}
       </div>
       <div
-        ref={element3Ref}
+        ref={r3}
         style={{
           position: "absolute",
           left: "479px",
@@ -216,7 +247,7 @@ function Game() {
         }}
       ></div>
       <div
-        ref={element4Ref}
+        ref={r4}
         style={{
           position: "absolute",
           left: "0px",
@@ -224,13 +255,34 @@ function Game() {
           width: "422px",
           height: "100px",
           background: "blue",
-          backgroundImage: "url(/brick-wall.jpg)",
+        }}
+      ></div>
+      <div
+        ref={r5}
+        style={{
+          position: "absolute",
+          left: "0px",
+          top: "700px",
+          width: "422px",
+          height: "100px",
+          background: "blue",
+        }}
+      ></div>
+      <div
+        ref={r6}
+        style={{
+          position: "absolute",
+          left: "0px",
+          top: "700px",
+          width: "422px",
+          height: "100px",
+          background: "blue",
         }}
       ></div>
     </GameContainer>
   );
 }
-
+//          backgroundImage: "url(/brick-wall.jpg)",
 /* if (
         rect1.left < rect2.right &&
         rect1.right > rect2.left &&
