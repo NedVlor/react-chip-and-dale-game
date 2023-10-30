@@ -42,7 +42,17 @@ function Game() {
       const chipNode = rChar.current;
       const element2 = el.current;
       if (chipNode && element2) {
-        const chip = chipNode.getBoundingClientRect(); // cordinates and size for chip
+        const chipRaw = chipNode.getBoundingClientRect(); // cordinates and size for chip
+        //chip.left = chip.left + 15;
+        //chip.right = chip.right - 30;
+        console.log("Chip Raw", chipRaw);
+        const chip = {
+          left: chipRaw.left + 15,
+          top: chipRaw.top,
+          bottom: chipRaw.bottom,
+          right: chipRaw.right - 30,
+        };
+        console.log(chip);
         const rect2 = element2.getBoundingClientRect(); // cordinate and size for current solid object
 
         // graviry intersection checking 1
