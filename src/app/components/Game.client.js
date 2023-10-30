@@ -6,7 +6,7 @@ import styled from "styled-components";
 const GameContainer = styled.div`
   height: 800px;
   width: 1000px;
-  background-color: grey;
+   backgroundImage: "url(/city.png)",
   position: relative;
 `;
 
@@ -55,6 +55,7 @@ function Game() {
             chip.top > rect2.bottom //|| // нижче
           ) {
             console.log("if under", chip.top, rect2.bottom);
+            barier = false;
           } else {
             console.log("secound barier");
           }
