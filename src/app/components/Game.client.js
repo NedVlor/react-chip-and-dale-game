@@ -21,6 +21,7 @@ function Game() {
     vector: "",
     jump: false,
     onTheGround: false,
+    verticalSpeed: 10,
   });
   const rChar = useRef(null);
   const r0 = useRef(null);
@@ -83,13 +84,9 @@ function Game() {
       }
     });
 
-    if (!barier) {
-      shiftY = 10;
-    } else {
-    }
-
     setChar((prevChar) => {
-      if (prevChar.jump) shiftY = -10;
+      if (!barier) shiftY = prevChar.verticalSpeed;
+      if (prevChar.jump) shiftY = -prevChar.verticalSpeed;
 
       if (prevChar.y > 900) {
         //fall
@@ -108,10 +105,14 @@ function Game() {
         console.log("no intersection");
       } else {
         console.log("intersection");
+        setTimeout(() => {
+          setChar((prevChar) => ({ ...prevChar, verticalSpeed: 10 }));
+        }, 1000);
         return {
           ...prevChar,
           y: window.prevY,
           x: window.prevX,
+          verticalSpeed: 1,
         };
       }
 
@@ -212,10 +213,10 @@ function Game() {
         ref={r1}
         style={{
           position: "absolute",
-          left: "300px",
-          top: "300px",
-          width: "100px",
-          height: "100px",
+          left: "0px",
+          top: "337px",
+          width: "14px",
+          height: "356px",
           background: "blue",
         }}
       >
@@ -262,8 +263,8 @@ function Game() {
         style={{
           position: "absolute",
           left: "0px",
-          top: "700px",
-          width: "422px",
+          top: "637px",
+          width: "206px",
           height: "100px",
           background: "blue",
         }}
@@ -272,10 +273,10 @@ function Game() {
         ref={r6}
         style={{
           position: "absolute",
-          left: "0px",
-          top: "700px",
-          width: "422px",
-          height: "100px",
+          left: "663px",
+          top: "637px",
+          width: "74px",
+          height: "63px",
           background: "blue",
         }}
       ></div>
