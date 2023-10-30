@@ -290,6 +290,15 @@ function Game() {
           background: "blue",
         }}
       ></div>
+      <img
+        src="./box.jpg"
+        style={{
+          width: "100px",
+          position: "absolute",
+          left: "600px",
+          top: "600px",
+        }}
+      />
     </GameContainer>
   );
 }
