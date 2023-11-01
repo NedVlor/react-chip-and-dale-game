@@ -11,6 +11,9 @@ const GameContainer = styled.div`
 `;
 
 function Game() {
+  const [scene, setScene] = useState({
+    isSolidShow: true,
+  });
   const [char, setChar] = useState({
     x: 400,
     y: 200,
@@ -200,7 +203,7 @@ function Game() {
           left: "200px",
           top: "300px",
           width: "100px",
-          height: "100px",
+          height: "19px",
           background: "red",
         }}
       />
@@ -213,7 +216,7 @@ function Game() {
           top: "474px",
           width: "283px",
           height: "17px",
-          background: "blue",
+          background: scene.isSolidShow ? "blue" : "",
         }}
       >
         {char.vector}
@@ -227,7 +230,7 @@ function Game() {
           top: "337px",
           width: "14px",
           height: "356px",
-          background: "blue",
+          background: scene.isSolidShow ? "blue" : "",
         }}
       >
         {char.vector}
@@ -241,7 +244,7 @@ function Game() {
           top: "300px",
           width: "100px",
           height: "100px",
-          background: "blue",
+          background: scene.isSolidShow ? "blue" : "",
         }}
       >
         {char.vector}
@@ -253,8 +256,8 @@ function Game() {
           left: "479px",
           top: "700px",
           width: "521px",
-          height: "101px",
-          background: "blue",
+          height: "19px",
+          background: scene.isSolidShow ? "blue" : "",
         }}
       ></div>
       <div
@@ -263,11 +266,22 @@ function Game() {
           position: "absolute",
           left: "0px",
           top: "700px",
-          width: "422px",
-          height: "100px",
-          background: "blue",
+          width: "408px",
+          height: "8px",
+          background: scene.isSolidShow ? "blue" : "",
         }}
       ></div>
+      <div
+        style={{
+          position: "absolute",
+          left: "1px",
+          top: "700px",
+          width: "407px",
+          height: "36px",
+          backgroundImage: "url(/metal-construction.png)",
+        }}
+      ></div>
+
       <div
         ref={r5}
         style={{
@@ -275,8 +289,8 @@ function Game() {
           left: "0px",
           top: "637px",
           width: "206px",
-          height: "100px",
-          background: "blue",
+          height: "79px",
+          background: scene.isSolidShow ? "blue" : "",
         }}
       ></div>
       <div
@@ -284,19 +298,19 @@ function Game() {
         style={{
           position: "absolute",
           left: "663px",
-          top: "637px",
-          width: "74px",
+          top: "638px",
+          width: "65px",
           height: "63px",
-          background: "blue",
+          background: scene.isSolidShow ? "blue" : "",
         }}
       ></div>
       <img
         src="./box.jpg"
         style={{
-          width: "100px",
+          width: "69px",
           position: "absolute",
-          left: "600px",
-          top: "600px",
+          left: "661px",
+          top: "632px",
         }}
       />
     </GameContainer>
