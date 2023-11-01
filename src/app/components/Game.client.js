@@ -207,7 +207,6 @@ function Game() {
           background: "red",
         }}
       />
-
       <div
         ref={r0}
         style={{
@@ -221,7 +220,6 @@ function Game() {
       >
         {char.vector}
       </div>
-
       <div
         ref={r1}
         style={{
@@ -235,7 +233,6 @@ function Game() {
       >
         {char.vector}
       </div>
-
       <div
         ref={r2}
         style={{
@@ -270,7 +267,6 @@ function Game() {
           backgroundImage: "url(/metal-construction.png)",
         }}
       ></div>
-
       <div
         ref={r4}
         style={{
@@ -292,7 +288,6 @@ function Game() {
           backgroundImage: "url(/metal-construction.png)",
         }}
       ></div>
-
       <div
         ref={r5}
         style={{
@@ -313,34 +308,22 @@ function Game() {
           top: "632px",
         }}
       />
-      <img
-        src="./box.jpg"
-        style={{
-          width: "69px",
-          position: "absolute",
-          left: "74px",
-          top: "632px",
-        }}
-      />
-      <img
-        src="./box.jpg"
-        style={{
-          width: "69px",
-          position: "absolute",
-          left: "5px",
-          top: "632px",
-        }}
-      />
-      <img
-        src="./box.jpg"
-        style={{
-          width: "69px",
-          position: "absolute",
-          left: "143px",
-          top: "632px",
-        }}
-      />
-
+      {}
+      {[
+        { width: 69, left: 5, top: 632 },
+        { width: 69, left: 74, top: 632 },
+        { width: 69, left: 143, top: 632 },
+      ].map((obj) => (
+        <img
+          src="./box.jpg"
+          style={{
+            width: obj.width + "px",
+            position: "absolute",
+            left: obj.left + "px",
+            top: obj.top + "px",
+          }}
+        />
+      ))}
       <div
         ref={r6}
         style={{
