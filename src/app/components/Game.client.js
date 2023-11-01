@@ -261,6 +261,17 @@ function Game() {
         }}
       ></div>
       <div
+        style={{
+          position: "absolute",
+          left: "479px",
+          top: "700px",
+          width: "521px",
+          height: "37px",
+          backgroundImage: "url(/metal-construction.png)",
+        }}
+      ></div>
+
+      <div
         ref={r4}
         style={{
           position: "absolute",
@@ -287,12 +298,49 @@ function Game() {
         style={{
           position: "absolute",
           left: "0px",
-          top: "637px",
-          width: "206px",
-          height: "79px",
+          top: "633px",
+          width: "212px",
+          height: "67px",
           background: scene.isSolidShow ? "blue" : "",
         }}
       ></div>
+      <img
+        src="./box.jpg"
+        style={{
+          width: "69px",
+          position: "absolute",
+          left: "143px",
+          top: "632px",
+        }}
+      />
+      <img
+        src="./box.jpg"
+        style={{
+          width: "69px",
+          position: "absolute",
+          left: "74px",
+          top: "632px",
+        }}
+      />
+      <img
+        src="./box.jpg"
+        style={{
+          width: "69px",
+          position: "absolute",
+          left: "5px",
+          top: "632px",
+        }}
+      />
+      <img
+        src="./box.jpg"
+        style={{
+          width: "69px",
+          position: "absolute",
+          left: "143px",
+          top: "632px",
+        }}
+      />
+
       <div
         ref={r6}
         style={{
