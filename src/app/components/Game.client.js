@@ -13,6 +13,7 @@ const GameContainer = styled.div`
 function Game() {
   const [scene, setScene] = useState({
     isSolidShow: true,
+    intersection: false,
   });
   const [char, setChar] = useState({
     x: 400,
@@ -136,6 +137,12 @@ function Game() {
         onTheGround: barier,
       };
     });
+    setScene((prevScene) => {
+      return {
+        ...prevScene,
+        intersection: intersection,
+      };
+    });
   };
 
   useEffect(() => {
@@ -205,7 +212,9 @@ function Game() {
           padding: ".5rem",
         }}
       >
-        <div style={{ background: false ? "red" : "none" }}>intersection</div>
+        <div style={{ background: scene.intersection ? "red" : "none" }}>
+          intersection
+        </div>
       </div>
       <Chip
         ref={rChar}
