@@ -195,6 +195,18 @@ function Game() {
   }, []);
   return (
     <GameContainer>
+      <div
+        style={{
+          width: "100px",
+          background: "#0000ff21",
+          top: "0",
+          left: "0",
+          position: "absolute",
+          padding: ".5rem",
+        }}
+      >
+        <div style={{ background: false ? "red" : "none" }}>intersection</div>
+      </div>
       <Chip
         ref={rChar}
         data={char}
