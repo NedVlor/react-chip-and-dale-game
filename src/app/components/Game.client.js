@@ -257,17 +257,6 @@ function Game() {
           background: scene.isSolidShow ? "blue" : "",
         }}
       ></div>
-      {/*
-      <div
-        style={{
-          position: "absolute",
-          left: "479px",
-          top: "700px",
-          width: "521px",
-          height: "37px",
-          backgroundImage: "url(/metal-construction.png)",
-        }}
-      ></div>*/}
       <div
         ref={r4}
         style={{
@@ -279,16 +268,6 @@ function Game() {
           background: scene.isSolidShow ? "blue" : "",
         }}
       ></div>
-      {/* <div
-        style={{
-          position: "absolute",
-          left: "1px",
-          top: "700px",
-          width: "407px",
-          height: "36px",
-          backgroundImage: "url(/metal-construction.png)",
-        }}
-      ></div> */}
       <div
         ref={r5}
         style={{
@@ -370,17 +349,6 @@ function Game() {
           background: scene.isSolidShow ? "blue" : "",
         }}
       ></div>
-      {/*{" "}
-      <img
-        src="./box.jpg"
-        style={{
-          width: "69px",
-          position: "absolute",
-          left: "661px",
-          top: "632px",
-        }}
-      />{" "}
-      */}
     </GameContainer>
   );
 }
