@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const GameContainer = styled.div`
   height: 800px;
-  width: 1000px;
+  width: 2000px;
   background-image: url(/city.png);
   position: relative;
 `;
@@ -16,7 +16,7 @@ function Game() {
     intersection: false,
   });
   const [char, setChar] = useState({
-    x: 400,
+    x: 800,
     y: 200,
     prevX: 400,
     prevY: 200,
@@ -208,7 +208,7 @@ function Game() {
           background: "#0000ff21",
           top: "0",
           left: "0",
-          position: "absolute",
+          position: "fixed",
           padding: ".5rem",
         }}
       >
@@ -234,7 +234,7 @@ function Game() {
           position: "absolute",
           left: "500px",
           top: "474px",
-          width: "283px",
+          width: "6000px",
           height: "17px",
           background: scene.isSolidShow ? "blue" : "",
         }}
