@@ -257,6 +257,7 @@ function Game() {
           background: scene.isSolidShow ? "blue" : "",
         }}
       ></div>
+      {/*
       <div
         style={{
           position: "absolute",
@@ -266,7 +267,7 @@ function Game() {
           height: "37px",
           backgroundImage: "url(/metal-construction.png)",
         }}
-      ></div>
+      ></div>*/}
       <div
         ref={r4}
         style={{
@@ -278,7 +279,7 @@ function Game() {
           background: scene.isSolidShow ? "blue" : "",
         }}
       ></div>
-      <div
+      {/* <div
         style={{
           position: "absolute",
           left: "1px",
@@ -287,7 +288,7 @@ function Game() {
           height: "36px",
           backgroundImage: "url(/metal-construction.png)",
         }}
-      ></div>
+      ></div> */}
       <div
         ref={r5}
         style={{
@@ -308,22 +309,56 @@ function Game() {
           top: "632px",
         }}
       />
-      {}
       {[
-        { width: 69, left: 5, top: 632 },
-        { width: 69, left: 74, top: 632 },
-        { width: 69, left: 143, top: 632 },
-      ].map((obj) => (
-        <img
-          src="./box.jpg"
-          style={{
-            width: obj.width + "px",
-            position: "absolute",
-            left: obj.left + "px",
-            top: obj.top + "px",
-          }}
-        />
-      ))}
+        { type: "img", width: 69, left: 5, top: 632, src: "./box.jpg" },
+        { type: "img", width: 69, left: 74, top: 632, src: "./box.jpg" },
+        { type: "img", width: 69, left: 143, top: 632, src: "./box.jpg" },
+        { type: "img", width: 69, left: 661, top: 632, src: "./box.jpg" },
+        {
+          type: "div",
+          width: 521,
+          height: 37,
+          left: 479,
+          top: 700,
+          backgroundImage: "url(/metal-construction.png)",
+        },
+        {
+          type: "div",
+          width: 407,
+          height: 36,
+          left: 1,
+          top: 700,
+          backgroundImage: "url(/metal-construction.png)",
+        },
+      ].map((obj) => {
+        if (obj.type == "img") {
+          return (
+            <img
+              src={obj.src}
+              style={{
+                zIndex: "100",
+                width: obj.width + "px",
+                position: "absolute",
+                left: obj.left + "px",
+                top: obj.top + "px",
+              }}
+            />
+          );
+        } else if (obj.type == "div") {
+          return (
+            <div
+              style={{
+                position: "absolute",
+                left: obj.left + "px",
+                top: obj.top + "px",
+                width: obj.width + "px",
+                height: obj.height + "px",
+                backgroundImage: obj.backgroundImage,
+              }}
+            ></div>
+          );
+        }
+      })}
       <div
         ref={r6}
         style={{
@@ -335,6 +370,7 @@ function Game() {
           background: scene.isSolidShow ? "blue" : "",
         }}
       ></div>
+      {/*{" "}
       <img
         src="./box.jpg"
         style={{
@@ -343,7 +379,8 @@ function Game() {
           left: "661px",
           top: "632px",
         }}
-      />
+      />{" "}
+      */}
     </GameContainer>
   );
 }
