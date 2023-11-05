@@ -16,8 +16,8 @@ function Game() {
     intersection: false,
   });
   const [char, setChar] = useState({
-    x: 800,
-    y: 400,
+    x: 0,
+    y: 800,
     prevX: 400,
     prevY: 200,
     action: "standing",
@@ -41,20 +41,20 @@ function Game() {
     let intersection = false; // for X
     let shiftY = 0;
     let shiftX = 0;
+    const chipNode = rChar.current;
+    const chipRaw = chipNode.getBoundingClientRect(); // cordinates and size for chip
+    const chip = {
+      left: chipRaw.left + 15,
+      top: chipRaw.top,
+      bottom: chipRaw.bottom,
+      right: chipRaw.right - 30,
+    };
 
     [r0, r1, r2, r3, r4, r5, r6].forEach((el, i) => {
-      const chipNode = rChar.current;
       const element2 = el.current;
       console.log("---i---", i);
 
       if (chipNode && element2) {
-        const chipRaw = chipNode.getBoundingClientRect(); // cordinates and size for chip
-        const chip = {
-          left: chipRaw.left + 15,
-          top: chipRaw.top,
-          bottom: chipRaw.bottom,
-          right: chipRaw.right - 30,
-        };
         const rect2 = element2.getBoundingClientRect(); // cordinate and size for current solid object
 
         // graviry intersection checking 1
@@ -87,7 +87,7 @@ function Game() {
             )
           ) {
           } else {
-           intersection = true;
+            intersection = true;
           }
           return {
             ...prevChar,
@@ -96,14 +96,13 @@ function Game() {
       }
     }); // END forEach
 
-    const barier = bariers.some(b=> b);
+    const barier = bariers.some((b) => b);
 
     setChar((prevChar) => {
-
       if (!barier) {
-        console.log('No barier, should falling')
+        console.log("No barier, should falling");
         shiftY = prevChar.verticalSpeed;
-      };
+      }
       if (prevChar.jump) shiftY = -prevChar.verticalSpeed;
 
       if (prevChar.y > 900) {
@@ -136,7 +135,7 @@ function Game() {
           setChar((prevChar) => ({ ...prevChar, verticalSpeed: 10 }));
         }, 150);
 
-        shiftY = 1
+        shiftY = 1;
         return {
           ...prevChar,
           y: window.prevY,
@@ -144,8 +143,6 @@ function Game() {
           verticalSpeed: 1,
         };
       }
-
-   
     });
     setScene((prevScene) => {
       return {
@@ -154,9 +151,31 @@ function Game() {
       };
     });
 
-    console.log('------------------------ checkIntersection----------------------')
-  }; // END checkIntersection
+    console.log(
+      "------------------------ checkIntersection----------------------",
+    );
+    // Устанавливаем "буферные" зоны для прокрутки
+    var leftThreshold = 300; // Порог слева
+    var rightThreshold = window.innerWidth - 300; // Порог справа
+    const body = document.querySelector("body");
 
+    // Проверяем, не выходит ли персонаж за левый край
+    if (chip.left < leftThreshold) {
+      // Прокрутка влево
+      body.scrollBy({
+        left: chip.left - leftThreshold,
+        behavior: "smooth",
+      });
+    }
+    // Проверяем, не выходит ли персонаж за правый край
+    else if (chip.right > rightThreshold) {
+      // Прокрутка вправо
+      body.scrollBy({
+        left: chip.right - rightThreshold,
+        behavior: "smooth",
+      });
+    }
+  }; // END checkIntersection
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -229,7 +248,7 @@ function Game() {
           intersection
         </div>
         <div style={{ background: char.onTheGround ? "gray" : "none" }}>
-        onTheGround
+          onTheGround
         </div>
         <div>
           CHIP X Y: {char.x}, {char.y}
@@ -237,10 +256,7 @@ function Game() {
         <div>
           PREV X Y: {char.prevX}, {char.prevY}
         </div>
-        <div>
-        verticalSpeed: {char.verticalSpeed}
-        </div>
-        
+        <div>verticalSpeed: {char.verticalSpeed}</div>
       </div>
       <Chip
         ref={rChar}
