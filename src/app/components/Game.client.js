@@ -13,6 +13,7 @@ const GameContainer = styled.div`
 function Game() {
   const [scene, setScene] = useState({
     isSolidShow: true,
+    isGraphicsShow: false,
     intersection: false,
   });
   const [char, setChar] = useState({
@@ -367,6 +368,7 @@ function Game() {
           backgroundImage: "url(/metal-construction.png)",
         },
       ].map((obj) => {
+        if (!scene.isGraphicsShow) return;
         if (obj.type == "img") {
           return (
             <img
