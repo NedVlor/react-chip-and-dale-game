@@ -111,11 +111,7 @@ const Chip = forwardRef((props, ref) => {
     }));
   }, [props.data.x, props.data.y]);
 
-  return (
-    <Container ref={ref} style={style}>
-      {still} {props.data.direction}
-    </Container>
-  );
+  return <Container ref={ref} style={style}></Container>;
 });
 
 export default Chip;

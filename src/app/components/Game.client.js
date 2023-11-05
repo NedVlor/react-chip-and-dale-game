@@ -47,7 +47,7 @@ function Game() {
       left: chipRaw.left + 15,
       top: chipRaw.top,
       bottom: chipRaw.bottom,
-      right: chipRaw.right - 30,
+      right: chipRaw.right - 15,
     };
 
     [r0, r1, r2, r3, r4, r5, r6].forEach((el, i) => {
@@ -280,9 +280,7 @@ function Game() {
           height: "17px",
           background: scene.isSolidShow ? "blue" : "",
         }}
-      >
-        {char.vector}
-      </div>
+      ></div>
       <div
         ref={r1}
         style={{
@@ -293,9 +291,7 @@ function Game() {
           height: "356px",
           background: scene.isSolidShow ? "blue" : "",
         }}
-      >
-        {char.vector}
-      </div>
+      ></div>
       <div
         ref={r2}
         style={{
@@ -306,9 +302,7 @@ function Game() {
           height: "100px",
           background: scene.isSolidShow ? "blue" : "",
         }}
-      >
-        {char.vector}
-      </div>
+      ></div>
       <div
         ref={r3}
         style={{
