@@ -17,7 +17,7 @@ function Game() {
   });
   const [char, setChar] = useState({
     x: 800,
-    y: 200,
+    y: 400,
     prevX: 400,
     prevY: 200,
     action: "standing",
@@ -37,26 +37,24 @@ function Game() {
   const r6 = useRef(null);
 
   const checkIntersection = () => {
-    let barier = false; // for gravity
+    let bariers = []; // for gravity
     let intersection = false; // for X
     let shiftY = 0;
     let shiftX = 0;
 
-    [r0, r1, r2, r3, r4, r5, r6].forEach((el) => {
+    [r0, r1, r2, r3, r4, r5, r6].forEach((el, i) => {
       const chipNode = rChar.current;
       const element2 = el.current;
+      console.log("---i---", i);
+
       if (chipNode && element2) {
         const chipRaw = chipNode.getBoundingClientRect(); // cordinates and size for chip
-        //chip.left = chip.left + 15;
-        //chip.right = chip.right - 30;
-        console.log("Chip Raw", chipRaw);
         const chip = {
           left: chipRaw.left + 15,
           top: chipRaw.top,
           bottom: chipRaw.bottom,
           right: chipRaw.right - 30,
         };
-        console.log(chip);
         const rect2 = element2.getBoundingClientRect(); // cordinate and size for current solid object
 
         // graviry intersection checking 1
@@ -64,16 +62,16 @@ function Game() {
           chip.bottom + 1 < rect2.top || // вищe
           !(chip.right > rect2.left && chip.left < rect2.right) // мимо
         ) {
+          bariers[i] = false;
         } else {
           console.log("first barier");
-          barier = true;
+          bariers[i] = true;
         }
         // gravity intersection checking 2
         if (
           chip.top > rect2.bottom //|| // нижче
         ) {
-          console.log("if under", chip.top, rect2.bottom);
-          barier = false;
+          bariers[i] = false;
         } else {
           console.log("secound barier");
         }
@@ -89,17 +87,23 @@ function Game() {
             )
           ) {
           } else {
-            intersection = true;
+           intersection = true;
           }
           return {
             ...prevChar,
           };
         });
       }
-    });
+    }); // END forEach
+
+    const barier = bariers.some(b=> b);
 
     setChar((prevChar) => {
-      if (!barier) shiftY = prevChar.verticalSpeed;
+
+      if (!barier) {
+        console.log('No barier, should falling')
+        shiftY = prevChar.verticalSpeed;
+      };
       if (prevChar.jump) shiftY = -prevChar.verticalSpeed;
 
       if (prevChar.y > 900) {
@@ -110,18 +114,29 @@ function Game() {
           x: 300,
         };
       }
+
       if (!intersection) {
+        console.log("no intersection");
         window.prevX = prevChar.x;
         window.prevY = prevChar.y;
-
         if (prevChar.vector == "left") shiftX = -4;
         if (prevChar.vector == "right") shiftX = 4;
-        console.log("no intersection");
+        return {
+          ...prevChar,
+          prevX: window.prevX,
+          prevY: window.prevY,
+          y: prevChar.y + shiftY,
+          x: prevChar.x + shiftX,
+          onTheGround: barier,
+        };
       } else {
         console.log("intersection");
         setTimeout(() => {
+          console.log(" reset to 10");
           setChar((prevChar) => ({ ...prevChar, verticalSpeed: 10 }));
-        }, 1000);
+        }, 150);
+
+        shiftY = 1
         return {
           ...prevChar,
           y: window.prevY,
@@ -130,12 +145,7 @@ function Game() {
         };
       }
 
-      return {
-        ...prevChar,
-        y: prevChar.y + shiftY,
-        x: prevChar.x + shiftX,
-        onTheGround: barier,
-      };
+   
     });
     setScene((prevScene) => {
       return {
@@ -143,7 +153,10 @@ function Game() {
         intersection: intersection,
       };
     });
-  };
+
+    console.log('------------------------ checkIntersection----------------------')
+  }; // END checkIntersection
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -204,7 +217,7 @@ function Game() {
     <GameContainer>
       <div
         style={{
-          width: "100px",
+          width: "200px",
           background: "#0000ff21",
           top: "0",
           left: "0",
@@ -215,6 +228,19 @@ function Game() {
         <div style={{ background: scene.intersection ? "red" : "none" }}>
           intersection
         </div>
+        <div style={{ background: char.onTheGround ? "gray" : "none" }}>
+        onTheGround
+        </div>
+        <div>
+          CHIP X Y: {char.x}, {char.y}
+        </div>
+        <div>
+          PREV X Y: {char.prevX}, {char.prevY}
+        </div>
+        <div>
+        verticalSpeed: {char.verticalSpeed}
+        </div>
+        
       </div>
       <Chip
         ref={rChar}
