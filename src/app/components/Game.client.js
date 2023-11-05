@@ -337,15 +337,7 @@ function Game() {
           background: scene.isSolidShow ? "blue" : "",
         }}
       ></div>
-      <img
-        src="./box.jpg"
-        style={{
-          width: "69px",
-          position: "absolute",
-          left: "143px",
-          top: "632px",
-        }}
-      />
+
       {[
         { type: "img", width: 69, left: 5, top: 632, src: "./box.jpg" },
         { type: "img", width: 69, left: 74, top: 632, src: "./box.jpg" },
