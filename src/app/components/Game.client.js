@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Chip from "./Chip.client.js";
 import styled from "styled-components";
-import { getSolidList } from "./data.js";
+import { getSolidList, graphicsList } from "./data.js";
 
 const GameContainer = styled.div`
   height: 800px;
@@ -14,7 +14,7 @@ const GameContainer = styled.div`
 function Game() {
   const [scene, setScene] = useState({
     isSolidShow: true,
-    isGraphicsShow: false,
+    isGraphicsShow: true,
     intersection: false,
   });
   const [char, setChar] = useState({
@@ -282,28 +282,7 @@ function Game() {
           ></div>
         );
       })}
-      {[
-        { type: "img", width: 69, left: 5, top: 632, src: "./box.jpg" },
-        { type: "img", width: 69, left: 74, top: 632, src: "./box.jpg" },
-        { type: "img", width: 69, left: 143, top: 632, src: "./box.jpg" },
-        { type: "img", width: 69, left: 661, top: 632, src: "./box.jpg" },
-        {
-          type: "div",
-          width: 521,
-          height: 37,
-          left: 479,
-          top: 700,
-          backgroundImage: "url(/metal-construction.png)",
-        },
-        {
-          type: "div",
-          width: 407,
-          height: 36,
-          left: 1,
-          top: 700,
-          backgroundImage: "url(/metal-construction.png)",
-        },
-      ].map((obj) => {
+      {graphicsList.map((obj) => {
         if (!scene.isGraphicsShow) return;
         if (obj.type == "img") {
           return (
