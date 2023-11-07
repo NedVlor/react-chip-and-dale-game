@@ -304,7 +304,7 @@ function Game() {
           background: scene.isSolidShow ? "blue" : "",
         }}
       ></div>
-      <div
+      {/*  <div
         ref={r3}
         style={{
           position: "absolute",
@@ -314,7 +314,8 @@ function Game() {
           height: "19px",
           background: scene.isSolidShow ? "blue" : "",
         }}
-      ></div>
+      ></div>*/}
+      {/*
       <div
         ref={r4}
         style={{
@@ -326,18 +327,26 @@ function Game() {
           background: scene.isSolidShow ? "blue" : "",
         }}
       ></div>
-      <div
-        ref={r5}
-        style={{
-          position: "absolute",
-          left: "0px",
-          top: "633px",
-          width: "212px",
-          height: "67px",
-          background: scene.isSolidShow ? "blue" : "",
-        }}
-      ></div>
-
+      */}
+      {[
+        { left: 0, top: 633, width: 212, height: 67 },
+        { left: 0, top: 700, width: 408, height: 8 },
+        { left: 479, top: 700, width: 521, height: 19 },
+      ].map((obj) => {
+        return (
+          <div
+            ref={r5}
+            style={{
+              position: "absolute",
+              left: obj.left + "px",
+              top: obj.top + "px",
+              width: obj.width + "px",
+              height: obj.height + "px",
+              background: scene.isSolidShow ? "blue" : "",
+            }}
+          ></div>
+        );
+      })}
       {[
         { type: "img", width: 69, left: 5, top: 632, src: "./box.jpg" },
         { type: "img", width: 69, left: 74, top: 632, src: "./box.jpg" },
