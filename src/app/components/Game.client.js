@@ -343,40 +343,4 @@ function Game() {
     </GameContainer>
   );
 }
-//          backgroundImage: "url(/brick-wall.jpg)",
-/* if (
-        rect1.left < rect2.right &&
-        rect1.right > rect2.left &&
-        rect1.top < rect2.bottom &&
-        rect1.bottom > rect2.top
-      ) {
-        // Определите с какой стороны происходит пересечение
-        if (rect1.right <= rect2.left) {
-          console.log("----Слева"); // Chip справа от element2
-        } else if (rect1.left >= rect2.right) {
-          console.log("----Справа"); // Chip слева от element2
-        } else if (rect1.bottom <= rect2.top) {
-          console.log("----Сверху"); // Chip ниже element2
-        } else if (rect1.top >= rect2.bottom) {
-          console.log("----Снизу"); // Chip выше element2
-        } else {
-          console.log("----Пересекаются"); // Chip пересекается с element2
-        }
-      } else {
-        console.log("----Нет пересечения");
-      }
-*/
-/*
-if (chip.right < rect2.left) {
-  // console.log("Слева+"); // Chip находится слева от element2
-} else if (chip.left > rect2.right) {
-  //console.log("Справа+"); // Chip находится справа от element2
-} else if (chip.bottom < rect2.top) {
-  //console.log("Сверху+"); // Chip находится сверху от element2
-} else if (chip.top > rect2.bottom) {
-  //console.log("Снизу+"); // Chip находится снизу от element2
-} else {
-  // console.log("Пересекаются+"); // Chip и element2 пересекаются
-}*/
-
 export default Game;
