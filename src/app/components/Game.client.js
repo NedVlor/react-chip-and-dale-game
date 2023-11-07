@@ -29,7 +29,12 @@ function Game() {
     onTheGround: false,
     verticalSpeed: 10,
   });
-
+  const toggleGraphics = () => {
+    setScene((prevScene) => ({
+      ...prevScene,
+      isGraphicsShow: !prevScene.isGraphicsShow,
+    }));
+  };
   const rChar = useRef(null);
   const solidList = getSolidList(useRef);
   const checkIntersection = () => {
@@ -253,6 +258,7 @@ function Game() {
           PREV X Y: {char.prevX}, {char.prevY}
         </div>
         <div>verticalSpeed: {char.verticalSpeed}</div>
+        <button onClick={toggleGraphics}>Graphics</button>
       </div>
       <Chip
         ref={rChar}
@@ -279,7 +285,9 @@ function Game() {
               height: obj.height + "px",
               background: scene.isSolidShow ? "blue" : "",
             }}
-          ></div>
+          >
+            i:{i}, x:{obj.left}, y:{obj.top}, w:{obj.width}, h:{obj.height}
+          </div>
         );
       })}
       {graphicsList.map((obj) => {
