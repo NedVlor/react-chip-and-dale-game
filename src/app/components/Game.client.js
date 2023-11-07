@@ -28,15 +28,17 @@ function Game() {
     onTheGround: false,
     verticalSpeed: 10,
   });
-  const rChar = useRef(null);
-  const r0 = useRef(null);
-  const r1 = useRef(null);
-  const r2 = useRef(null);
-  const r3 = useRef(null);
-  const r4 = useRef(null);
-  const r5 = useRef(null);
-  const r6 = useRef(null);
 
+  const rChar = useRef(null);
+  const solidList = [
+    { left: 0, top: 633, width: 212, height: 67, ref: useRef(null) },
+    { left: 0, top: 700, width: 408, height: 8, ref: useRef(null) },
+    { left: 300, top: 300, width: 100, height: 100, ref: useRef(null) },
+    { left: 479, top: 700, width: 521, height: 19, ref: useRef(null) },
+    { left: 0, top: 337, width: 14, height: 356, ref: useRef(null) },
+    { left: 500, top: 474, width: 6000, height: 17, ref: useRef(null) },
+    { left: 663, top: 638, width: 65, height: 63, ref: useRef(null) },
+  ];
   const checkIntersection = () => {
     let bariers = []; // for gravity
     let intersection = false; // for X
@@ -51,8 +53,8 @@ function Game() {
       right: chipRaw.right - 15,
     };
 
-    [r0, r1, r2, r3, r4, r5, r6].forEach((el, i) => {
-      const element2 = el.current;
+    solidList.forEach((el, i) => {
+      const element2 = el.ref.current;
       console.log("---i---", i);
 
       if (chipNode && element2) {
@@ -271,71 +273,11 @@ function Game() {
           background: "red",
         }}
       />
-      <div
-        ref={r0}
-        style={{
-          position: "absolute",
-          left: "500px",
-          top: "474px",
-          width: "6000px",
-          height: "17px",
-          background: scene.isSolidShow ? "blue" : "",
-        }}
-      ></div>
-      <div
-        ref={r1}
-        style={{
-          position: "absolute",
-          left: "0px",
-          top: "337px",
-          width: "14px",
-          height: "356px",
-          background: scene.isSolidShow ? "blue" : "",
-        }}
-      ></div>
-      <div
-        ref={r2}
-        style={{
-          position: "absolute",
-          left: "300px",
-          top: "300px",
-          width: "100px",
-          height: "100px",
-          background: scene.isSolidShow ? "blue" : "",
-        }}
-      ></div>
-      {/*  <div
-        ref={r3}
-        style={{
-          position: "absolute",
-          left: "479px",
-          top: "700px",
-          width: "521px",
-          height: "19px",
-          background: scene.isSolidShow ? "blue" : "",
-        }}
-      ></div>*/}
-      {/*
-      <div
-        ref={r4}
-        style={{
-          position: "absolute",
-          left: "0px",
-          top: "700px",
-          width: "408px",
-          height: "8px",
-          background: scene.isSolidShow ? "blue" : "",
-        }}
-      ></div>
-      */}
-      {[
-        { left: 0, top: 633, width: 212, height: 67 },
-        { left: 0, top: 700, width: 408, height: 8 },
-        { left: 479, top: 700, width: 521, height: 19 },
-      ].map((obj) => {
+      {solidList.map((obj, i) => {
         return (
           <div
-            ref={r5}
+            key={i}
+            ref={obj.ref}
             style={{
               position: "absolute",
               left: obj.left + "px",
@@ -398,17 +340,6 @@ function Game() {
           );
         }
       })}
-      <div
-        ref={r6}
-        style={{
-          position: "absolute",
-          left: "663px",
-          top: "638px",
-          width: "65px",
-          height: "63px",
-          background: scene.isSolidShow ? "blue" : "",
-        }}
-      ></div>
     </GameContainer>
   );
 }
