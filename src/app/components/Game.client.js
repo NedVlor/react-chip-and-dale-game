@@ -10,12 +10,14 @@ const GameContainer = styled.div`
   width: 2000px;
   background-image: url(/city.png);
   position: relative;
+  color: white;
 `;
 
 function Game() {
   const [scene, setScene] = useState({
     isSolidShow: true,
     isGraphicsShow: true,
+    isGraphicsInfoShow: false,
     intersection: false,
   });
   const [char, setChar] = useState({
@@ -34,6 +36,12 @@ function Game() {
     setScene((prevScene) => ({
       ...prevScene,
       isGraphicsShow: !prevScene.isGraphicsShow,
+    }));
+  };
+  const toggleGraphicsInfo = () => {
+    setScene((prevScene) => ({
+      ...prevScene,
+      isGraphicsInfoShow: !prevScene.isGraphicsInfoShow,
     }));
   };
   const rChar = useRef(null);
@@ -218,7 +226,8 @@ function Game() {
           PREV X Y: {char.prevX}, {char.prevY}
         </div>
         <div>verticalSpeed: {char.verticalSpeed}</div>
-        <button onClick={toggleGraphics}>Graphics</button>
+        <button onClick={toggleGraphics}>Graphics toggle</button>
+        <button onClick={toggleGraphicsInfo}>Graphics info</button>
       </div>
       <Chip
         ref={rChar}
@@ -254,9 +263,7 @@ function Game() {
         if (!scene.isGraphicsShow) return;
         if (obj.type == "img") {
           return (
-            <img
-              key={"graphics-" + i}
-              src={obj.src}
+            <div
               style={{
                 zIndex: "100",
                 width: obj.width + "px",
@@ -264,21 +271,64 @@ function Game() {
                 left: obj.left + "px",
                 top: obj.top + "px",
               }}
-            />
+            >
+              <img
+                key={"graphics-" + i}
+                src={obj.src}
+                style={{
+                  width: obj.width + "px",
+                  position: "absolute",
+                  left: 0,
+                  top: 0,
+                }}
+              />
+              {scene.isGraphicsInfoShow && (
+                <span
+                  style={{
+                    position: "absolute",
+                    background: "#00000082",
+                  }}
+                >
+                  i:{i}, x:{obj.left}, y:{obj.top}, w:{obj.width}, h:
+                  {obj.height}
+                </span>
+              )}
+            </div>
           );
         } else if (obj.type == "div") {
           return (
             <div
-              key={"graphics-" + i}
               style={{
+                zIndex: "100",
+                width: obj.width + "px",
                 position: "absolute",
                 left: obj.left + "px",
                 top: obj.top + "px",
-                width: obj.width + "px",
-                height: obj.height + "px",
-                backgroundImage: obj.bg,
               }}
-            ></div>
+            >
+              <div
+                key={"graphics-" + i}
+                style={{
+                  position: "absolute",
+                  left: 0,
+                  top: 0,
+                  width: obj.width + "px",
+                  height: obj.height + "px",
+                  backgroundImage: obj.bg,
+                }}
+              ></div>
+              {scene.isGraphicsInfoShow && (
+                <span
+                  style={{
+                    position: "absolute",
+                    background: "#00000082",
+                  }}
+                >
+                  i:{i}, x:{obj.left}, y:{obj.top}, w:{obj.width}, h:
+                  {obj.height}
+                </span>
+              )}
+            </div>
           );
         }
       })}
