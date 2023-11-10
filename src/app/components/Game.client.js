@@ -235,7 +235,7 @@ function Game() {
       {solidList.map((obj, i) => {
         return (
           <div
-            key={i}
+            key={"collision-" + i}
             ref={obj.ref}
             style={{
               position: "absolute",
@@ -250,11 +250,12 @@ function Game() {
           </div>
         );
       })}
-      {graphicsList.map((obj) => {
+      {graphicsList.map((obj, i) => {
         if (!scene.isGraphicsShow) return;
         if (obj.type == "img") {
           return (
             <img
+              key={"graphics-" + i}
               src={obj.src}
               style={{
                 zIndex: "100",
@@ -268,6 +269,7 @@ function Game() {
         } else if (obj.type == "div") {
           return (
             <div
+              key={"graphics-" + i}
               style={{
                 position: "absolute",
                 left: obj.left + "px",
