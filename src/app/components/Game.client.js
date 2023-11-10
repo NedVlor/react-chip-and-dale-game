@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Chip from "./Chip.client.js";
 import styled from "styled-components";
 import { getSolidList, graphicsList } from "./data.js";
+import { keyboard } from "../core/keyboard.js";
 
 const GameContainer = styled.div`
   height: 800px;
@@ -190,48 +191,7 @@ function Game() {
   }, [char.vector]);
 
   useEffect(() => {
-    document.addEventListener("keydown", (event) => {
-      console.log(event);
-      if (event.code == "Space") {
-        setChar((prevChar) => ({
-          ...prevChar,
-          jump: prevChar.onTheGround ? true : false,
-        }));
-        setTimeout(() => {
-          setChar((prevChar) => ({
-            ...prevChar,
-            jump: false,
-          }));
-        }, 500);
-      }
-      if (event.key == "ArrowRight") {
-        console.log("Goright");
-        setChar((prevChar) => ({
-          ...prevChar,
-          vector: "right",
-          direction: "right",
-          action: "run",
-        }));
-      }
-      if (event.key == "ArrowLeft") {
-        console.log("Left");
-        setChar((prevChar) => ({
-          ...prevChar,
-          vector: "left",
-          direction: "left",
-          action: "run",
-        }));
-      }
-    });
-
-    document.addEventListener("keyup", (event) => {
-      // console.log(event);
-      setChar((prevChar) => ({
-        ...prevChar,
-        vector: "",
-        action: "standing",
-      }));
-    });
+    keyboard(setChar);
   }, []);
   return (
     <GameContainer>
@@ -314,7 +274,7 @@ function Game() {
                 top: obj.top + "px",
                 width: obj.width + "px",
                 height: obj.height + "px",
-                backgroundImage: obj.backgroundImage,
+                backgroundImage: obj.bg,
               }}
             ></div>
           );
