@@ -300,10 +300,10 @@ function Game() {
             <div
               style={{
                 zIndex: "100",
-                width: obj.width + "px",
+                width: (obj.width || obj.w) + "px",
                 position: "absolute",
-                left: obj.left + "px",
-                top: obj.top + "px",
+                left: (obj.left || obj.x) + "px",
+                top: (obj.top || obj.y) + "px",
               }}
             >
               <div
@@ -312,9 +312,10 @@ function Game() {
                   position: "absolute",
                   left: 0,
                   top: 0,
-                  width: obj.width + "px",
-                  height: obj.height + "px",
+                  width: (obj.width || obj.w) + "px",
+                  height: (obj.height || obj.h) + "px",
                   backgroundImage: obj.bg,
+                  backgroundSize: obj.bgs + "px",
                 }}
               ></div>
               {scene.isGraphicsInfoShow && (
@@ -324,8 +325,9 @@ function Game() {
                     background: "#00000082",
                   }}
                 >
-                  i:{i}, x:{obj.left}, y:{obj.top}, w:{obj.width}, h:
-                  {obj.height}
+                  i:{i}, x:{obj.left || obj.x}, y:{obj.top || obj.y}, w:
+                  {obj.width || obj.w}, h:
+                  {obj.height || obj.h}
                 </span>
               )}
             </div>
