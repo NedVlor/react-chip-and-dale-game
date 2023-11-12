@@ -7,7 +7,7 @@ import { keyboard } from "../core/keyboard.js";
 
 const GameContainer = styled.div`
   height: 800px;
-  width: 2000px;
+  width: 3000px;
   background-image: url(/city.png);
   position: relative;
   color: white;
@@ -62,7 +62,7 @@ function Game() {
 
     solidList.forEach((el, i) => {
       const element2 = el.ref.current;
-      console.log("---i---", i);
+      //console.log("---i---", i);
 
       if (chipNode && element2) {
         const rect2 = element2.getBoundingClientRect(); // cordinate and size for current solid object
@@ -74,7 +74,7 @@ function Game() {
         ) {
           bariers[i] = false;
         } else {
-          console.log("first barier");
+          //  console.log("first barier");
           bariers[i] = true;
         }
         // gravity intersection checking 2
@@ -83,7 +83,7 @@ function Game() {
         ) {
           bariers[i] = false;
         } else {
-          console.log("secound barier");
+          // console.log("secound barier");
         }
 
         setChar((prevChar) => {
@@ -110,7 +110,7 @@ function Game() {
 
     setChar((prevChar) => {
       if (!barier) {
-        console.log("No barier, should falling");
+        // console.log("No barier, should falling");
         shiftY = prevChar.verticalSpeed;
       }
       if (prevChar.jump) shiftY = -prevChar.verticalSpeed;
@@ -125,7 +125,7 @@ function Game() {
       }
 
       if (!intersection) {
-        console.log("no intersection");
+        //   console.log("no intersection");
         window.prevX = prevChar.x;
         window.prevY = prevChar.y;
         if (prevChar.vector == "left") shiftX = -4;
@@ -139,9 +139,9 @@ function Game() {
           onTheGround: barier,
         };
       } else {
-        console.log("intersection");
+        //        console.log("intersection");
         setTimeout(() => {
-          console.log(" reset to 10");
+          //        console.log(" reset to 10");
           setChar((prevChar) => ({ ...prevChar, verticalSpeed: 10 }));
         }, 150);
 
@@ -161,9 +161,6 @@ function Game() {
       };
     });
 
-    console.log(
-      "------------------------ checkIntersection----------------------",
-    );
     // Устанавливаем "буферные" зоны для прокрутки
     var leftThreshold = 300; // Порог слева
     var rightThreshold = window.innerWidth - 300; // Порог справа
