@@ -11,7 +11,8 @@ export const getSolidList = (useRef) => [
 ];
 
 const metal1 = "url(/metal-construction.png)";
-const brickWall = "url(/brick-wall.jpg)";
+//const brickWall = "url(/brick-wall.jpg)";
+const brickWall = "url(/brick-wall2.jpg)";
 
 export const graphicsList = [
   // boxes

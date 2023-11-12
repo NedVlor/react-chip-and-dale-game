@@ -21,8 +21,8 @@ function Game() {
     intersection: false,
   });
   const [char, setChar] = useState({
-    x: 0,
-    y: 800,
+    x: 600,
+    y: 600,
     prevX: 400,
     prevY: 200,
     action: "standing",
