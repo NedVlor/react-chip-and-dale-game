@@ -161,24 +161,36 @@ function Game() {
       };
     });
 
+    console.log(chipNode);
+
+    function getAbsoluteCoords(element) {
+      var rect = element.getBoundingClientRect();
+      var scrollLeft =
+        window.pageXOffset || document.documentElement.scrollLeft;
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      return { x: rect.left + scrollLeft, y: rect.top + scrollTop };
+    }
+
+    const absChip = getAbsoluteCoords(chipNode);
+    console.log(absChip);
     // Устанавливаем "буферные" зоны для прокрутки
     var leftThreshold = 300; // Порог слева
     var rightThreshold = window.innerWidth - 300; // Порог справа
     const body = document.querySelector("body");
 
     // Проверяем, не выходит ли персонаж за левый край
-    if (chip.left < leftThreshold) {
+    if (absChip.x < leftThreshold) {
       // Прокрутка влево
       body.scrollBy({
-        left: chip.left - leftThreshold,
+        left: absChip.x - leftThreshold,
         behavior: "smooth",
       });
     }
     // Проверяем, не выходит ли персонаж за правый край
-    else if (chip.right > rightThreshold) {
+    else if (absChip.x > rightThreshold) {
       // Прокрутка вправо
       body.scrollBy({
-        left: chip.right - rightThreshold,
+        left: absChip.x - rightThreshold,
         behavior: "smooth",
       });
     }
