@@ -161,39 +161,7 @@ function Game() {
       };
     });
 
-    console.log(chipNode);
-
-    function getAbsoluteCoords(element) {
-      var rect = element.getBoundingClientRect();
-      var scrollLeft =
-        window.pageXOffset || document.documentElement.scrollLeft;
-      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      return { x: rect.left + scrollLeft, y: rect.top + scrollTop };
-    }
-
-    const absChip = getAbsoluteCoords(chipNode);
-    console.log(absChip);
-    // Устанавливаем "буферные" зоны для прокрутки
-    var leftThreshold = 300; // Порог слева
-    var rightThreshold = window.innerWidth - 300; // Порог справа
-    const body = document.querySelector("body");
-
-    // Проверяем, не выходит ли персонаж за левый край
-    if (absChip.x < leftThreshold) {
-      // Прокрутка влево
-      body.scrollBy({
-        left: absChip.x - leftThreshold,
-        behavior: "smooth",
-      });
-    }
-    // Проверяем, не выходит ли персонаж за правый край
-    else if (absChip.x > rightThreshold) {
-      // Прокрутка вправо
-      body.scrollBy({
-        left: absChip.x - rightThreshold,
-        behavior: "smooth",
-      });
-    }
+    //   console.log(chipNode);
   }; // END checkIntersection
 
   useEffect(() => {
