@@ -1,7 +1,7 @@
 export const keyboard = (setChar) => {
   console.log("keyboard connected");
   document.addEventListener("keydown", (event) => {
-    console.log(event);
+    event.preventDefault();
     if (event.code == "Space") {
       setChar((prevChar) => ({
         ...prevChar,
