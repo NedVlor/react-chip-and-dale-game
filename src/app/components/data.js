@@ -23,6 +23,8 @@ export const graphicsList = [
   { type: "img", width: 69, left: 143, top: 632, src: "./box.jpg" },
   { type: "img", width: 69, left: 661, top: 632, src: "./box.jpg" },
   { type: "img", width: 69, left: 800, top: 632, src: "./box.jpg" },
+  //nuts
+  { type: "img", width: 35, left: 49, top: 13, src: "./nut.png" },
   // metal constractions 1
   { type: "div", width: 521, height: 37, left: 479, top: 700, bg: metal1 },
   { type: "div", width: 521, height: 37, left: 1050, top: 700, bg: metal1 },
