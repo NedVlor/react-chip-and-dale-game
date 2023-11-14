@@ -8,7 +8,7 @@ import { scroll } from "../core/scroll.js";
 
 const GameContainer = styled.div`
   height: 800px;
-  width: 3000px;
+  width: 4000px;
   background-image: url(/city.png);
   position: relative;
   color: white;
@@ -22,8 +22,8 @@ function Game() {
     intersection: false,
   });
   const [char, setChar] = useState({
-    x: 600,
-    y: 600,
+    x: 2600,
+    y: 200,
     prevX: 400,
     prevY: 200,
     action: "standing",
