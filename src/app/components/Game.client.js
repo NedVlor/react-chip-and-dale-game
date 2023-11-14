@@ -4,6 +4,7 @@ import Chip from "./Chip.client.js";
 import styled from "styled-components";
 import { getSolidList, graphicsList } from "./data.js";
 import { keyboard } from "../core/keyboard.js";
+import { scroll } from "../core/scroll.js";
 
 const GameContainer = styled.div`
   height: 800px;
@@ -160,7 +161,7 @@ function Game() {
         intersection: intersection,
       };
     });
-
+    scroll(chipNode);
     //   console.log(chipNode);
   }; // END checkIntersection
 

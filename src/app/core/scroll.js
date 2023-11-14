@@ -1,4 +1,4 @@
-export const scroll = () => {
+export const scroll = (chipNode) => {
   function getAbsoluteCoords(element) {
     var rect = element.getBoundingClientRect();
     var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
@@ -6,7 +6,8 @@ export const scroll = () => {
     return { x: rect.left + scrollLeft, y: rect.top + scrollTop };
   }
 
-  const absChip = { x: 0, y: 0 }; //getAbsoluteCoords(chipNode);
+  const absChip = chipNode.getBoundingClientRect();
+  //getAbsoluteCoords(chipNode);
   // Устанавливаем "буферные" зоны для прокрутки
   var leftThreshold = 300; // Порог слева
   var rightThreshold = window.innerWidth - 300; // Порог справа
@@ -21,18 +22,17 @@ export const scroll = () => {
   // Проверяем, не выходит ли персонаж за левый край
   if (absChip.x < leftThreshold) {
     // Прокрутка влево
-    /*    body.scrollBy({
-        left: absChip.x - leftThreshold,
-        behavior: "smooth",
-      });
-      */
+    body.scrollBy({
+      left: absChip.x - leftThreshold,
+      behavior: "smooth",
+    });
   }
   // Проверяем, не выходит ли персонаж за правый край
   else if (absChip.x > rightThreshold) {
-    /* // Прокрутка вправо
-      body.scrollBy({
-        left: absChip.x - rightThreshold,
-        behavior: "smooth",
-      }); */
+    // Прокрутка вправо
+    window.scrollBy({
+      left: absChip.x - rightThreshold,
+      behavior: "smooth",
+    });
   }
 };
