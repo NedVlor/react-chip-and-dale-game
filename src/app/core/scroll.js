@@ -22,7 +22,7 @@ export const scroll = (chipNode) => {
   // Проверяем, не выходит ли персонаж за левый край
   if (absChip.x < leftThreshold) {
     // Прокрутка влево
-    body.scrollBy({
+    window.scrollBy({
       left: absChip.x - leftThreshold,
       behavior: "smooth",
     });
