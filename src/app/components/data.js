@@ -36,5 +36,5 @@ export const graphicsList = [
 
 export const collectable = [
   //nuts
-  { type: "img", width: 35, left: 748, top: 643, src: "./nut.png" },
+  { class: "nut", width: 35, left: 748, top: 643, src: "./nut.png" },
 ];

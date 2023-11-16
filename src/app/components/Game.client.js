@@ -249,6 +249,7 @@ function Game() {
             }}
           >
             <img
+              className={obj.class}
               key={"graphics-" + i}
               src={obj.src}
               style={{
