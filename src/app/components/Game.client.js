@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Chip from "./Chip.client.js";
 import styled from "styled-components";
-import { getSolidList, graphicsList } from "./data.js";
+import { getSolidList, graphicsList, collectable } from "./data.js";
 import { keyboard } from "../core/keyboard.js";
 import { scroll } from "../core/scroll.js";
 
@@ -22,7 +22,7 @@ function Game() {
     intersection: false,
   });
   const [char, setChar] = useState({
-    x: 2600,
+    x: 500,
     y: 200,
     prevX: 400,
     prevY: 200,
@@ -234,6 +234,41 @@ function Game() {
             }}
           >
             i:{i}, x:{obj.left}, y:{obj.top}, w:{obj.width}, h:{obj.height}
+          </div>
+        );
+      })}
+      {collectable.map((obj, i) => {
+        return (
+          <div
+            style={{
+              zIndex: "100",
+              width: obj.width + "px",
+              position: "absolute",
+              left: obj.left + "px",
+              top: obj.top + "px",
+            }}
+          >
+            <img
+              key={"graphics-" + i}
+              src={obj.src}
+              style={{
+                width: obj.width + "px",
+                position: "absolute",
+                left: 0,
+                top: 0,
+              }}
+            />
+            {scene.isGraphicsInfoShow && (
+              <span
+                style={{
+                  position: "absolute",
+                  background: "#00000082",
+                }}
+              >
+                i:{i}, x:{obj.left}, y:{obj.top}, w:{obj.width}, h:
+                {obj.height}
+              </span>
+            )}
           </div>
         );
       })}

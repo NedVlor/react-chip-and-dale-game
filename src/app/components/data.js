@@ -23,8 +23,6 @@ export const graphicsList = [
   { type: "img", width: 69, left: 143, top: 632, src: "./box.jpg" },
   { type: "img", width: 69, left: 661, top: 632, src: "./box.jpg" },
   { type: "img", width: 69, left: 800, top: 632, src: "./box.jpg" },
-  //nuts
-  { type: "img", width: 35, left: 49, top: 13, src: "./nut.png" },
   // metal constractions 1
   { type: "div", width: 521, height: 37, left: 479, top: 700, bg: metal1 },
   { type: "div", width: 521, height: 37, left: 1050, top: 700, bg: metal1 },
@@ -34,4 +32,9 @@ export const graphicsList = [
   { type: "div", w: 800, h: 155, x: 1630, y: 645, bg: brickWall, bgs: 100 },
   { type: "div", w: 800, h: 184, x: 2500, y: 617, bg: brickWall, bgs: 100 },
   { type: "div", w: 800, h: 230, x: 3370, y: 572, bg: brickWall, bgs: 100 },
+];
+
+export const collectable = [
+  //nuts
+  { type: "img", width: 35, left: 748, top: 643, src: "./nut.png" },
 ];
