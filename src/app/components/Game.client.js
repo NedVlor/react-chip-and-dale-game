@@ -66,17 +66,22 @@ function Game() {
       x: Math.round(chip.left / 60),
       y: Math.round(chip.top / 60),
     };
-    col.forEach((el, i) => {
-      const approximateEl = {
-        x: Math.round(el.left / 60),
-        y: Math.round(el.top / 60),
-      };
-      if (
-        approximateChip.x == approximateEl.x &&
-        approximateChip.y == approximateEl.y
-      ) {
-        setCol([]);
-      }
+
+    setCol((prev) => {
+      let newArr = [];
+      col.map((el, i) => {
+        const approximateEl = {
+          x: Math.round(el.left / 60),
+          y: Math.round(el.top / 60),
+        };
+        if (
+          approximateChip.x == approximateEl.x &&
+          approximateChip.y == approximateEl.y
+        ) {
+          newArr = prev.splice(i, 1);
+        } else newArr = prev;
+      });
+      return newArr;
     });
 
     solidList.forEach((el, i) => {
