@@ -61,6 +61,23 @@ function Game() {
       right: chipRaw.right - 15,
     };
 
+    const approximateChip = {
+      x: Math.round(chip.left / 60),
+      y: Math.round(chip.top / 60),
+    };
+    collectable.forEach((el, i) => {
+      const approximateEl = {
+        x: Math.round(el.left / 60),
+        y: Math.round(el.top / 60),
+      };
+      if (
+        approximateChip.x == approximateEl.x &&
+        approximateChip.y == approximateEl.y
+      ) {
+        alert();
+      }
+    });
+
     solidList.forEach((el, i) => {
       const element2 = el.ref.current;
       //console.log("---i---", i);
