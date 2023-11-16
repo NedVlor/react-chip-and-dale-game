@@ -33,6 +33,7 @@ function Game() {
     onTheGround: false,
     verticalSpeed: 10,
   });
+  const [col, setCol] = useState([...collectable]);
   const toggleGraphics = () => {
     setScene((prevScene) => ({
       ...prevScene,
@@ -65,7 +66,7 @@ function Game() {
       x: Math.round(chip.left / 60),
       y: Math.round(chip.top / 60),
     };
-    collectable.forEach((el, i) => {
+    col.forEach((el, i) => {
       const approximateEl = {
         x: Math.round(el.left / 60),
         y: Math.round(el.top / 60),
@@ -74,7 +75,7 @@ function Game() {
         approximateChip.x == approximateEl.x &&
         approximateChip.y == approximateEl.y
       ) {
-        alert();
+        setCol([]);
       }
     });
 
@@ -254,7 +255,7 @@ function Game() {
           </div>
         );
       })}
-      {collectable.map((obj, i) => {
+      {col.map((obj, i) => {
         return (
           <div
             style={{

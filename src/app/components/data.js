@@ -34,7 +34,7 @@ export const graphicsList = [
   { type: "div", w: 800, h: 230, x: 3370, y: 572, bg: brickWall, bgs: 100 },
 ];
 
-export const collectable = [
+export let collectable = [
   //nuts
   { class: "nut", width: 35, left: 748, top: 643, src: "./nut.png" },
 ];
