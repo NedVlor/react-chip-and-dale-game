@@ -134,6 +134,14 @@ function Game() {
 
     const barier = bariers.some((b) => b);
 
+    const setPrevChip = (x, y) => {};
+    const getPrevChip = () => {
+      return {
+        x: window.prevX,
+        y: window.prevY,
+      };
+    };
+
     setChar((prevChar) => {
       if (!barier) {
         // console.log("No barier, should falling");
@@ -152,14 +160,14 @@ function Game() {
 
       if (!intersection) {
         //   console.log("no intersection");
-        window.prevX = prevChar.x;
-        window.prevY = prevChar.y;
+        setPrevChip(prevChar.x, prevChar.y);
+
         if (prevChar.vector == "left") shiftX = -4;
         if (prevChar.vector == "right") shiftX = 4;
         return {
           ...prevChar,
-          prevX: window.prevX,
-          prevY: window.prevY,
+          prevX: getPrevChip().x,
+          prevY: getPrevChip().y,
           y: prevChar.y + shiftY,
           x: prevChar.x + shiftX,
           onTheGround: barier,
@@ -174,8 +182,8 @@ function Game() {
         shiftY = 1;
         return {
           ...prevChar,
-          y: window.prevY,
-          x: window.prevX,
+          y: getPrevChip().y,
+          x: getPrevChip().x,
           verticalSpeed: 1,
         };
       }
