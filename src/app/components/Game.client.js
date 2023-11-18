@@ -134,12 +134,16 @@ function Game() {
 
     const barier = bariers.some((b) => b);
 
-    const setPrevChip = (x, y) => {};
+    const setPrevChip = (x, y) => {
+      if (!window.prev) window.prev = [];
+      else {
+        if (window.prev.length > 100)
+          window.prev = [window.prev.pop(), window.prev.pop()];
+        window.prev.push({ x, y });
+      }
+    };
     const getPrevChip = () => {
-      return {
-        x: window.prevX,
-        y: window.prevY,
-      };
+      return window.prev ? window.prev.pop() : { x: 0, y: 0 };
     };
 
     setChar((prevChar) => {
@@ -157,17 +161,19 @@ function Game() {
           x: 300,
         };
       }
+      setPrevChip(prevChar.x, prevChar.y);
+      const prev = getPrevChip() || { x: 200, y: 0 };
+      console.log("prev", prev);
 
       if (!intersection) {
         //   console.log("no intersection");
-        setPrevChip(prevChar.x, prevChar.y);
 
         if (prevChar.vector == "left") shiftX = -4;
         if (prevChar.vector == "right") shiftX = 4;
         return {
           ...prevChar,
-          prevX: getPrevChip().x,
-          prevY: getPrevChip().y,
+          prevX: prev.x,
+          prevY: prev.y,
           y: prevChar.y + shiftY,
           x: prevChar.x + shiftX,
           onTheGround: barier,
@@ -182,8 +188,8 @@ function Game() {
         shiftY = 1;
         return {
           ...prevChar,
-          y: getPrevChip().y,
-          x: getPrevChip().x,
+          y: prev.y,
+          x: prev.x,
           verticalSpeed: 1,
         };
       }
