@@ -48,12 +48,9 @@ function Game() {
   };
   const rChar = useRef(null);
   const solidList = getSolidList(useRef);
-  const checkIntersection = () => {
-    let bariers = []; // for gravity
-    let intersection = false; // for X
-    let shiftY = 0;
-    let shiftX = 0;
+  const getChip = () => {
     const chipNode = rChar.current;
+
     const chipRaw = chipNode.getBoundingClientRect(); // cordinates and size for chip
     const chip = {
       left: chipRaw.left + 15,
@@ -61,7 +58,10 @@ function Game() {
       bottom: chipRaw.bottom,
       right: chipRaw.right - 15,
     };
-
+    return chip;
+  };
+  const checkCollecting = () => {
+    const chip = getChip();
     const approximateChip = {
       x: Math.round(chip.left / 60),
       y: Math.round(chip.top / 60),
@@ -83,12 +83,19 @@ function Game() {
       });
       return newArr;
     });
-
+  };
+  const checkIntersection = () => {
+    let bariers = []; // for gravity
+    let intersection = false; // for X
+    let shiftY = 0;
+    let shiftX = 0;
+    const chipNode = rChar.current;
+    const chip = getChip();
     solidList.forEach((el, i) => {
       const element2 = el.ref.current;
       //console.log("---i---", i);
 
-      if (chipNode && element2) {
+      if (element2 && chipNode) {
         const rect2 = element2.getBoundingClientRect(); // cordinate and size for current solid object
 
         // graviry intersection checking 1
@@ -193,9 +200,14 @@ function Game() {
       // Проверяем пересечение при каждом обновлении положения
       checkIntersection();
     }, 50);
+    const interval2 = setInterval(() => {
+      // Проверяем пересечение при каждом обновлении положения
+      checkCollecting();
+    }, 500);
 
     return () => {
       clearInterval(interval);
+      clearInterval(interval2);
     };
   }, [char.vector]);
 
