@@ -198,7 +198,7 @@ function Game() {
     const interval2 = setInterval(() => {
       // Проверяем пересечение при каждом обновлении положения
       checkCollecting();
-    }, 500);
+    }, 100);
 
     return () => {
       clearInterval(interval);
