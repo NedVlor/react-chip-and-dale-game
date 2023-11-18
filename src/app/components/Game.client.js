@@ -66,22 +66,17 @@ function Game() {
       x: Math.round(chip.left / 60),
       y: Math.round(chip.top / 60),
     };
-
     setCol((prev) => {
-      let newArr = [];
-      col.map((el, i) => {
+      return prev.filter((el) => {
         const approximateEl = {
           x: Math.round(el.left / 60),
           y: Math.round(el.top / 60),
         };
-        if (
-          approximateChip.x == approximateEl.x &&
-          approximateChip.y == approximateEl.y
-        ) {
-          newArr = prev.splice(i, 1);
-        } else newArr = prev;
+        return (
+          approximateChip.x !== approximateEl.x ||
+          approximateChip.y !== approximateEl.y
+        );
       });
-      return newArr;
     });
   };
   const checkIntersection = () => {
