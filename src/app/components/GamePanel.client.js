@@ -22,11 +22,15 @@ width: 392px;
 }
 `;
 
-function GamePanel() {
-  const [count, setCount] = useState(0);
-
-  const handleButtonClick = () => {
-    setCount((prevCount) => prevCount + 1);
+function GamePanel(props) {
+  const renderHearts = () => {
+    const hearts = [];
+    for (let i = 0; i < 6; i++) {
+      hearts.push(
+        <img key={i} src="./heard.png" style={{ width: "2.5rem" }} />,
+      );
+    }
+    return hearts;
   };
 
   return (
@@ -40,7 +44,7 @@ function GamePanel() {
           alignItems: "center",
         }}
       >
-        <img src="./heard.png" style={{ width: "2.5rem" }} />
+        {renderHearts()}
       </div>
 
       <meter
@@ -51,7 +55,7 @@ function GamePanel() {
         low="33"
         high="66"
         optimum="80"
-        value="32"
+        value={props.data.health}
       >
         at 50/100
       </meter>

@@ -21,6 +21,8 @@ function Game() {
     isGraphicsShow: true,
     isGraphicsInfoShow: false,
     intersection: false,
+    lifeAmount: 5,
+    health: 100,
   });
   const [char, setChar] = useState({
     x: 500,
@@ -226,7 +228,7 @@ function Game() {
   }, []);
   return (
     <GameContainer>
-      <GamePanel />
+      <GamePanel data={scene} />
       <div
         style={{
           width: "200px",
