@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { getSolidList, graphicsList, collectable } from "./data.js";
 import { keyboard } from "../core/keyboard.js";
 import { scroll } from "../core/scroll.js";
+import GamePanel from "./GamePanel.client.js";
 
 const GameContainer = styled.div`
   height: 800px;
@@ -144,7 +145,7 @@ function Game() {
       }
     };
     const getPrevChip = () => {
-      console.log(window.prev)
+      console.log(window.prev);
       return window.prev ? window.prev.pop() : { x: 0, y: 0 };
     };
 
@@ -225,6 +226,7 @@ function Game() {
   }, []);
   return (
     <GameContainer>
+      <GamePanel />
       <div
         style={{
           width: "200px",

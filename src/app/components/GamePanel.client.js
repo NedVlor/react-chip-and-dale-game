@@ -12,9 +12,13 @@ const Container = styled.div`
   background-color: tomato;
   height: 80px;
   width: 80px;
+    position: fixed;
+  top: 0;
+  right: 0;
+}
 `;
 
-function CounterButton() {
+function GamePanel() {
   const [count, setCount] = useState(0);
 
   const handleButtonClick = () => {
@@ -29,4 +33,4 @@ function CounterButton() {
   );
 }
 
-export default CounterButton;
+export default GamePanel;
