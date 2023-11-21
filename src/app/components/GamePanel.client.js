@@ -9,9 +9,9 @@ const Button = styled.button`
   color: white;
 `;
 const Container = styled.div`
-  background-color: tomato;
-  height: 80px;
-  width: 80px;
+  background-color: rgba(0, 0, 0, 0.54);
+  height: 58px;
+width: 392px;
     position: fixed;
   top: 0;
   right: 0;
@@ -27,8 +27,13 @@ function GamePanel() {
 
   return (
     <Container>
-      <Button onClick={handleButtonClick}>Нажми на меня!</Button>
-      <p>Текущий счет: {count}</p>
+      {/*      <Button onClick={handleButtonClick}>Нажми на меня!</Button>
+      <p>Текущий счет: {count}</p> */}
+      <div class="hearts">
+        {" "}
+        <img src="./heard.png" style={{ width: "2.5rem" }} />
+      </div>
+      <div class="health"></div>
     </Container>
   );
 }
