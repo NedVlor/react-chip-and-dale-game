@@ -134,6 +134,7 @@ function Game() {
 
     const barier = bariers.some((b) => b);
 
+    // let pointer
     const setPrevChip = (x, y) => {
       if (!window.prev) window.prev = [];
       else {
@@ -143,6 +144,7 @@ function Game() {
       }
     };
     const getPrevChip = () => {
+      console.log(window.prev)
       return window.prev ? window.prev.pop() : { x: 0, y: 0 };
     };
 
@@ -161,27 +163,25 @@ function Game() {
           x: 300,
         };
       }
-      setPrevChip(prevChar.x, prevChar.y);
-      const prev = getPrevChip() || { x: 200, y: 0 };
-      console.log("prev", prev);
 
       if (!intersection) {
         //   console.log("no intersection");
-
+        setPrevChip(prevChar.x, prevChar.y);
         if (prevChar.vector == "left") shiftX = -4;
         if (prevChar.vector == "right") shiftX = 4;
         return {
           ...prevChar,
-          prevX: prev.x,
-          prevY: prev.y,
+          //  prevX: prev.x,
+          //  prevY: prev.y,
           y: prevChar.y + shiftY,
           x: prevChar.x + shiftX,
           onTheGround: barier,
         };
       } else {
-        //        console.log("intersection");
+        console.log("intersection");
+        const prev = getPrevChip() || { x: 200, y: 0 };
+        console.log("prev", prev);
         setTimeout(() => {
-          //        console.log(" reset to 10");
           setChar((prevChar) => ({ ...prevChar, verticalSpeed: 10 }));
         }, 150);
 
