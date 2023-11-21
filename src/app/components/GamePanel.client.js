@@ -11,7 +11,7 @@ const Button = styled.button`
 const Container = styled.div`
   background-color: rgba(0, 0, 0, 0.54);
   height: 58px;
-width: 392px;
+width: 504px;
     position: fixed;
   top: 0;
   right: 0;
@@ -27,7 +27,11 @@ function GamePanel(props) {
     const hearts = [];
     for (let i = 0; i < 6; i++) {
       hearts.push(
-        <img key={i} src="./heard.png" style={{ width: "2.5rem" }} />,
+        <img
+          key={i}
+          src="./heard.png"
+          style={{ width: "2.5rem", marginRight: "1rem" }}
+        />,
       );
     }
     return hearts;
