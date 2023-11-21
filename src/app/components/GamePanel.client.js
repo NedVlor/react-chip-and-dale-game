@@ -15,6 +15,10 @@ width: 392px;
     position: fixed;
   top: 0;
   right: 0;
+  display:flex;
+  padding:0 1rem;
+  justify-content:space-between;
+  align-item:center;
 }
 `;
 
@@ -29,11 +33,28 @@ function GamePanel() {
     <Container>
       {/*      <Button onClick={handleButtonClick}>Нажми на меня!</Button>
       <p>Текущий счет: {count}</p> */}
-      <div class="hearts">
-        {" "}
+      <div
+        class="hearts"
+        style={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
         <img src="./heard.png" style={{ width: "2.5rem" }} />
       </div>
-      <div class="health"></div>
+
+      <meter
+        style={{ width: "10.5rem" }}
+        class="health"
+        min="0"
+        max="100"
+        low="33"
+        high="66"
+        optimum="80"
+        value="32"
+      >
+        at 50/100
+      </meter>
     </Container>
   );
 }
