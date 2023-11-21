@@ -25,7 +25,7 @@ width: 504px;
 function GamePanel(props) {
   const renderHearts = () => {
     const hearts = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < props.data.lifeAmount; i++) {
       hearts.push(
         <img
           key={i}

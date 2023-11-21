@@ -37,6 +37,12 @@ function Game() {
     verticalSpeed: 10,
   });
   const [col, setCol] = useState([...collectable]);
+  const fall = () => {
+    setScene((prevScene) => ({
+      ...prevScene,
+      lifeAmount: prevScene.lifeAmount - 1,
+    }));
+  };
   const toggleGraphics = () => {
     setScene((prevScene) => ({
       ...prevScene,
@@ -160,6 +166,7 @@ function Game() {
 
       if (prevChar.y > 900) {
         //fall
+        fall();
         return {
           ...prevChar,
           y: 0,
