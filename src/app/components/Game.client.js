@@ -38,8 +38,12 @@ function Game() {
   });
   const [col, setCol] = useState([...collectable]);
   const stop = { fall: false };
+  const gameOver = () => {
+    location.reload();
+  };
   const fall = () => {
     if (stop.fall) return;
+    if (scene.lifeAmount < 2) gameOver();
     setScene((prevScene) => ({
       ...prevScene,
       lifeAmount: prevScene.lifeAmount - 1,
