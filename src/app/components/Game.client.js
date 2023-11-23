@@ -37,11 +37,17 @@ function Game() {
     verticalSpeed: 10,
   });
   const [col, setCol] = useState([...collectable]);
+  const stop = { fall: false };
   const fall = () => {
+    if (stop.fall) return;
     setScene((prevScene) => ({
       ...prevScene,
       lifeAmount: prevScene.lifeAmount - 1,
     }));
+    stop.fall = true;
+    setTimeout(() => {
+      stop.fall = false;
+    }, 1000);
   };
   const toggleGraphics = () => {
     setScene((prevScene) => ({
