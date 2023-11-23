@@ -18,3 +18,33 @@ body {
     transform: scale(1);
   }
 }
+.acute {
+}
+.acute::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid transparent;
+  background: rgba(255, 255, 0, 0.7); /* Желтый цвет свечения */
+  border-radius: 10px; /* Радиус закругления краев свечения */
+  filter: blur(10px); /* Размытие для создания свечения */
+  opacity: 0; /* Начальная непрозрачность */
+  transition: opacity 0.3s ease; /* Плавное изменение непрозрачности */
+  animation: glow 3s infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes glow {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 0;
+  }
+}

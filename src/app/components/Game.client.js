@@ -314,6 +314,7 @@ function Game() {
             }}
           >
             <div
+              className={obj.class}
               key={"hurt-" + i}
               style={{
                 position: "absolute",
