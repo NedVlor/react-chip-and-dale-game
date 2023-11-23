@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Chip from "./Chip.client.js";
 import styled from "styled-components";
-import { getSolidList, graphicsList, collectable } from "./data.js";
+import { getSolidList, graphicsList, collectable, hurt } from "./data.js";
 import { keyboard } from "../core/keyboard.js";
 import { scroll } from "../core/scroll.js";
 import GamePanel from "./GamePanel.client.js";
@@ -302,6 +302,45 @@ function Game() {
           </div>
         );
       })}
+      {hurt.map((obj, i) => {
+        return (
+          <div
+            style={{
+              zIndex: "100",
+              width: (obj.width || obj.w) + "px",
+              position: "absolute",
+              left: (obj.left || obj.x) + "px",
+              top: (obj.top || obj.y) + "px",
+            }}
+          >
+            <div
+              key={"hurt-" + i}
+              style={{
+                position: "absolute",
+                left: 0,
+                top: 0,
+                width: (obj.width || obj.w) + "px",
+                height: (obj.height || obj.h) + "px",
+                backgroundImage: obj.bg,
+                backgroundSize: obj.bgs + "px",
+              }}
+            ></div>
+
+            {scene.isGraphicsInfoShow && (
+              <span
+                style={{
+                  position: "absolute",
+                  background: "#00000082",
+                }}
+              >
+                i:{i}, x:{obj.left}, y:{obj.top}, w:{obj.width}, h:
+                {obj.height}
+              </span>
+            )}
+          </div>
+        );
+      })}
+
       {col.map((obj, i) => {
         return (
           <div

@@ -40,3 +40,8 @@ export const collectable = [
   { class: "nut", width: 35, left: 948, top: 643, src: "./nut.png" },
   { class: "nut", width: 35, left: 548, top: 643, src: "./nut.png" },
 ];
+
+const thorn = "url(/thorn.png)";
+export const hurt = [
+  { class: "acute", w: 100, h: 10, x: 1048, y: 689, bg: thorn, bgs: 10 },
+];
