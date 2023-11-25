@@ -5,6 +5,7 @@ function Collectible({ col, scene }) {
     return col.map((obj, i) => {
       return (
         <div
+          key={"colectible-" + i}
           style={{
             zIndex: "100",
             width: obj.width + "px",

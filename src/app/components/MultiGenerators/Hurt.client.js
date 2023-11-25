@@ -5,6 +5,7 @@ function Hurt({ list, scene }) {
     return list.map((obj, i) => {
       return (
         <div
+          key={"hurt-" + i}
           style={{
             zIndex: "100",
             width: (obj.width || obj.w) + "px",

@@ -42,7 +42,7 @@ function GamePanel(props) {
       {/*      <Button onClick={handleButtonClick}>Нажми на меня!</Button>
       <p>Текущий счет: {count}</p> */}
       <div
-        class="hearts"
+        className="hearts"
         style={{
           display: "flex",
           alignItems: "center",
@@ -53,7 +53,7 @@ function GamePanel(props) {
 
       <meter
         style={{ width: "10.5rem" }}
-        class="health"
+        className="health"
         min="0"
         max="100"
         low="33"

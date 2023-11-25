@@ -7,6 +7,7 @@ function Graphics({ graphicsList, scene }) {
       if (obj.type == "img") {
         return (
           <div
+            key={"graphics-" + i}
             style={{
               zIndex: "100",
               width: obj.width + "px",
@@ -41,6 +42,7 @@ function Graphics({ graphicsList, scene }) {
       } else if (obj.type == "div") {
         return (
           <div
+            key={"graphics-" + i}
             style={{
               zIndex: "100",
               width: (obj.width || obj.w) + "px",
