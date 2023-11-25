@@ -8,6 +8,7 @@ import { scroll } from "../core/scroll.js";
 import GamePanel from "./GamePanel.client.js";
 import Collectible from "./MultiGenerators/Collectible.client.js";
 import Graphics from "./MultiGenerators/Graphics.client.js";
+import Solid from "./MultiGenerators/Solid.client.js";
 
 const GameContainer = styled.div`
   height: 800px;
@@ -286,24 +287,7 @@ function Game() {
           background: "red",
         }}
       />
-      {solidList.map((obj, i) => {
-        return (
-          <div
-            key={"collision-" + i}
-            ref={obj.ref}
-            style={{
-              position: "absolute",
-              left: obj.left + "px",
-              top: obj.top + "px",
-              width: obj.width + "px",
-              height: obj.height + "px",
-              background: scene.isSolidShow ? "blue" : "",
-            }}
-          >
-            i:{i}, x:{obj.left}, y:{obj.top}, w:{obj.width}, h:{obj.height}
-          </div>
-        );
-      })}
+      <Solid list={solidList} scene={scene} />
       {hurt.map((obj, i) => {
         return (
           <div
