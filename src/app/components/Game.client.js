@@ -343,44 +343,8 @@ function Game() {
         );
       })}
 
-      <Collectible />
+      <Collectible col={col} scene={scene} />
 
-      {col.map((obj, i) => {
-        return (
-          <div
-            style={{
-              zIndex: "100",
-              width: obj.width + "px",
-              position: "absolute",
-              left: obj.left + "px",
-              top: obj.top + "px",
-            }}
-          >
-            <img
-              className={obj.class}
-              key={"graphics-" + i}
-              src={obj.src}
-              style={{
-                width: obj.width + "px",
-                position: "absolute",
-                left: 0,
-                top: 0,
-              }}
-            />
-            {scene.isGraphicsInfoShow && (
-              <span
-                style={{
-                  position: "absolute",
-                  background: "#00000082",
-                }}
-              >
-                i:{i}, x:{obj.left}, y:{obj.top}, w:{obj.width}, h:
-                {obj.height}
-              </span>
-            )}
-          </div>
-        );
-      })}
       {graphicsList.map((obj, i) => {
         if (!scene.isGraphicsShow) return;
         if (obj.type == "img") {
