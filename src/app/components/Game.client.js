@@ -6,6 +6,7 @@ import { getSolidList, graphicsList, collectable, hurt } from "./data.js";
 import { keyboard } from "../core/keyboard.js";
 import { scroll } from "../core/scroll.js";
 import GamePanel from "./GamePanel.client.js";
+import Collectible from "./MultiGenerators/Collectible.client.js";
 
 const GameContainer = styled.div`
   height: 800px;
@@ -341,6 +342,8 @@ function Game() {
           </div>
         );
       })}
+
+      <Collectible />
 
       {col.map((obj, i) => {
         return (
