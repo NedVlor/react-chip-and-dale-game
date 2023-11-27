@@ -113,7 +113,12 @@ function Game() {
         const hurt = hurtLink.getBoundingClientRect();
         console.log("the hurt function", chip.right, hurt.left);
 
-        if (chip.right > hurt.left && chip.left < hurt.right) {
+        if (
+          chip.right > hurt.left &&
+          chip.left < hurt.right &&
+          chip.bottom > hurt.top &&
+          chip.top < hurt.bottom
+        ) {
           console.log("hurt");
         }
       }
