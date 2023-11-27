@@ -71,7 +71,7 @@ function Game() {
   };
   const rChar = useRef(null);
   const solidList = getSolidList(useRef);
-  const hurt = getHurt(useRef);
+  const hurts = getHurt(useRef);
   const getChip = () => {
     const chipNode = rChar.current;
 
@@ -107,13 +107,13 @@ function Game() {
   const checkHurt = () => {
     const chipNode = rChar.current;
     const chip = getChip();
-    hurt.forEach((el, i) => {
-      const element2 = el.ref.current;
-      if (element2 && chipNode) {
-        const rect2 = element2.getBoundingClientRect();
-        console.log("the hurt function", chip.right, rect2.left);
+    hurts.forEach((el, i) => {
+      const hurtLink = el.ref.current;
+      if (hurtLink && chipNode) {
+        const hurt = hurtLink.getBoundingClientRect();
+        console.log("the hurt function", chip.right, hurt.left);
 
-        if (chip.right > rect2.left) {
+        if (chip.right > hurt.left && chip.left < hurt.right) {
           console.log("hurt");
         }
       }
@@ -306,7 +306,7 @@ function Game() {
         }}
       />
       <Solid list={solidList} scene={scene} />
-      <Hurt list={hurt} scene={scene} />
+      <Hurt list={hurts} scene={scene} />
       <Collectible col={col} scene={scene} />
       <Graphics graphicsList={graphicsList} scene={scene} />
     </GameContainer>
