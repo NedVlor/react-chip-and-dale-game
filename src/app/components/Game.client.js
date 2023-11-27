@@ -120,6 +120,10 @@ function Game() {
           chip.top < hurt.bottom
         ) {
           console.log("hurt");
+          setScene((prevScene) => ({
+            ...prevScene,
+            health: prevScene.health - 1,
+          }));
         }
       }
     });
