@@ -15,7 +15,7 @@ function Hurt({ list, scene }) {
           }}
         >
           <div
-            className={obj.class}
+            className={obj.c}
             key={"hurt-" + i}
             style={{
               position: "absolute",

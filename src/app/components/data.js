@@ -1,3 +1,6 @@
+import { useRef } from "react";
+
+const r = () => useRef(null);
 export const getSolidList = (useRef) => [
   { left: 0, top: 633, width: 212, height: 67, ref: useRef(null) },
   { left: 0, top: 700, width: 408, height: 8, ref: useRef(null) },
@@ -43,5 +46,5 @@ export const collectable = [
 
 const thorn = "url(/thorn.png)";
 export const getHurt = (useRef) => [
-  { class: "acute", w: 100, h: 10, x: 1048, y: 689, bg: thorn, bgs: 10 },
+  { c: "acute", w: 100, h: 10, x: 1048, y: 689, bg: thorn, bgs: 10, ref: r() },
 ];
