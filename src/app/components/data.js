@@ -42,6 +42,6 @@ export const collectable = [
 ];
 
 const thorn = "url(/thorn.png)";
-export const hurt = [
+export const getHurt = (useRef) => [
   { class: "acute", w: 100, h: 10, x: 1048, y: 689, bg: thorn, bgs: 10 },
 ];

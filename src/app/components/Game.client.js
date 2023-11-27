@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Chip from "./Chip.client.js";
 import styled from "styled-components";
-import { getSolidList, graphicsList, collectable, hurt } from "./data.js";
+import { getSolidList, graphicsList, collectable, getHurt } from "./data.js";
 import { keyboard } from "../core/keyboard.js";
 import { scroll } from "../core/scroll.js";
 import GamePanel from "./GamePanel.client.js";
@@ -71,6 +71,7 @@ function Game() {
   };
   const rChar = useRef(null);
   const solidList = getSolidList(useRef);
+  const hurt = getHurt(useRef);
   const getChip = () => {
     const chipNode = rChar.current;
 
