@@ -103,6 +103,22 @@ function Game() {
       });
     });
   };
+
+  const checkHurt = () => {
+    const chipNode = rChar.current;
+    const chip = getChip();
+    hurt.forEach((el, i) => {
+      const element2 = el.ref.current;
+      if (element2 && chipNode) {
+        const rect2 = element2.getBoundingClientRect();
+        console.log("the hurt function", chip.right, rect2.left);
+
+        if (chip.right > rect2.left) {
+          console.log("hurt");
+        }
+      }
+    });
+  };
   const checkIntersection = () => {
     let bariers = []; // for gravity
     let intersection = false; // for X
@@ -110,13 +126,12 @@ function Game() {
     let shiftX = 0;
     const chipNode = rChar.current;
     const chip = getChip();
+
     solidList.forEach((el, i) => {
       const element2 = el.ref.current;
       //console.log("---i---", i);
-
       if (element2 && chipNode) {
         const rect2 = element2.getBoundingClientRect(); // cordinate and size for current solid object
-
         // graviry intersection checking 1
         if (
           chip.bottom + 1 < rect2.top || // вищe
@@ -237,6 +252,7 @@ function Game() {
     const interval2 = setInterval(() => {
       // Проверяем пересечение при каждом обновлении положения
       checkCollecting();
+      checkHurt();
     }, 100);
 
     return () => {

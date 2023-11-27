@@ -6,6 +6,7 @@ function Hurt({ list, scene }) {
       return (
         <div
           key={"hurt-" + i}
+          ref={obj.ref}
           style={{
             zIndex: "100",
             width: (obj.width || obj.w) + "px",
