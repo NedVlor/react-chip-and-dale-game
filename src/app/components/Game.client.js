@@ -45,13 +45,23 @@ function Game() {
   const gameOver = () => {
     location.reload();
   };
-  const fall = () => {
-    if (stop.fall) return;
+  const reincarnation = () => {
+    if (stop.reincarnation) return;
     if (scene.lifeAmount < 2) gameOver();
     setScene((prevScene) => ({
       ...prevScene,
       lifeAmount: prevScene.lifeAmount - 1,
+      health: 100,
     }));
+    stop.reincarnation = true;
+    setTimeout(() => {
+      stop.reincarnation = false;
+    }, 1000);
+  };
+
+  const fall = () => {
+    if (stop.fall) return;
+    reincarnation();
     stop.fall = true;
     setTimeout(() => {
       stop.fall = false;
@@ -105,6 +115,7 @@ function Game() {
   };
 
   const checkHurt = () => {
+    if (scene.health < 1) reincarnation();
     const chipNode = rChar.current;
     const chip = getChip();
     hurts.forEach((el, i) => {
