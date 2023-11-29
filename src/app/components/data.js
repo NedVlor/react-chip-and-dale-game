@@ -42,9 +42,11 @@ export const collectable = [
   { class: "nut", width: 35, left: 748, top: 643, src: "./nut.png" },
   { class: "nut", width: 35, left: 948, top: 643, src: "./nut.png" },
   { class: "nut", width: 35, left: 548, top: 643, src: "./nut.png" },
+  { class: "nut", width: 35, left: 1130, top: 601, src: "./nut.png" },
+  { class: "nut", width: 35, left: 1239, top: 601, src: "./nut.png" },
 ];
 
 const thorn = "url(/thorn.png)";
 export const getHurt = (useRef) => [
-  { c: "acute", w: 100, h: 10, x: 1048, y: 689, bg: thorn, bgs: 10, ref: r() },
+  { c: "acute", w: 500, h: 10, x: 1048, y: 689, bg: thorn, bgs: 10, ref: r() },
 ];
