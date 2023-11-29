@@ -42,8 +42,9 @@ export const collectable = [
   { class: "nut", width: 35, left: 748, top: 643, src: "./nut.png" },
   { class: "nut", width: 35, left: 948, top: 643, src: "./nut.png" },
   { class: "nut", width: 35, left: 548, top: 643, src: "./nut.png" },
-  { class: "nut", width: 35, left: 1130, top: 601, src: "./nut.png" },
-  { class: "nut", width: 35, left: 1239, top: 601, src: "./nut.png" },
+  { class: "nut", width: 35, left: 1130, top: 590, src: "./nut.png" },
+  { class: "nut", width: 35, left: 1239, top: 590, src: "./nut.png" },
+  { class: "nut", width: 35, left: 1739, top: 590, src: "./nut.png" },
 ];
 
 const thorn = "url(/thorn.png)";

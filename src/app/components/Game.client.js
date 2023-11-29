@@ -29,7 +29,7 @@ function Game() {
     health: 100,
   });
   const [char, setChar] = useState({
-    x: 500,
+    x: 1700,
     y: 200,
     prevX: 400,
     prevY: 200,
@@ -95,17 +95,19 @@ function Game() {
     return chip;
   };
   const checkCollecting = () => {
-    const chip = getChip();
+    // const chip = getChip();
     const approximateChip = {
-      x: Math.round(chip.left / 60),
-      y: Math.round(chip.top / 60),
+      x: Math.round(char.x / 70),
+      y: Math.round(char.y / 70),
     };
+    console.log("aprocsimate chip", approximateChip);
     setCol((prev) => {
       return prev.filter((el) => {
         const approximateEl = {
-          x: Math.round(el.left / 60),
-          y: Math.round(el.top / 60),
+          x: Math.round(el.left / 70),
+          y: Math.round(el.top / 70),
         };
+        console.log("aprocsimate  element", approximateEl);
         return (
           approximateChip.x !== approximateEl.x ||
           approximateChip.y !== approximateEl.y
