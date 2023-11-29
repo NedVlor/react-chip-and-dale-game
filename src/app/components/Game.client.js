@@ -94,6 +94,14 @@ function Game() {
     };
     return chip;
   };
+  function addHealth() {
+    console.log("add health");
+    setScene((prevScene) => ({
+      ...prevScene,
+      health: prevScene.health + 30,
+    }));
+  }
+
   const checkCollecting = () => {
     // const chip = getChip();
     const approximateChip = {
@@ -108,10 +116,15 @@ function Game() {
           y: Math.round(el.top / 70),
         };
         console.log("aprocsimate  element", approximateEl);
-        return (
+        if (
           approximateChip.x !== approximateEl.x ||
           approximateChip.y !== approximateEl.y
-        );
+        ) {
+          return true;
+        } else {
+          addHealth();
+          return false;
+        }
       });
     });
   };
