@@ -11,6 +11,7 @@ import Collectible from "./MultiGenerators/Collectible.client.js";
 import Graphics from "./MultiGenerators/Graphics.client.js";
 import Solid from "./MultiGenerators/Solid.client.js";
 import Hurt from "./MultiGenerators/Hurt.client.js";
+import GameOverScreen from "./Screens/GameOverScreen.client.js";
 
 const GameContainer = styled.div`
   height: 800px;
@@ -29,6 +30,7 @@ function Game() {
     lifeAmount: 5,
     health: 100,
     timer: 5,
+    isGameOver: false,
   });
   const [char, setChar] = useState({
     x: 1700,
@@ -45,7 +47,10 @@ function Game() {
   const [col, setCol] = useState([...collectable]);
   const stop = { fall: false };
   const gameOver = () => {
-    location.reload();
+    setScene((prevScene) => ({
+      ...prevScene,
+      isGameOver: true,
+    }));
   };
   const reincarnation = () => {
     if (stop.reincarnation) return;
@@ -284,7 +289,7 @@ function Game() {
 
   function countdown() {
     setScene((prevScene) => {
-      if (prevScene.timer < 0) gameOver();
+      if (prevScene.timer < 1) gameOver();
       return {
         ...prevScene,
         timer: prevScene.timer - 1,
@@ -317,6 +322,7 @@ function Game() {
   }, []);
   return (
     <GameContainer>
+      {scene.isGameOver && <GameOverScreen data={scene} />}
       <GamePanel data={scene} />
       <TimePanel data={scene} />
       <div
