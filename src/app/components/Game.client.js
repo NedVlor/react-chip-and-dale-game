@@ -28,7 +28,7 @@ function Game() {
     intersection: false,
     lifeAmount: 5,
     health: 100,
-    timer: 12,
+    timer: 5,
   });
   const [char, setChar] = useState({
     x: 1700,
@@ -96,6 +96,7 @@ function Game() {
     };
     return chip;
   };
+
   function addHealth() {
     console.log("add health");
     setScene((prevScene) => ({
@@ -281,20 +282,33 @@ function Game() {
     //   console.log(chipNode);
   }; // END checkIntersection
 
+  function countdown() {
+    setScene((prevScene) => {
+      if (prevScene.timer < 0) gameOver();
+      return {
+        ...prevScene,
+        timer: prevScene.timer - 1,
+      };
+    });
+  }
+
   useEffect(() => {
     const interval = setInterval(() => {
       // Проверяем пересечение при каждом обновлении положения
       checkIntersection();
     }, 50);
     const interval2 = setInterval(() => {
-      // Проверяем пересечение при каждом обновлении положения
       checkCollecting();
       checkHurt();
     }, 100);
+    const interval3 = setInterval(() => {
+      countdown();
+    }, 1000);
 
     return () => {
       clearInterval(interval);
       clearInterval(interval2);
+      clearInterval(interval3);
     };
   }, [char.vector]);
 
