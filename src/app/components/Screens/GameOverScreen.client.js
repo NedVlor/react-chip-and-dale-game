@@ -34,6 +34,20 @@ function GamePanel(props) {
             width: "80%",
           }}
         />
+        <img
+          src="./dale.png"
+          style={{
+            width: "8rem",
+            position: "absolute",
+          }}
+        />
+        <img
+          src="./chip.png"
+          style={{
+            width: "8rem",
+            position: "absolute",
+          }}
+        />
       </div>
     </div>
   );
