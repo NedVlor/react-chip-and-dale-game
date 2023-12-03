@@ -32,11 +32,17 @@ function GamePanel(props) {
         style={{
           display: "flex",
           alignItems: "center",
+          justifyContent: "center",
           fontSize: "2rem",
           fontWeight: "600",
         }}
       >
-        {props.data.timer}
+        <img
+          src="./game-over.png"
+          style={{
+            width: "80%",
+          }}
+        />
       </div>
     </Container>
   );
