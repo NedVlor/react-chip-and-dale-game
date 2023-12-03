@@ -42,9 +42,21 @@ body {
     opacity: 0;
   }
   50% {
-    opacity: .5;
+    opacity: 0.5;
   }
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes jump {
+  0% {
+    bottom: -30rem;
+  }
+  50% {
+    bottom: 30rem;
+  }
+  100% {
+    bottom: -30rem;
   }
 }

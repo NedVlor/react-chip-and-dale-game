@@ -39,6 +39,8 @@ function GamePanel(props) {
           style={{
             width: "8rem",
             position: "absolute",
+            left: "10rem",
+            animation: "jump 5s infinite",
           }}
         />
         <img
@@ -46,6 +48,8 @@ function GamePanel(props) {
           style={{
             width: "8rem",
             position: "absolute",
+            right: "10rem",
+            animation: "jump 5s infinite",
           }}
         />
       </div>
