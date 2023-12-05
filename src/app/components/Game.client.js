@@ -12,6 +12,7 @@ import Graphics from "./MultiGenerators/Graphics.client.js";
 import Solid from "./MultiGenerators/Solid.client.js";
 import Hurt from "./MultiGenerators/Hurt.client.js";
 import GameOverScreen from "./Screens/GameOverScreen.client.js";
+import StartScreen from "./Screens/StartScreen.client.js";
 
 const GameContainer = styled.div`
   height: 800px;
@@ -29,8 +30,9 @@ function Game() {
     intersection: false,
     lifeAmount: 5,
     health: 100,
-    timer: 5,
+    timer: 15,
     isGameOver: false,
+    isStarted: false,
   });
   const [char, setChar] = useState({
     x: 1700,
@@ -296,20 +298,23 @@ function Game() {
       };
     });
   }
-
-  useEffect(() => {
-    const interval = setInterval(() => {
+  let interval;
+  let interval2;
+  let interval3;
+  function start() {
+    interval = setInterval(() => {
       // Проверяем пересечение при каждом обновлении положения
       checkIntersection();
     }, 50);
-    const interval2 = setInterval(() => {
+    interval2 = setInterval(() => {
       checkCollecting();
       checkHurt();
     }, 100);
-    const interval3 = setInterval(() => {
+    interval3 = setInterval(() => {
       countdown();
     }, 1000);
-
+  }
+  useEffect(() => {
     return () => {
       clearInterval(interval);
       clearInterval(interval2);
