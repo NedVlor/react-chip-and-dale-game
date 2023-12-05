@@ -1,6 +1,22 @@
 "use client";
+import React, { useState, useRef, useEffect } from "react";
 
 function GamePanel(props) {
+  const src = "./sounds/chip-and-dale.mp3";
+  const [audio] = useState(new Audio(src));
+
+  // Эффект для автоматического воспроизведения при монтировании
+  useEffect(() => {
+    audio
+      .play()
+      .catch((error) => console.error("Ошибка воспроизведения:", error));
+
+    // Очистка при размонтировании компонента
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, [audio]);
   return (
     <div
       style={{
