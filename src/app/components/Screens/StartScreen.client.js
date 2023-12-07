@@ -17,6 +17,11 @@ function StartScreen(props) {
       audio.currentTime = 0;
     };
   }, [audio]);
+
+  function start() {
+    props.onStart();
+  }
+
   return (
     <div
       style={{
@@ -35,9 +40,9 @@ function StartScreen(props) {
       }}
     >
       <div
-        className="timer"
         style={{
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           fontSize: "2rem",
@@ -50,6 +55,15 @@ function StartScreen(props) {
             width: "100%",
           }}
         />
+        <button
+          onClick={start}
+          style={{
+            transform: "scale(3)",
+            marginTop: "3rem",
+          }}
+        >
+          START
+        </button>
         <img
           src="./dale.png"
           style={{

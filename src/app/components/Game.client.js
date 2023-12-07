@@ -302,6 +302,13 @@ function Game() {
   let interval2;
   let interval3;
   function start() {
+    setScene((prevScene) => {
+      return {
+        ...prevScene,
+        isStarted: true,
+      };
+    });
+
     interval = setInterval(() => {
       // Проверяем пересечение при каждом обновлении положения
       checkIntersection();
@@ -328,7 +335,7 @@ function Game() {
   return (
     <GameContainer>
       {scene.isGameOver && <GameOverScreen data={scene} />}
-      {!scene.isStarted && <StartScreen data={scene} />}
+      {!scene.isStarted && <StartScreen data={scene} onStart={start} />}
       <GamePanel data={scene} />
       <TimePanel data={scene} />
       <div
