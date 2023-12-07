@@ -45,9 +45,9 @@ function StartScreen(props) {
         }}
       >
         <img
-          src="./game-over.png"
+          src="./logo.png"
           style={{
-            width: "80%",
+            width: "100%",
           }}
         />
         <img

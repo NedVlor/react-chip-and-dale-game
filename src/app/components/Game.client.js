@@ -328,6 +328,7 @@ function Game() {
   return (
     <GameContainer>
       {scene.isGameOver && <GameOverScreen data={scene} />}
+      {!scene.isStarted && <StartScreen data={scene} />}
       <GamePanel data={scene} />
       <TimePanel data={scene} />
       <div
