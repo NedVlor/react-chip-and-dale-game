@@ -302,12 +302,10 @@ function Game() {
   let interval2;
   let interval3;
   function start() {
-    setScene((prevScene) => {
-      return {
-        ...prevScene,
-        isStarted: true,
-      };
-    });
+    setScene((prevScene) => ({
+      ...prevScene,
+      isStarted: true,
+    }));
 
     interval = setInterval(() => {
       // Проверяем пересечение при каждом обновлении положения
@@ -331,6 +329,7 @@ function Game() {
 
   useEffect(() => {
     keyboard(setChar);
+    if (scene.isGameStarted) start();
   }, []);
   return (
     <GameContainer>
