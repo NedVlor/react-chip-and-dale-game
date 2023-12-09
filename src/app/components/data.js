@@ -1,5 +1,10 @@
 import { useRef } from "react";
 
+export const level = {
+  condition: "run-to-end",
+  length: 1000,
+};
+
 const r = () => useRef(null);
 export const getSolidList = (useRef) => [
   { left: 0, top: 633, width: 212, height: 67, ref: useRef(null) },

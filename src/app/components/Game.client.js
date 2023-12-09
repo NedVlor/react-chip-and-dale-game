@@ -2,7 +2,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import Chip from "./Chip.client.js";
 import styled from "styled-components";
-import { getSolidList, graphicsList, collectable, getHurt } from "./data.js";
+import {
+  getSolidList,
+  graphicsList,
+  collectable,
+  getHurt,
+  level,
+} from "./data.js";
 import { keyboard } from "../core/keyboard.js";
 import { scroll } from "../core/scroll.js";
 import GamePanel from "./GamePanel.client.js";
@@ -33,9 +39,10 @@ function Game() {
     timer: 15,
     isGameOver: false,
     isStarted: false,
+    level: 1,
   });
   const [char, setChar] = useState({
-    x: 1700,
+    x: 100,
     y: 200,
     prevX: 400,
     prevY: 200,
@@ -48,6 +55,7 @@ function Game() {
   });
   const [col, setCol] = useState([...collectable]);
   const stop = { fall: false };
+
   const gameOver = () => {
     stopLevelMusic();
     setScene((prevScene) => ({
@@ -55,6 +63,10 @@ function Game() {
       isGameOver: true,
     }));
   };
+
+  function win() {
+    alert();
+  }
   const reincarnation = () => {
     if (stop.reincarnation) return;
     if (scene.lifeAmount < 2) gameOver();
@@ -239,6 +251,8 @@ function Game() {
         shiftY = prevChar.verticalSpeed;
       }
       if (prevChar.jump) shiftY = -prevChar.verticalSpeed;
+
+      if (prevChar.x > level.length && level.condition == "run-to-end") win();
 
       if (prevChar.y > 900) {
         //fall
