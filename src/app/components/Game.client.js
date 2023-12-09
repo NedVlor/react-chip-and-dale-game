@@ -30,7 +30,7 @@ function Game() {
     intersection: false,
     lifeAmount: 5,
     health: 100,
-    timer: 150,
+    timer: 15,
     isGameOver: false,
     isStarted: false,
   });
@@ -49,6 +49,7 @@ function Game() {
   const [col, setCol] = useState([...collectable]);
   const stop = { fall: false };
   const gameOver = () => {
+    stopLevelMusic();
     setScene((prevScene) => ({
       ...prevScene,
       isGameOver: true,
@@ -298,11 +299,26 @@ function Game() {
       };
     });
   }
-  
+
   let interval;
   let interval2;
   let interval3;
+  let audio;
   function start() {
+    const src = "./sounds/level-1-music.mp3";
+    audio = new Audio(src);
+
+    // Эффект для автоматического воспроизведения при монтировании
+    // useEffect(() => {
+    audio
+      .play()
+      .catch((error) => console.error("Ошибка воспроизведения:", error));
+
+    // Очистка при размонтировании компонента
+    /* return () => {
+      };
+    }, [audio]);
+*/
     setScene((prevScene) => ({
       ...prevScene,
       isStarted: true,
@@ -319,6 +335,11 @@ function Game() {
     interval3 = setInterval(() => {
       countdown();
     }, 1000);
+  }
+
+  function stopLevelMusic() {
+    audio.pause();
+    audio.currentTime = 0;
   }
 
   useEffect(() => {
