@@ -30,7 +30,7 @@ function Game() {
     intersection: false,
     lifeAmount: 5,
     health: 100,
-    timer: 15,
+    timer: 150,
     isGameOver: false,
     isStarted: false,
   });
@@ -298,6 +298,7 @@ function Game() {
       };
     });
   }
+  
   let interval;
   let interval2;
   let interval3;
@@ -319,7 +320,9 @@ function Game() {
       countdown();
     }, 1000);
   }
+
   useEffect(() => {
+    if (scene.isStarted) start();
     return () => {
       clearInterval(interval);
       clearInterval(interval2);
@@ -328,8 +331,9 @@ function Game() {
   }, [char.vector]);
 
   useEffect(() => {
+    // if (scene.isStarted) start();
+
     keyboard(setChar);
-    if (scene.isGameStarted) start();
   }, []);
   return (
     <GameContainer>
