@@ -19,6 +19,7 @@ import Solid from "./MultiGenerators/Solid.client.js";
 import Hurt from "./MultiGenerators/Hurt.client.js";
 import GameOverScreen from "./Screens/GameOverScreen.client.js";
 import StartScreen from "./Screens/StartScreen.client.js";
+import WinScreen from "./Screens/WinScreen.client.js";
 
 const GameContainer = styled.div`
   height: 800px;
@@ -39,6 +40,7 @@ function Game() {
     timer: 15,
     isGameOver: false,
     isStarted: false,
+    isWin: true,
     level: 1,
   });
   const [char, setChar] = useState({
@@ -314,6 +316,15 @@ function Game() {
     });
   }
 
+  function nextLevel() {
+    setScene((prevScene) => ({
+      ...prevScene,
+      level: prevScene.level + 1,
+      isWin: false,
+    }));
+    start();
+  }
+
   let interval;
   let interval2;
   let interval3;
@@ -374,13 +385,15 @@ function Game() {
     <GameContainer>
       {scene.isGameOver && <GameOverScreen data={scene} />}
       {!scene.isStarted && <StartScreen data={scene} onStart={start} />}
+      {scene.isWin && <WinScreen data={scene} onNextLevel={nextLevel} />}
+
       <GamePanel data={scene} />
       <TimePanel data={scene} />
       <div
         style={{
           width: "200px",
           background: "#0000ff21",
-          top: "0",
+          top: "5rem",
           left: "0",
           position: "fixed",
           padding: ".5rem",
