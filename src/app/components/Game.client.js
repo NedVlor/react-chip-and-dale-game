@@ -38,10 +38,10 @@ function Game() {
     intersection: false,
     lifeAmount: 5,
     health: 100,
-    timer: 15,
+    timer: 60,
     isGameOver: false,
     isStarted: false,
-    isWin: true,
+    isWin: false,
     level: 1,
   });
   const [char, setChar] = useState({
@@ -68,8 +68,13 @@ function Game() {
   };
 
   function win() {
-    alert();
+    stopLevelMusic();
+    setScene((prevScene) => ({
+      ...prevScene,
+      isWin: true,
+    }));
   }
+
   const reincarnation = () => {
     if (stop.reincarnation) return;
     if (scene.lifeAmount < 2) gameOver();
@@ -318,12 +323,18 @@ function Game() {
   }
 
   function nextLevel() {
+    setChar((prevChar) => ({
+      ...prevChar,
+      x: 100,
+    }));
     setScene((prevScene) => ({
       ...prevScene,
       level: prevScene.level + 1,
       isWin: false,
     }));
-    start();
+    setTimeout(() => {
+      start();
+    }, 1000); //------------------------------netrizol trable with level jumping
   }
 
   let interval;
