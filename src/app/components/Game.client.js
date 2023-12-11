@@ -13,6 +13,7 @@ import { keyboard } from "../core/keyboard.js";
 import { scroll } from "../core/scroll.js";
 import GamePanel from "./GamePanel.client.js";
 import TimePanel from "./TimePanel.client.js";
+import LevelPanel from "./LevelPanel.client.js";
 import Collectible from "./MultiGenerators/Collectible.client.js";
 import Graphics from "./MultiGenerators/Graphics.client.js";
 import Solid from "./MultiGenerators/Solid.client.js";
@@ -389,6 +390,7 @@ function Game() {
 
       <GamePanel data={scene} />
       <TimePanel data={scene} />
+      <LevelPanel data={scene} />
       <div
         style={{
           width: "200px",
