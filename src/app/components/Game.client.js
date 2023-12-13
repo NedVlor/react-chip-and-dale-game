@@ -40,12 +40,12 @@ const GameContainer = styled.div`
 function Game() {
   const [col, setCol] = useState([...level.collectable]);
 
-  function setLevel() {
-    level = level_2,
-      setCol((prevCol) => { return [ ...level.collectable ] })
+  function setLevel(levelNumber) {
+    if (levelNumber == 2) level = level_2;
+    setCol((prevCol) => { return [...level.collectable] })
   }
 
-  setTimeout(() => { setLevel() }, 4000)
+//  setTimeout(() => { setLevel() }, 4000)
 
 
   const [scene, setScene] = useState({
@@ -340,15 +340,18 @@ function Game() {
   }
 
   function nextLevel() {
+    let level = scene.level;
+    level++
     setChar((prevChar) => ({
       ...prevChar,
       x: 100,
     }));
     setScene((prevScene) => ({
       ...prevScene,
-      level: prevScene.level + 1,
+      level,
       isWin: false,
     }));
+    setLevel(level)
     setTimeout(() => {
       start();
     }, 1000); //------------------------------netrizol trable with level jumping
