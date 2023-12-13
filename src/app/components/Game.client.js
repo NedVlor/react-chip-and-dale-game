@@ -2,13 +2,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import Chip from "./Chip.client.js";
 import styled from "styled-components";
-import {
-  getSolidList,
-  graphicsList,
-  collectable,
-  getHurt,
-  level,
-} from "./data.js";
+import level_1 from "./levels/level-1.js";
+import level_2 from "./levels/level-2.js";
 import { keyboard } from "../core/keyboard.js";
 import { scroll } from "../core/scroll.js";
 import GamePanel from "./GamePanel.client.js";
@@ -22,6 +17,18 @@ import GameOverScreen from "./Screens/GameOverScreen.client.js";
 import StartScreen from "./Screens/StartScreen.client.js";
 import WinScreen from "./Screens/WinScreen.client.js";
 
+let level = level_1;
+
+
+/*{
+  getSolidList,
+  graphicsList,
+  collectable,
+  getHurt,
+  level,
+} = level_2;
+*/
+
 const GameContainer = styled.div`
   height: 800px;
   width: 4000px;
@@ -31,6 +38,16 @@ const GameContainer = styled.div`
 `;
 
 function Game() {
+  const [col, setCol] = useState([...level.collectable]);
+
+  function setLevel() {
+    level = level_2,
+      setCol((prevCol) => { return [ ...level.collectable ] })
+  }
+
+  setTimeout(() => { setLevel() }, 4000)
+
+
   const [scene, setScene] = useState({
     isSolidShow: true,
     isGraphicsShow: true,
@@ -56,7 +73,7 @@ function Game() {
     onTheGround: false,
     verticalSpeed: 10,
   });
-  const [col, setCol] = useState([...collectable]);
+
   const stop = { fall: false };
 
   const gameOver = () => {
@@ -110,8 +127,8 @@ function Game() {
     }));
   };
   const rChar = useRef(null);
-  const solidList = getSolidList(useRef);
-  const hurts = getHurt(useRef);
+  const solidList = level.getSolidList(useRef);
+  const hurts = level.getHurt(useRef);
   const getChip = () => {
     const chipNode = rChar.current;
 
@@ -260,7 +277,7 @@ function Game() {
       }
       if (prevChar.jump) shiftY = -prevChar.verticalSpeed;
 
-      if (prevChar.x > level.length && level.condition == "run-to-end") win();
+      if (prevChar.x > level.level.length && level.level.condition == "run-to-end") win();
 
       if (prevChar.y > 900) {
         //fall
@@ -443,7 +460,7 @@ function Game() {
       <Solid list={solidList} scene={scene} />
       <Hurt list={hurts} scene={scene} />
       <Collectible col={col} scene={scene} />
-      <Graphics graphicsList={graphicsList} scene={scene} />
+      <Graphics graphicsList={level.graphicsList} scene={scene} />
     </GameContainer>
   );
 }

@@ -26,33 +26,41 @@ const brickWall = "url(/brick-wall2.jpg)";
 
 export const graphicsList = [
   // boxes
-  { type: "img", width: 69, left: 5, top: 632, src: "./box.jpg" },
-  { type: "img", width: 69, left: 74, top: 632, src: "./box.jpg" },
-  { type: "img", width: 69, left: 143, top: 632, src: "./box.jpg" },
-  { type: "img", width: 69, left: 661, top: 632, src: "./box.jpg" },
-  { type: "img", width: 69, left: 800, top: 632, src: "./box.jpg" },
+  // { type: "img", width: 69, left: 5, top: 632, src: "./box.jpg" },
+  // { type: "img", width: 69, left: 74, top: 632, src: "./box.jpg" },
+  // { type: "img", width: 69, left: 143, top: 632, src: "./box.jpg" },
+  // { type: "img", width: 69, left: 661, top: 632, src: "./box.jpg" },
+  // { type: "img", width: 69, left: 800, top: 632, src: "./box.jpg" },
   // metal constractions 1
-  { type: "div", width: 521, height: 37, left: 479, top: 700, bg: metal1 },
-  { type: "div", width: 521, height: 37, left: 1050, top: 700, bg: metal1 },
-  { type: "div", width: 407, height: 36, left: 1, top: 700, bg: metal1 },
-  { type: "div", width: 521, height: 37, left: 900, top: 550, bg: metal1 },
+  // { type: "div", width: 521, height: 37, left: 479, top: 700, bg: metal1 },
+  // { type: "div", width: 521, height: 37, left: 1050, top: 700, bg: metal1 },
+  // { type: "div", width: 407, height: 36, left: 1, top: 700, bg: metal1 },
+  // { type: "div", width: 521, height: 37, left: 900, top: 550, bg: metal1 },
   // brick wall
-  { type: "div", w: 800, h: 155, x: 1630, y: 645, bg: brickWall, bgs: 100 },
-  { type: "div", w: 800, h: 184, x: 2500, y: 617, bg: brickWall, bgs: 100 },
-  { type: "div", w: 800, h: 230, x: 3370, y: 572, bg: brickWall, bgs: 100 },
+  // { type: "div", w: 800, h: 155, x: 1630, y: 645, bg: brickWall, bgs: 100 },
+  // { type: "div", w: 800, h: 184, x: 2500, y: 617, bg: brickWall, bgs: 100 },
+  // { type: "div", w: 800, h: 230, x: 3370, y: 572, bg: brickWall, bgs: 100 },
 ];
 
 export const collectable = [
   //nuts
-  { class: "nut", width: 35, left: 748, top: 643, src: "./nut.png" },
+//  { class: "nut", width: 35, left: 748, top: 643, src: "./nut.png" },
   { class: "nut", width: 35, left: 948, top: 643, src: "./nut.png" },
-  { class: "nut", width: 35, left: 548, top: 643, src: "./nut.png" },
-  { class: "nut", width: 35, left: 1130, top: 590, src: "./nut.png" },
-  { class: "nut", width: 35, left: 1239, top: 590, src: "./nut.png" },
-  { class: "nut", width: 35, left: 1739, top: 590, src: "./nut.png" },
+ // { class: "nut", width: 35, left: 548, top: 643, src: "./nut.png" },
+ // { class: "nut", width: 35, left: 1130, top: 590, src: "./nut.png" },
+ // { class: "nut", width: 35, left: 1239, top: 590, src: "./nut.png" },
+  //{ class: "nut", width: 35, left: 1739, top: 590, src: "./nut.png" },
 ];
 
 const thorn = "url(/thorn.png)";
 export const getHurt = (useRef) => [
   { c: "acute", w: 500, h: 10, x: 1048, y: 689, bg: thorn, bgs: 10, ref: r() },
 ];
+
+export default{
+  getSolidList,
+  graphicsList,
+  collectable,
+  getHurt,
+  level,
+}
