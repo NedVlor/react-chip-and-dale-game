@@ -45,7 +45,7 @@ function Game() {
     setCol((prevCol) => { return [...level.collectable] })
   }
 
-//  setTimeout(() => { setLevel() }, 4000)
+  //  setTimeout(() => { setLevel() }, 4000)
 
 
   const [scene, setScene] = useState({
@@ -90,13 +90,14 @@ function Game() {
       x: 100,
     }));
     stopLevelMusic();
-    setTimeout(()=>{
+    setTimeout(() => {
       setScene((prevScene) => ({
         ...prevScene,
         isWin: true,
+        timer: 60,
       }));
       stopGameLoops();
-    },1000)
+    }, 1000)
   }
 
   const reincarnation = () => {
@@ -388,6 +389,8 @@ function Game() {
       isStarted: true,
     }));
 
+    stopGameLoops()
+
     window.interval = setInterval(() => {
       // Проверяем пересечение при каждом обновлении положения
       checkIntersection();
@@ -406,7 +409,7 @@ function Game() {
     audio.currentTime = 0;
   }
 
-  function stopGameLoops(){
+  function stopGameLoops() {
     clearInterval(window.interval);
     clearInterval(window.interval2);
     clearInterval(window.interval3);
