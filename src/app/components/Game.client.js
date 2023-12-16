@@ -85,11 +85,18 @@ function Game() {
   };
 
   function win() {
-    stopLevelMusic();
-    setScene((prevScene) => ({
-      ...prevScene,
-      isWin: true,
+    setChar((prevChar) => ({
+      ...prevChar,
+      x: 100,
     }));
+    stopLevelMusic();
+    setTimeout(()=>{
+      setScene((prevScene) => ({
+        ...prevScene,
+        isWin: true,
+      }));
+      stopGameLoops();
+    },1000)
   }
 
   const reincarnation = () => {
@@ -342,10 +349,10 @@ function Game() {
   function nextLevel() {
     let level = scene.level;
     level++
-    setChar((prevChar) => ({
-      ...prevChar,
-      x: 100,
-    }));
+    // setChar((prevChar) => ({
+    //   ...prevChar,
+    //   x: 100,
+    // }));
     setScene((prevScene) => ({
       ...prevScene,
       level,
@@ -357,9 +364,9 @@ function Game() {
     }, 1000); //------------------------------netrizol trable with level jumping
   }
 
-  let interval;
-  let interval2;
-  let interval3;
+  // let interval;
+  // let interval2;
+  // let interval3;
   let audio;
   function start() {
     const src = "./sounds/level-1-music.mp3";
@@ -381,15 +388,15 @@ function Game() {
       isStarted: true,
     }));
 
-    interval = setInterval(() => {
+    window.interval = setInterval(() => {
       // Проверяем пересечение при каждом обновлении положения
       checkIntersection();
     }, 50);
-    interval2 = setInterval(() => {
+    window.interval2 = setInterval(() => {
       checkCollecting();
       checkHurt();
     }, 100);
-    interval3 = setInterval(() => {
+    window.interval3 = setInterval(() => {
       countdown();
     }, 1000);
   }
@@ -399,12 +406,16 @@ function Game() {
     audio.currentTime = 0;
   }
 
+  function stopGameLoops(){
+    clearInterval(window.interval);
+    clearInterval(window.interval2);
+    clearInterval(window.interval3);
+  }
+
   useEffect(() => {
     if (scene.isStarted) start();
     return () => {
-      clearInterval(interval);
-      clearInterval(interval2);
-      clearInterval(interval3);
+      stopGameLoops();
     };
   }, [char.vector]);
 

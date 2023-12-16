@@ -6,17 +6,17 @@ function StartScreen(props) {
   const [audio] = useState(new Audio(src));
 
   // Эффект для автоматического воспроизведения при монтировании
-  useEffect(() => {
-    audio
-      .play()
-      .catch((error) => console.error("Ошибка воспроизведения:", error));
+  // useEffect(() => {
+  //   audio
+  //     .play()
+  //     .catch((error) => console.error("Ошибка воспроизведения:", error));
 
-    // Очистка при размонтировании компонента
-    return () => {
-      audio.pause();
-      audio.currentTime = 0;
-    };
-  }, [audio]);
+  //   // Очистка при размонтировании компонента
+  //   return () => {
+  //     audio.pause();
+  //     audio.currentTime = 0;
+  //   };
+  // }, [audio]);
 
   function start() {
     props.onStart();
