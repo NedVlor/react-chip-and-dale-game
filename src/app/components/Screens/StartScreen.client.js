@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 
 function StartScreen(props) {
   const src = "./sounds/chip-and-dale.mp3";
-  const [audio] = useState(new Audio(src));
+  //const [audio] = useState(new Audio(src));
 
   // Эффект для автоматического воспроизведения при монтировании
   // useEffect(() => {
