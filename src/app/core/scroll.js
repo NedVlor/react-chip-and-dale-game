@@ -12,12 +12,12 @@ export const scroll = (chipNode) => {
   var leftThreshold = 300; // Порог слева
   var rightThreshold = window.innerWidth - 300; // Порог справа
   const body = document.querySelector("body");
-  console.log(
-    absChip.x,
-    rightThreshold,
-    absChip.x - rightThreshold,
-    absChip.x > rightThreshold,
-  );
+  // console.log(
+  //   absChip.x,
+  //   rightThreshold,
+  //   absChip.x - rightThreshold,
+  //   absChip.x > rightThreshold,
+  // );
 
   // Проверяем, не выходит ли персонаж за левый край
   if (absChip.x < leftThreshold) {
