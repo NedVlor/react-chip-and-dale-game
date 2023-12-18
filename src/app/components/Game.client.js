@@ -55,7 +55,7 @@ function Game() {
     intersection: false,
     lifeAmount: 5,
     health: 100,
-    timer: 180,
+    timer: 1000,
     isGameOver: false,
     isStarted: false,
     isWin: false,

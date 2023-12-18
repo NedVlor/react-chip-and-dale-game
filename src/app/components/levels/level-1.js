@@ -14,6 +14,7 @@ export const getSolidList = (useRef) => [
   { left: 0, top: 337, width: 14, height: 356, ref: useRef(null) },
   { width: 69, height: 69, left: 661, top: 632, ref: useRef(null) },
   { width: 69, height: 69, left: 800, top: 632, ref: useRef(null) },
+  { width: 69, height: 69, left: 1049, top: 483, ref: useRef(null) },
   { left: 900, top: 550, width: 521, height: 19, ref: useRef(null) },
   { left: 1630, top: 645, width: 800, height: 155, ref: useRef(null) },
   { left: 2500, top: 617, width: 800, height: 184, ref: useRef(null) },
@@ -32,6 +33,8 @@ export const graphicsList = [
   { type: "img", width: 69, left: 143, top: 632, src: "./box.jpg" },
   { type: "img", width: 69, left: 661, top: 632, src: "./box.jpg" },
   { type: "img", width: 69, left: 800, top: 632, src: "./box.jpg" },
+  { type: "img", width: 69, left: 900, top: 632, src: "./box.jpg" },
+  { type: "img", width: 69, left: 1049, top: 483, src: "./box.jpg" },
   // metal constractions 1
   { type: "div", width: 521, height: 37, left: 479, top: 700, bg: metal1 },
   { type: "div", width: 521, height: 37, left: 1050, top: 700, bg: metal1 },
