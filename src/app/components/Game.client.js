@@ -16,9 +16,8 @@ import Hurt from "./MultiGenerators/Hurt.client.js";
 import GameOverScreen from "./Screens/GameOverScreen.client.js";
 import StartScreen from "./Screens/StartScreen.client.js";
 import WinScreen from "./Screens/WinScreen.client.js";
-import { LocaleRouteNormalizer } from "next/dist/server/future/normalizers/locale-route-normalizer.js";
 
-let level; // = level_1;
+let level = level_1;
 
 
 /*{
@@ -39,17 +38,15 @@ const GameContainer = styled.div`
 `;
 
 function Game() {
-
-  let levelNumber =  +localStorage.getItem('level') || 1;
-
-  if (levelNumber == 1) level = level_1;
-  if (levelNumber == 2) level = level_2;
-
   const [col, setCol] = useState([...level.collectable]);
-  setCol((prevCol) => { return [...level.collectable] })
+
+  function setLevel(levelNumber) {
+    if (levelNumber == 2) level = level_2;
+    setCol((prevCol) => { return [...level.collectable] })
+  }
 
   //  setTimeout(() => { setLevel() }, 4000)
-  //const level= +localStorage.getItem(level)
+
 
   const [scene, setScene] = useState({
     isSolidShow: true,
@@ -62,9 +59,8 @@ function Game() {
     isGameOver: false,
     isStarted: false,
     isWin: false,
-    level: levelNumber,
+    level: 1,
   });
-  
   const [char, setChar] = useState({
     x: 100,
     y: 200,
@@ -354,9 +350,6 @@ function Game() {
   function nextLevel() {
     let level = scene.level;
     level++
-    localStorage.setItem('level', level)
-
-    location.reload();
     // setChar((prevChar) => ({
     //   ...prevChar,
     //   x: 100,
@@ -365,7 +358,6 @@ function Game() {
       ...prevScene,
       level,
       isWin: false,
-      isStarted: false,
     }));
     setLevel(level)
     setTimeout(() => {
@@ -378,8 +370,6 @@ function Game() {
   // let interval3;
   let audio;
   function start() {
-    keyboard(setChar);
-
     const src = "./sounds/level-1-music.mp3";
     audio = new Audio(src);
 
@@ -425,71 +415,69 @@ function Game() {
     clearInterval(window.interval3);
   }
 
-  //useEffect(() => {
-  // if (scene.isStarted) start();
-  //return () => {
-  //   stopGameLoops();
-  // };
-  // }, [char.vector]);
+  useEffect(() => {
+    if (scene.isStarted) start();
+    return () => {
+      stopGameLoops();
+    };
+  }, [char.vector]);
 
-  // useEffect(() => {
-  // if (scene.isStarted) start();
+  useEffect(() => {
+    // if (scene.isStarted) start();
 
-  // keyboard(setChar);
-  //}, []);
+    keyboard(setChar);
+  }, []);
   return (
     <GameContainer>
       {scene.isGameOver && <GameOverScreen data={scene} />}
       {!scene.isStarted && <StartScreen data={scene} onStart={start} />}
       {scene.isWin && <WinScreen data={scene} onNextLevel={nextLevel} />}
 
-      {scene.isStarted && <div>
-        <GamePanel data={scene} />
-        <TimePanel data={scene} />
-        <LevelPanel data={scene} />
-        <div
-          style={{
-            width: "200px",
-            background: "#0000ff21",
-            top: "5rem",
-            left: "0",
-            position: "fixed",
-            padding: ".5rem",
-          }}
-        >
-          <div style={{ background: scene.intersection ? "red" : "none" }}>
-            intersection
-          </div>
-          <div style={{ background: char.onTheGround ? "gray" : "none" }}>
-            onTheGround
-          </div>
-          <div>
-            CHIP X Y: {char.x}, {char.y}
-          </div>
-          <div>
-            PREV X Y: {char.prevX}, {char.prevY}
-          </div>
-          <div>verticalSpeed: {char.verticalSpeed}</div>
-          <button onClick={toggleGraphics}>Graphics toggle</button>
-          <button onClick={toggleGraphicsInfo}>Graphics info</button>
+      <GamePanel data={scene} />
+      <TimePanel data={scene} />
+      <LevelPanel data={scene} />
+      <div
+        style={{
+          width: "200px",
+          background: "#0000ff21",
+          top: "5rem",
+          left: "0",
+          position: "fixed",
+          padding: ".5rem",
+        }}
+      >
+        <div style={{ background: scene.intersection ? "red" : "none" }}>
+          intersection
         </div>
-        <Chip
-          ref={rChar}
-          data={char}
-          style={{
-            position: "absolute",
-            left: "200px",
-            top: "300px",
-            width: "100px",
-            height: "19px",
-            background: "red",
-          }}
-        />
-        <Solid list={solidList} scene={scene} />
-        <Hurt list={hurts} scene={scene} />
-        <Collectible col={col} scene={scene} />
-        <Graphics graphicsList={level.graphicsList} scene={scene} />
-      </div>}
+        <div style={{ background: char.onTheGround ? "gray" : "none" }}>
+          onTheGround
+        </div>
+        <div>
+          CHIP X Y: {char.x}, {char.y}
+        </div>
+        <div>
+          PREV X Y: {char.prevX}, {char.prevY}
+        </div>
+        <div>verticalSpeed: {char.verticalSpeed}</div>
+        <button onClick={toggleGraphics}>Graphics toggle</button>
+        <button onClick={toggleGraphicsInfo}>Graphics info</button>
+      </div>
+      <Chip
+        ref={rChar}
+        data={char}
+        style={{
+          position: "absolute",
+          left: "200px",
+          top: "300px",
+          width: "100px",
+          height: "19px",
+          background: "red",
+        }}
+      />
+      <Solid list={solidList} scene={scene} />
+      <Hurt list={hurts} scene={scene} />
+      <Collectible col={col} scene={scene} />
+      <Graphics graphicsList={level.graphicsList} scene={scene} />
     </GameContainer>
   );
 }
