@@ -46,7 +46,7 @@ function Game() {
   if (levelNumber == 2) level = level_2;
 
   const [col, setCol] = useState([...level.collectable]);
-  //setCol((prevCol) => { return [...level.collectable] })
+  setCol((prevCol) => { return [...level.collectable] })
 
   //  setTimeout(() => { setLevel() }, 4000)
   //const level= +localStorage.getItem(level)
