@@ -118,7 +118,7 @@ export const collectable = [
   { class: "nut", width: 35, left: 2905, top: 509, src: "./nut.png" },
   { class: "nut", width: 35, left: 2768, top: 509, src: "./nut.png" },
   { class: "nut", width: 35, left: 2636, top: 509, src: "./nut.png" },
-  { class: "nut", width: 35, left: 3044, top: 516, src: "./key.png" },
+  { class: "nut", width: 35, left: 3037, top: 516, src: "./key.png" },
 ];
 
 const thorn = "url(/thorn.png)";

@@ -390,26 +390,16 @@ function Game() {
   // let interval3;
   let audio;
   function start() {
-
+    console.log('START');
     setCol((prevCol) => { return [...level.collectable] })
-
     keyboard(setChar);
 
-
     const src = "./sounds/level-1-music.mp3";
-    audio = new Audio(src);
-
-    // Эффект для автоматического воспроизведения при монтировании
-    // useEffect(() => {
-    audio
+    window.audio = new Audio(src);
+    window.audio
       .play()
       .catch((error) => console.error("Ошибка воспроизведения:", error));
 
-    // Очистка при размонтировании компонента
-    /* return () => {
-      };
-    }, [audio]);
-*/
     setScene((prevScene) => ({
       ...prevScene,
       isStarted: true,

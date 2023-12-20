@@ -1,6 +1,14 @@
 export const keyboard = (setChar) => {
+
+  if (!window.keyboardStarred) window.keyboardStarred = true
+  else return;
+
   console.log("keyboard connected");
   document.addEventListener("keydown", (event) => {
+    if (!window.ke) window.ke = 0;
+    window.ke++;
+    console.log('window.ke: ', window.ke);
+
     event.preventDefault();
     if (event.code == "Space") {
       setChar((prevChar) => ({
