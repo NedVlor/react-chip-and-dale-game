@@ -45,13 +45,18 @@ function Game() {
   if (levelNumber == 1) level = level_1;
   if (levelNumber == 2) level = level_2;
 
+  if (levelNumber > 2) {
+    localStorage.setItem('level', 1);
+    location.reload();
+  }
+
 
   const [col, setCol] = useState([...level.collectable]);
 
-  function setLevel(levelNumber) {
-    if (levelNumber == 2) level = level_2;
+  //function setLevel(levelNumber) {
+    //if (levelNumber == 2) level = level_2;
     //setCol((prevCol) => { return [...level.collectable] })
-  }
+  //}
 
   //  setTimeout(() => { setLevel() }, 4000)
 
@@ -67,7 +72,7 @@ function Game() {
     isGameOver: false,
     isStarted: false,
     isWin: false,
-    level: 1,
+    level: levelNumber,
   });
 
   const [char, setChar] = useState({
@@ -160,7 +165,7 @@ function Game() {
   };
 
   function addHealth() {
-    console.log("add health");
+    //console.log("add health");
     setScene((prevScene) => ({
       ...prevScene,
       health: prevScene.health + 30,
@@ -180,7 +185,7 @@ function Game() {
             x: Math.round(el.left / 70),
             y: Math.round(el.top / 70),
           };
-          // if (i == 0) {
+          if (i == 0) {
           //   console.log(
           //     'check',
           //     approximateChip.x !== approximateEl.x ||
@@ -189,7 +194,7 @@ function Game() {
           //     approximateChip.x, approximateEl.x,
           //     approximateChip.y, approximateEl.y
           //   );
-          // }
+           }
           if (
             approximateChip.x !== approximateEl.x ||
             approximateChip.y !== approximateEl.y
@@ -221,7 +226,7 @@ function Game() {
           chip.bottom > hurt.top &&
           chip.top < hurt.bottom
         ) {
-          console.log("hurt");
+         // console.log("hurt");
           setScene((prevScene) => ({
             ...prevScene,
             health: prevScene.health - 1,
@@ -369,20 +374,23 @@ function Game() {
 
   function nextLevel() {
     let level = scene.level;
-    level++
+    level++;
+    localStorage.setItem('level', level);
+    location.reload();
+    
     // setChar((prevChar) => ({
     //   ...prevChar,
     //   x: 100,
     // }));
-    setScene((prevScene) => ({
-      ...prevScene,
-      level,
-      isWin: false,
-    }));
-    setLevel(level)
-    setTimeout(() => {
-      start();
-    }, 1000); //------------------------------netrizol trable with level jumping
+    // setScene((prevScene) => ({
+    //   ...prevScene,
+    //   level,
+    //   isWin: false,
+    // }));
+    // setLevel(level)
+    // setTimeout(() => {
+    //   start();
+    // }, 1000); //------------------------------netrizol trable with level jumping
   }
 
   // let interval;
@@ -390,7 +398,31 @@ function Game() {
   // let interval3;
   let audio;
   function start() {
-    console.log('START');
+   // console.log('START');
+    
+
+    stopGameLoops()
+
+    window.interval = setInterval(() => {
+      // Проверяем пересечение при каждом обновлении положения
+      checkIntersection();
+    }, 50);
+    window.interval2 = setInterval(() => {
+      console.log("interwal2")
+      checkCollecting(char);
+      checkHurt();
+    }, 200);
+    window.interval3 = setInterval(() => {
+      countdown();
+    }, 1000);
+
+
+
+    if (!window.gamedStarred) window.gamedStarred = true
+    else return;
+
+   // console.log('ONCE !!!!!!!')
+
     setCol((prevCol) => { return [...level.collectable] })
     keyboard(setChar);
 
@@ -405,24 +437,11 @@ function Game() {
       isStarted: true,
     }));
 
-    stopGameLoops()
-
-    window.interval = setInterval(() => {
-      // Проверяем пересечение при каждом обновлении положения
-      checkIntersection();
-    }, 50);
-    window.interval2 = setInterval(() => {
-      checkCollecting(char);
-      checkHurt();
-    }, 100);
-    window.interval3 = setInterval(() => {
-      countdown();
-    }, 1000);
   }
 
   function stopLevelMusic() {
-    audio.pause();
-    audio.currentTime = 0;
+    window.audio.pause();
+    window.audio.currentTime = 0;
   }
 
   function stopGameLoops() {
@@ -431,12 +450,14 @@ function Game() {
     clearInterval(window.interval3);
   }
 
+
+
   useEffect(() => {
     if (scene.isStarted) start();
     return () => {
       stopGameLoops();
     };
-  }, [char.vector]);
+  }, [char.vector, scene.timer]);
 
   useEffect(() => {
     // if (scene.isStarted) start();

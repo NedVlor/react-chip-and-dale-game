@@ -7,7 +7,7 @@ export const keyboard = (setChar) => {
   document.addEventListener("keydown", (event) => {
     if (!window.ke) window.ke = 0;
     window.ke++;
-    console.log('window.ke: ', window.ke);
+   // console.log('window.ke: ', window.ke);
 
     event.preventDefault();
     if (event.code == "Space") {
