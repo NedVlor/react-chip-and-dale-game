@@ -42,7 +42,7 @@ function Game() {
 
   function setLevel(levelNumber) {
     if (levelNumber == 2) level = level_2;
-    setCol((prevCol) => { return [...level.collectable] })
+    //setCol((prevCol) => { return [...level.collectable] })
   }
 
   //  setTimeout(() => { setLevel() }, 4000)
