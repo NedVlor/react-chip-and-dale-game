@@ -15,7 +15,7 @@ export const keyboard = (setChar) => {
       }, 500);
     }
     if (event.key == "ArrowRight") {
-      console.log("Goright");
+      // console.log("Goright");
       setChar((prevChar) => ({
         ...prevChar,
         vector: "right",
@@ -24,7 +24,7 @@ export const keyboard = (setChar) => {
       }));
     }
     if (event.key == "ArrowLeft") {
-      console.log("Left");
+      // console.log("Left");
       setChar((prevChar) => ({
         ...prevChar,
         vector: "left",

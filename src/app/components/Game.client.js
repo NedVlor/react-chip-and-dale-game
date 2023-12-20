@@ -38,6 +38,14 @@ const GameContainer = styled.div`
 `;
 
 function Game() {
+
+
+  let levelNumber = +localStorage.getItem('level') || 1;
+
+  if (levelNumber == 1) level = level_1;
+  if (levelNumber == 2) level = level_2;
+
+
   const [col, setCol] = useState([...level.collectable]);
 
   function setLevel(levelNumber) {
@@ -61,6 +69,7 @@ function Game() {
     isWin: false,
     level: 1,
   });
+
   const [char, setChar] = useState({
     x: 100,
     y: 200,
@@ -158,30 +167,41 @@ function Game() {
     }));
   }
 
-  const checkCollecting = () => {
-    // const chip = getChip();
-    const approximateChip = {
-      x: Math.round(char.x / 70),
-      y: Math.round(char.y / 70),
-    };
-    console.log("aprocsimate chip", approximateChip);
-    setCol((prev) => {
-      return prev.filter((el) => {
-        const approximateEl = {
-          x: Math.round(el.left / 70),
-          y: Math.round(el.top / 70),
-        };
-        console.log("aprocsimate  element", approximateEl);
-        if (
-          approximateChip.x !== approximateEl.x ||
-          approximateChip.y !== approximateEl.y
-        ) {
-          return true;
-        } else {
-          addHealth();
-          return false;
-        }
+  const checkCollecting = (char) => {
+    setChar((prevChar) => {
+      char = { ...prevChar }
+      const approximateChip = {
+        x: Math.round(char.x / 70),
+        y: Math.round(char.y / 70),
+      };
+      setCol((prev) => {
+        return prev.filter((el, i) => {
+          const approximateEl = {
+            x: Math.round(el.left / 70),
+            y: Math.round(el.top / 70),
+          };
+          // if (i == 0) {
+          //   console.log(
+          //     'check',
+          //     approximateChip.x !== approximateEl.x ||
+          //     approximateChip.y !== approximateEl.y,
+
+          //     approximateChip.x, approximateEl.x,
+          //     approximateChip.y, approximateEl.y
+          //   );
+          // }
+          if (
+            approximateChip.x !== approximateEl.x ||
+            approximateChip.y !== approximateEl.y
+          ) {
+            return true;
+          } else {
+            addHealth();
+            return false;
+          }
+        });
       });
+      return { ...prevChar }
     });
   };
 
@@ -193,7 +213,7 @@ function Game() {
       const hurtLink = el.ref.current;
       if (hurtLink && chipNode) {
         const hurt = hurtLink.getBoundingClientRect();
-        console.log("the hurt function", chip.right, hurt.left);
+        // console.log("the hurt function", chip.right, hurt.left);
 
         if (
           chip.right > hurt.left &&
@@ -274,7 +294,7 @@ function Game() {
       }
     };
     const getPrevChip = () => {
-      console.log(window.prev);
+      // console.log(window.prev);
       return window.prev ? window.prev.pop() : { x: 0, y: 0 };
     };
 
@@ -311,9 +331,9 @@ function Game() {
           onTheGround: barier,
         };
       } else {
-        console.log("intersection");
+        // console.log("intersection");
         const prev = getPrevChip() || { x: 200, y: 0 };
-        console.log("prev", prev);
+        // console.log("prev", prev);
         setTimeout(() => {
           setChar((prevChar) => ({ ...prevChar, verticalSpeed: 10 }));
         }, 150);
@@ -370,6 +390,12 @@ function Game() {
   // let interval3;
   let audio;
   function start() {
+
+    setCol((prevCol) => { return [...level.collectable] })
+
+    keyboard(setChar);
+
+
     const src = "./sounds/level-1-music.mp3";
     audio = new Audio(src);
 
@@ -396,7 +422,7 @@ function Game() {
       checkIntersection();
     }, 50);
     window.interval2 = setInterval(() => {
-      checkCollecting();
+      checkCollecting(char);
       checkHurt();
     }, 100);
     window.interval3 = setInterval(() => {

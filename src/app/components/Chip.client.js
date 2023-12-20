@@ -41,7 +41,7 @@ const Chip = forwardRef((props, ref) => {
   const [style, setStyle] = useState({});
 
   useEffect(() => {
-    console.log("effect-switch");
+    // console.log("effect-switch");
     const intervalId = setInterval(() => {
       switch (props.data.action) {
         case "run":
@@ -60,7 +60,7 @@ const Chip = forwardRef((props, ref) => {
   }, [props.data.action]);
 
   useEffect(() => {
-    console.log("effect-width-run");
+    // console.log("effect-width-run");
     // Предполагая, что action.run - это массив и вы хотите сбросить указатель, когда достигнет его конца
     if (props.data.action === "run" && pointer > action.run.length - 1) {
       setPointer(0);
@@ -71,11 +71,11 @@ const Chip = forwardRef((props, ref) => {
   }, [pointer, props.data.action]);
 
   useEffect(() => {
-    console.log("effect-pointer-to-still");
+    // console.log("effect-pointer-to-still");
     // console.log("still", still);
     // console.log("pointer", pointer, action.run[pointer]);
 
-    console.log("****");
+    // console.log("****");
     setStill(0);
     if (props.data.action == "run") {
       setStill((prevStill) => action.run[pointer]);
@@ -86,7 +86,7 @@ const Chip = forwardRef((props, ref) => {
   }, [pointer]);
 
   useEffect(() => {
-    console.log("effect image-position");
+    // console.log("effect image-position");
     if (still || still == 0)
       setStyle((prevStyle) => ({
         ...prevStyle,
@@ -95,7 +95,7 @@ const Chip = forwardRef((props, ref) => {
   }, [still]);
 
   useEffect(() => {
-    console.log("effect-mirror");
+    // console.log("effect-mirror");
     if (props.data.direction == "left")
       setStyle((prevStyle) => ({ ...prevStyle, transform: "scaleX(-1)" }));
 
