@@ -3,9 +3,15 @@ import { useRef } from "react";
 export const level = {
   condition: "run-to-end",
   length: 3000,
+  background:"/city.png",
 };
 
 const r = () => useRef(null);
+
+export const getEnemy = (useRef) => ({
+ // wasp: {w: 50, h: 50, x: 100, y: 100, bg: wasp, bgs: 10, ref: r() },
+});
+
 export const getSolidList = (useRef) => [
   { left: 0, top: 633, width: 212, height: 67, ref: useRef(null) },
   { left: 0, top: 700, width: 408, height: 8, ref: useRef(null) },
@@ -142,4 +148,5 @@ export default {
   collectable,
   getHurt,
   level,
+  getEnemy,
 }

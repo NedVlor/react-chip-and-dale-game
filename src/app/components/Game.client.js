@@ -32,7 +32,6 @@ let level = level_1;
 const GameContainer = styled.div`
   height: 800px;
   width: 4000px;
-  background-image: url(/city.png);
   position: relative;
   color: white;
 `;
@@ -54,8 +53,8 @@ function Game() {
   const [col, setCol] = useState([...level.collectable]);
 
   //function setLevel(levelNumber) {
-    //if (levelNumber == 2) level = level_2;
-    //setCol((prevCol) => { return [...level.collectable] })
+  //if (levelNumber == 2) level = level_2;
+  //setCol((prevCol) => { return [...level.collectable] })
   //}
 
   //  setTimeout(() => { setLevel() }, 4000)
@@ -68,7 +67,7 @@ function Game() {
     intersection: false,
     lifeAmount: 5,
     health: 100,
-    timer: 1000,
+    timer: 1000000,
     isGameOver: false,
     isStarted: false,
     isWin: false,
@@ -136,21 +135,26 @@ function Game() {
       stop.fall = false;
     }, 1000);
   };
+
   const toggleGraphics = () => {
     setScene((prevScene) => ({
       ...prevScene,
       isGraphicsShow: !prevScene.isGraphicsShow,
     }));
   };
+
   const toggleGraphicsInfo = () => {
     setScene((prevScene) => ({
       ...prevScene,
       isGraphicsInfoShow: !prevScene.isGraphicsInfoShow,
     }));
   };
+
   const rChar = useRef(null);
   const solidList = level.getSolidList(useRef);
+  const enemyList = level.getEnemy(useRef);
   const hurts = level.getHurt(useRef);
+
   const getChip = () => {
     const chipNode = rChar.current;
 
@@ -186,15 +190,15 @@ function Game() {
             y: Math.round(el.top / 70),
           };
           if (i == 0) {
-          //   console.log(
-          //     'check',
-          //     approximateChip.x !== approximateEl.x ||
-          //     approximateChip.y !== approximateEl.y,
+            //   console.log(
+            //     'check',
+            //     approximateChip.x !== approximateEl.x ||
+            //     approximateChip.y !== approximateEl.y,
 
-          //     approximateChip.x, approximateEl.x,
-          //     approximateChip.y, approximateEl.y
-          //   );
-           }
+            //     approximateChip.x, approximateEl.x,
+            //     approximateChip.y, approximateEl.y
+            //   );
+          }
           if (
             approximateChip.x !== approximateEl.x ||
             approximateChip.y !== approximateEl.y
@@ -226,7 +230,7 @@ function Game() {
           chip.bottom > hurt.top &&
           chip.top < hurt.bottom
         ) {
-         // console.log("hurt");
+          // console.log("hurt");
           setScene((prevScene) => ({
             ...prevScene,
             health: prevScene.health - 1,
@@ -377,7 +381,7 @@ function Game() {
     level++;
     localStorage.setItem('level', level);
     location.reload();
-    
+
     // setChar((prevChar) => ({
     //   ...prevChar,
     //   x: 100,
@@ -398,8 +402,8 @@ function Game() {
   // let interval3;
   let audio;
   function start() {
-   // console.log('START');
-    
+    // console.log('START');
+
 
     stopGameLoops()
 
@@ -421,7 +425,7 @@ function Game() {
     if (!window.gamedStarred) window.gamedStarred = true
     else return;
 
-   // console.log('ONCE !!!!!!!')
+    // console.log('ONCE !!!!!!!')
 
     setCol((prevCol) => { return [...level.collectable] })
     keyboard(setChar);
@@ -465,7 +469,7 @@ function Game() {
     keyboard(setChar);
   }, []);
   return (
-    <GameContainer>
+    <GameContainer style={{ backgroundImage: `url(${level.level.background})` }}>
       {scene.isGameOver && <GameOverScreen data={scene} />}
       {!scene.isStarted && <StartScreen data={scene} onStart={start} />}
       {scene.isWin && <WinScreen data={scene} onNextLevel={nextLevel} />}
@@ -515,7 +519,24 @@ function Game() {
       <Hurt list={hurts} scene={scene} />
       <Collectible col={col} scene={scene} />
       <Graphics graphicsList={level.graphicsList} scene={scene} />
-    </GameContainer>
+      {enemyList.wasp &&
+        <div
+          style={{
+            position: "fixed",
+            zIndex: 1000,
+            top: 0,
+            left: 0,
+            background: "#ff000057",
+            width: "100px",
+            height: "100px",
+            backgroundImage: `url(${enemyList.wasp.bg})`,
+            backgroundSize: "120%",
+            backgroundPosition: "103% 77%",
+          }}>
+          WASP!!!!!!
+        </div>}
+
+    </GameContainer >
   );
 }
 export default Game;
