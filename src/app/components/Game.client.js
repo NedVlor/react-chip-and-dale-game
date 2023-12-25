@@ -38,7 +38,6 @@ const GameContainer = styled.div`
 
 function Game() {
 
-
   let levelNumber = +localStorage.getItem('level') || 1;
 
   if (levelNumber == 1) level = level_1;
@@ -49,16 +48,7 @@ function Game() {
     location.reload();
   }
 
-
   const [col, setCol] = useState([...level.collectable]);
-
-  //function setLevel(levelNumber) {
-  //if (levelNumber == 2) level = level_2;
-  //setCol((prevCol) => { return [...level.collectable] })
-  //}
-
-  //  setTimeout(() => { setLevel() }, 4000)
-
 
   const [scene, setScene] = useState({
     isSolidShow: true,
@@ -150,9 +140,11 @@ function Game() {
     }));
   };
 
+
   const rChar = useRef(null);
   const solidList = level.getSolidList(useRef);
-  const enemyList = level.getEnemy(useRef);
+  const enemyList = level.getEnemy(useRef); /// !!!!!!!!!!!!!!!!!!!!!!!!! remove
+  const [enemyListR, setEnemyListR] = useState(level.getEnemy(useRef));
   const hurts = level.getHurt(useRef);
 
   const getChip = () => {
@@ -381,30 +373,12 @@ function Game() {
     level++;
     localStorage.setItem('level', level);
     location.reload();
-
-    // setChar((prevChar) => ({
-    //   ...prevChar,
-    //   x: 100,
-    // }));
-    // setScene((prevScene) => ({
-    //   ...prevScene,
-    //   level,
-    //   isWin: false,
-    // }));
-    // setLevel(level)
-    // setTimeout(() => {
-    //   start();
-    // }, 1000); //------------------------------netrizol trable with level jumping
   }
 
-  // let interval;
-  // let interval2;
-  // let interval3;
   let audio;
+
   function start() {
     // console.log('START');
-
-
     stopGameLoops()
 
     window.interval = setInterval(() => {
@@ -420,12 +394,15 @@ function Game() {
       countdown();
     }, 1000);
 
-
+    if (enemyList.wasp) {
+      window.waspOnterval = setInterval(() => {
+        wasp();
+        console.log('WASP INTERVAL')
+      }, 1000);
+    }
 
     if (!window.gamedStarred) window.gamedStarred = true
     else return;
-
-    // console.log('ONCE !!!!!!!')
 
     setCol((prevCol) => { return [...level.collectable] })
     keyboard(setChar);
@@ -452,6 +429,50 @@ function Game() {
     clearInterval(window.interval);
     clearInterval(window.interval2);
     clearInterval(window.interval3);
+    clearInterval(window.waspOnterval);
+  }
+
+  function wasp() {
+
+
+    setEnemyListR(enemy => {
+      const wasp = enemy.wasp;
+
+      const differenceX = wasp.x - char.x
+      const differenceY = wasp.y - char.y
+
+      const isLeft = differenceX < 0;
+      const isUp = differenceY < 0;
+
+      if (isLeft) wasp.x = wasp.x + 30
+      else wasp.x = wasp.x - 30;
+
+      if (isUp) wasp.y = wasp.y + 30
+      else wasp.y = wasp.y - 30;
+
+      if (Math.abs(differenceX) < 50 && Math.abs(differenceY) < 50) {
+
+        setScene((prevScene) => ({
+          ...prevScene,
+          health: prevScene.health - 10,
+        }));
+
+        if (scene.health < 1) reincarnation();
+
+      };
+
+
+
+      console.log('>>>', wasp, char.x, char.y, isLeft)
+      console.log(differenceX, Math.abs(differenceX))
+
+
+      return {
+        ...enemy,
+        wasp
+      }
+    })
+
   }
 
 
@@ -519,21 +540,21 @@ function Game() {
       <Hurt list={hurts} scene={scene} />
       <Collectible col={col} scene={scene} />
       <Graphics graphicsList={level.graphicsList} scene={scene} />
-      {enemyList.wasp &&
+      {enemyListR.wasp &&
         <div
           style={{
-            position: "fixed",
+            position: "absolute",
             zIndex: 1000,
-            top: 0,
-            left: 0,
+            top: `${enemyListR.wasp.y}px`,
+            left: `${enemyListR.wasp.x}px`,
             background: "#ff000057",
-            width: "100px",
-            height: "100px",
-            backgroundImage: `url(${enemyList.wasp.bg})`,
-            backgroundSize: "120%",
+            width: `${enemyListR.wasp.w}px`,
+            height: `${enemyListR.wasp.h}px`,
+            backgroundImage: `url(${enemyListR.wasp.bg})`,
+            backgroundSize: `${enemyListR.wasp.bgs}`,
             backgroundPosition: "103% 77%",
+            transition: "1s",
           }}>
-          WASP!!!!!!
         </div>}
 
     </GameContainer >

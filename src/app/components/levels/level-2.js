@@ -11,7 +11,7 @@ const r = () => useRef(null);
 const wasp = "/wasp.gif";
 
 export const getEnemy = (useRef) => ({
-  wasp: {w: 50, h: 50, x: 100, y: 100, bg: wasp, bgs: 10, ref: r() },
+  wasp: {w: 50, h: 50, x: 100, y: 100, bg: wasp, bgs: "120%", ref: r() },
 });
 
 export const getSolidList = (useRef) => [
@@ -33,6 +33,14 @@ const metal1 = "url(/metal-construction.png)";
 const brickWall = "url(/brick-wall2.jpg)";
 
 export const graphicsList = [
+  // clouds
+  { type: "img", width: 162, left: 90, top: 440, src: "./cloud3.png" },
+  { type: "img", width: 134, left: 287, top: 397, src: "./cloud3.png" },
+  { type: "img", width: 134, left: 447, top: 361, src: "./cloud3.png" },
+  { type: "img", width: 134, left: 598, top: 320, src: "./cloud3.png" },
+  { type: "img", width: 119, left: 762, top: 290, src: "./cloud3.png" },
+
+
   // boxes
   // { type: "img", width: 69, left: 5, top: 632, src: "./box.jpg" },
   // { type: "img", width: 69, left: 74, top: 632, src: "./box.jpg" },
