@@ -62,6 +62,7 @@ function Game() {
     isStarted: false,
     isWin: false,
     level: levelNumber,
+    isDamage: false
   });
 
   const [char, setChar] = useState({
@@ -455,17 +456,20 @@ function Game() {
         setScene((prevScene) => ({
           ...prevScene,
           health: prevScene.health - 10,
+          isDamage: true,
         }));
 
         if (scene.health < 1) reincarnation();
-
+        setTimeout(() => {
+          setScene((prevScene) => ({
+            ...prevScene,
+            isDamage: false,
+          }));
+        }, 1000)
       };
-
-
 
       console.log('>>>', wasp, char.x, char.y, isLeft)
       console.log(differenceX, Math.abs(differenceX))
-
 
       return {
         ...enemy,
@@ -474,8 +478,6 @@ function Game() {
     })
 
   }
-
-
 
   useEffect(() => {
     if (scene.isStarted) start();
@@ -494,6 +496,19 @@ function Game() {
       {scene.isGameOver && <GameOverScreen data={scene} />}
       {!scene.isStarted && <StartScreen data={scene} onStart={start} />}
       {scene.isWin && <WinScreen data={scene} onNextLevel={nextLevel} />}
+
+      {scene.isDamage &&
+        <div
+          style={{
+            position: "fixed",
+            zIndex: 10000,
+            width: "100vw",
+            height: "100vh",
+            left: 0,
+            top: 0,
+            backgroundColor: "#ff00006b",
+          }}
+        ></div>}
 
       <GamePanel data={scene} />
       <TimePanel data={scene} />
@@ -547,7 +562,7 @@ function Game() {
             zIndex: 1000,
             top: `${enemyListR.wasp.y}px`,
             left: `${enemyListR.wasp.x}px`,
-            background: "#ff000057",
+           // background: "#ff000057",
             width: `${enemyListR.wasp.w}px`,
             height: `${enemyListR.wasp.h}px`,
             backgroundImage: `url(${enemyListR.wasp.bg})`,
