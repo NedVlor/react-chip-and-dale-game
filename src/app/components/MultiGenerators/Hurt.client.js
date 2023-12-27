@@ -13,6 +13,7 @@ function Hurt({ list, scene }) {
             position: "absolute",
             left: (obj.left || obj.x) + "px",
             top: (obj.top || obj.y) + "px",
+            transform: `rotate(${obj.a}deg)`
           }}
         >
           <div

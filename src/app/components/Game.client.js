@@ -397,7 +397,7 @@ function Game() {
 
     if (enemyList.wasp && !scene.isGameOver) {
       window.waspOnterval = setInterval(() => {
-        wasp();
+       // wasp();
         console.log('WASP INTERVAL')
       }, 1000);
     }
