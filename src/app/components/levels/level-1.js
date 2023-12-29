@@ -142,6 +142,9 @@ export const getHurt = (useRef) => [
   { c: "acute", w: 10, h: 370, x: 0, y: 336, bg: thorn, bgs: 10, ref: r() },
 ];
 
+export const lowGravity = [
+]
+
 export default {
   getSolidList,
   graphicsList,
@@ -149,4 +152,5 @@ export default {
   getHurt,
   level,
   getEnemy,
+  lowGravity
 }

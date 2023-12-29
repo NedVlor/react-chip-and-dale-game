@@ -19,16 +19,6 @@ import WinScreen from "./Screens/WinScreen.client.js";
 
 let level = level_1;
 
-
-/*{
-  getSolidList,
-  graphicsList,
-  collectable,
-  getHurt,
-  level,
-} = level_2;
-*/
-
 const GameContainer = styled.div`
   height: 800px;
   width: 4000px;
@@ -49,6 +39,12 @@ function Game() {
   }
 
   const [col, setCol] = useState([...level.collectable]);
+  const rChar = useRef(null);
+  const solidList = level.getSolidList(useRef);
+  const enemyList = level.getEnemy(useRef); /// !!!!!!!!!!!!!!!!!!!!!!!!! remove
+  const [enemyListR, setEnemyListR] = useState(level.getEnemy(useRef));
+  const hurts = level.getHurt(useRef);
+  const lowGravity = level.lowGravity;
 
   const [scene, setScene] = useState({
     isSolidShow: true,
@@ -141,16 +137,8 @@ function Game() {
     }));
   };
 
-
-  const rChar = useRef(null);
-  const solidList = level.getSolidList(useRef);
-  const enemyList = level.getEnemy(useRef); /// !!!!!!!!!!!!!!!!!!!!!!!!! remove
-  const [enemyListR, setEnemyListR] = useState(level.getEnemy(useRef));
-  const hurts = level.getHurt(useRef);
-
   const getChip = () => {
     const chipNode = rChar.current;
-
     const chipRaw = chipNode.getBoundingClientRect(); // cordinates and size for chip
     const chip = {
       left: chipRaw.left + 15,
@@ -162,7 +150,6 @@ function Game() {
   };
 
   function addHealth() {
-    //console.log("add health");
     setScene((prevScene) => ({
       ...prevScene,
       health: prevScene.health + 30,
@@ -182,16 +169,6 @@ function Game() {
             x: Math.round(el.left / 70),
             y: Math.round(el.top / 70),
           };
-          if (i == 0) {
-            //   console.log(
-            //     'check',
-            //     approximateChip.x !== approximateEl.x ||
-            //     approximateChip.y !== approximateEl.y,
-
-            //     approximateChip.x, approximateEl.x,
-            //     approximateChip.y, approximateEl.y
-            //   );
-          }
           if (
             approximateChip.x !== approximateEl.x ||
             approximateChip.y !== approximateEl.y
@@ -215,15 +192,12 @@ function Game() {
       const hurtLink = el.ref.current;
       if (hurtLink && chipNode) {
         const hurt = hurtLink.getBoundingClientRect();
-        // console.log("the hurt function", chip.right, hurt.left);
-
         if (
           chip.right > hurt.left &&
           chip.left < hurt.right &&
           chip.bottom > hurt.top &&
           chip.top < hurt.bottom
         ) {
-          // console.log("hurt");
           setScene((prevScene) => ({
             ...prevScene,
             health: prevScene.health - 1,
@@ -232,6 +206,7 @@ function Game() {
       }
     });
   };
+
   const checkIntersection = () => {
     let bariers = []; // for gravity
     let intersection = false; // for X
@@ -239,6 +214,15 @@ function Game() {
     let shiftX = 0;
     const chipNode = rChar.current;
     const chip = getChip();
+
+    // lowGravity block
+    // setChar((prevChar) => {
+    //   return {
+    //     ...prevChar,
+    //     isLowGravity: prevChar.x > lowGravity.from && prevChar.x < lowGravity.to
+    //   }
+    // });
+
 
     solidList.forEach((el, i) => {
       const element2 = el.ref.current;
@@ -304,6 +288,7 @@ function Game() {
       if (!barier) {
         // console.log("No barier, should falling");
         shiftY = prevChar.verticalSpeed;
+        if (prevChar.isLowGravity)  shiftY = prevChar.verticalSpeed/6
       }
       if (prevChar.jump) shiftY = -prevChar.verticalSpeed;
 
@@ -320,32 +305,37 @@ function Game() {
       }
 
       if (!intersection) {
-        //   console.log("no intersection");
         setPrevChip(prevChar.x, prevChar.y);
         if (prevChar.vector == "left") shiftX = -4;
         if (prevChar.vector == "right") shiftX = 4;
         return {
           ...prevChar,
-          //  prevX: prev.x,
-          //  prevY: prev.y,
           y: prevChar.y + shiftY,
           x: prevChar.x + shiftX,
           onTheGround: barier,
         };
       } else {
-        // console.log("intersection");
         const prev = getPrevChip() || { x: 200, y: 0 };
-        // console.log("prev", prev);
         setTimeout(() => {
           setChar((prevChar) => ({ ...prevChar, verticalSpeed: 10 }));
         }, 150);
 
         shiftY = 1;
+
+        let isLowGravity = false;
+
+        lowGravity.forEach((range)=>{
+         if(prevChar.x > range.from && prevChar.x < range.to) isLowGravity=true;         
+         console.log('isLowGravity', isLowGravity, prevChar.x , range.from , prevChar.x , range.to)
+         console.log('>>>', lowGravity)
+        })
+
         return {
           ...prevChar,
           y: prev.y,
           x: prev.x,
           verticalSpeed: 1,
+         isLowGravity
         };
       }
     });
@@ -356,7 +346,6 @@ function Game() {
       };
     });
     scroll(chipNode);
-    //   console.log(chipNode);
   }; // END checkIntersection
 
   function countdown() {
@@ -379,15 +368,12 @@ function Game() {
   let audio;
 
   function start() {
-    // console.log('START');
     stopGameLoops()
-
     window.interval = setInterval(() => {
-      // Проверяем пересечение при каждом обновлении положения
       checkIntersection();
     }, 50);
     window.interval2 = setInterval(() => {
-      console.log("interwal2")
+     // console.log("interwal2")
       checkCollecting(char);
       checkHurt();
     }, 200);
@@ -397,8 +383,8 @@ function Game() {
 
     if (enemyList.wasp && !scene.isGameOver) {
       window.waspOnterval = setInterval(() => {
-       // wasp();
-        console.log('WASP INTERVAL')
+        // wasp();
+       // console.log('WASP INTERVAL')
       }, 1000);
     }
 
@@ -418,7 +404,6 @@ function Game() {
       ...prevScene,
       isStarted: true,
     }));
-
   }
 
   function stopLevelMusic() {
@@ -434,25 +419,22 @@ function Game() {
   }
 
   function wasp() {
-
-
     setEnemyListR(enemy => {
       const wasp = enemy.wasp;
-
+      //
       const differenceX = wasp.x - char.x
       const differenceY = wasp.y - char.y
-
+      //
       const isLeft = differenceX < 0;
       const isUp = differenceY < 0;
-
+      //
       if (isLeft) wasp.x = wasp.x + 30
       else wasp.x = wasp.x - 30;
-
+      //
       if (isUp) wasp.y = wasp.y + 30
       else wasp.y = wasp.y - 30;
-
+      //
       if (Math.abs(differenceX) < 50 && Math.abs(differenceY) < 50) {
-
         setScene((prevScene) => ({
           ...prevScene,
           health: prevScene.health - 10,
@@ -467,16 +449,11 @@ function Game() {
           }));
         }, 1000)
       };
-
-      console.log('>>>', wasp, char.x, char.y, isLeft)
-      console.log(differenceX, Math.abs(differenceX))
-
       return {
         ...enemy,
         wasp
       }
     })
-
   }
 
   useEffect(() => {
@@ -487,10 +464,9 @@ function Game() {
   }, [char.vector, scene.timer]);
 
   useEffect(() => {
-    // if (scene.isStarted) start();
-
     keyboard(setChar);
   }, []);
+
   return (
     <GameContainer style={{ backgroundImage: `url(${level.level.background})` }}>
       {scene.isGameOver && <GameOverScreen data={scene} />}
@@ -536,6 +512,8 @@ function Game() {
           PREV X Y: {char.prevX}, {char.prevY}
         </div>
         <div>verticalSpeed: {char.verticalSpeed}</div>
+        <div>isLowGravity: {(char.isLowGravity)? '+' : '-'}</div>
+        
         <button onClick={toggleGraphics}>Graphics toggle</button>
         <button onClick={toggleGraphicsInfo}>Graphics info</button>
       </div>
@@ -562,7 +540,7 @@ function Game() {
             zIndex: 1000,
             top: `${enemyListR.wasp.y}px`,
             left: `${enemyListR.wasp.x}px`,
-           // background: "#ff000057",
+            // background: "#ff000057",
             width: `${enemyListR.wasp.w}px`,
             height: `${enemyListR.wasp.h}px`,
             backgroundImage: `url(${enemyListR.wasp.bg})`,

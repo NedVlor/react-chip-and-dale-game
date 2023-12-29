@@ -25,13 +25,16 @@ export const getSolidList = (useRef) => [
   { left: 461, top: 383, width: 116, height: 8, ref: useRef(null) },
   { left: 600, top: 344, width: 130, height: 8, ref: useRef(null) },
   { left: 763, top: 308, width: 116, height: 8, ref: useRef(null) },
+  { left: 1710, top: 308, width: 116, height: 8, ref: useRef(null) },
+
   { left: 1226, top: 308, width: 116, height: 8, ref: useRef(null) },
 
   { left: 836, top: 196, width: 401, height: 10, ref: useRef(null) },
   { left: 1337, top: 196, width: 401, height: 10, ref: useRef(null) },
 
   { left: 1865, top: 635, width: 160, height: 39, ref: useRef(null) },
-  { left: 2018, top: 589, width: 935, height: 39, ref: useRef(null) },
+  //{ left: 2018, top: 589, width: 935, height: 39, ref: useRef(null) },
+  { left: 2207, top: 254, width: 162, height: 9, ref: useRef(null) },
 
 
 ];
@@ -39,6 +42,7 @@ export const getSolidList = (useRef) => [
 const metal1 = "url(/metal-construction.png)";
 //const brickWall = "url(/brick-wall.jpg)";
 const brickWall = "url(/brick-wall2.jpg)";
+const pipe = "url(/pipe.png)";
 
 export const graphicsList = [
   // clouds
@@ -48,9 +52,14 @@ export const graphicsList = [
   { type: "img", width: 165, left: 584, top: 304, src: "./cloud6.png" },
   { type: "img", width: 148, left: 747, top: 270, src: "./cloud6.png" },
   { type: "img", width: 148, left: 1212, top: 270, src: "./cloud6.png" },
+  { type: "img", width: 148, left: 1695, top: 270, src: "./cloud6.png" },
+  
+
   { type: "img", width: 452, left: 813, top: 59, src: "./cloud4.png" },
   { type: "img", width: 452, left: 1315, top: 59, src: "./cloud4.png" },
 
+// wall
+//{ type: "img", width: 148, left: 866, top: 700, src: "./buildingA.jpg" },
 
   // boxes
   // { type: "img", width: 69, left: 5, top: 632, src: "./box.jpg" },
@@ -59,7 +68,7 @@ export const graphicsList = [
   // { type: "img", width: 69, left: 661, top: 632, src: "./box.jpg" },
   // { type: "img", width: 69, left: 800, top: 632, src: "./box.jpg" },
   // metal constractions 1
-  // { type: "div", width: 521, height: 37, left: 479, top: 700, bg: metal1 },
+  { type: "div", width: 1000, height: 31, left: 866, top: 695, bg: pipe },
   // { type: "div", width: 521, height: 37, left: 1050, top: 700, bg: metal1 },
   // { type: "div", width: 407, height: 36, left: 1, top: 700, bg: metal1 },
   // { type: "div", width: 521, height: 37, left: 900, top: 550, bg: metal1 },
@@ -82,8 +91,22 @@ export const collectable = [
 const thorn = "url(/thorn.png)";
 const fire= "url(/fire.gif)";
 export const getHurt = (useRef) => [
- // { c: "acute", w: 500, h: 10, x: 1048, y: 689, bg: thorn, bgs: 10, ref: r() },
-  { c: "fire", w: 50, h: 10, x: 1000, y: 691, bg: fire, bgs: 100, ref: r(), a:180 },
+  // { c: "acute", w: 500, h: 10, x: 1048, y: 689, bg: thorn, bgs: 10, ref: r() },
+  { c: "fire", w: 50, h: 10, x: 855, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
+  { c: "fire", w: 50, h: 10, x: 938, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
+  { c: "fire", w: 50, h: 10, x: 1021, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
+  { c: "fire", w: 50, h: 10, x: 1104, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
+  { c: "fire", w: 50, h: 10, x: 1187, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
+  { c: "fire", w: 50, h: 10, x: 1270, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
+  { c: "fire", w: 50, h: 10, x: 1353, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
+  { c: "fire", w: 50, h: 10, x: 1436, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
+  { c: "fire", w: 50, h: 10, x: 1519, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
+  { c: "fire", w: 50, h: 10, x: 1602, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
+  { c: "fire", w: 50, h: 10, x: 1685, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
+  { c: "fire", w: 50, h: 10, x: 1768, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
+  { c: "fire", w: 50, h: 10, x: 1851, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
+  { c: "fire", w: 50, h: 10, x: 1934, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
+
 ];
 
 export const lowGravity = [

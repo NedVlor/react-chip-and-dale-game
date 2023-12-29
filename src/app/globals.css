@@ -67,6 +67,7 @@ body {
   animation-timing-function: ease-in-out;
   transform: rotate(180deg);
   background-position-x:center;
+  border-radius: 78%;
 }
 @keyframes fire {
   0% {
