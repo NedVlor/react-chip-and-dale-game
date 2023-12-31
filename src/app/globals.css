@@ -2,6 +2,9 @@ body {
   background: #05141a;
   width: fit-content;
 }
+main{
+  caret-color: transparent;
+}
 .nut {
   animation: nut 4s infinite;
   animation-timing-function: ease-in-out; /* or: ease, ease-in, ease-in-out, linear, cubic-bezier(x1, y1, x2, y2) */

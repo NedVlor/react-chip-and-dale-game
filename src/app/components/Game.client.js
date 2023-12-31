@@ -178,6 +178,7 @@ function Game() {
             addHealth();
             return false;
           }
+          
         });
       });
       return { ...prevChar }
