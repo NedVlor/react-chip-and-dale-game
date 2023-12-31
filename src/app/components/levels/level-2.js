@@ -26,6 +26,7 @@ export const getSolidList = (useRef) => [
   { left: 600, top: 344, width: 130, height: 8, ref: useRef(null) },
   { left: 763, top: 308, width: 116, height: 8, ref: useRef(null) },
   { left: 1710, top: 308, width: 116, height: 8, ref: useRef(null) },
+  { left: 1800, top: 308, width: 116, height: 8, ref: useRef(null) },
 
   { left: 1226, top: 308, width: 116, height: 8, ref: useRef(null) },
 
@@ -35,6 +36,7 @@ export const getSolidList = (useRef) => [
   { left: 1865, top: 635, width: 160, height: 39, ref: useRef(null) },
   //{ left: 2018, top: 589, width: 935, height: 39, ref: useRef(null) },
   { left: 2207, top: 254, width: 162, height: 9, ref: useRef(null) },
+  { left: 2066, top: 583, width: 116, height: 8, ref: useRef(null) },
 
 
 ];
@@ -59,7 +61,10 @@ export const graphicsList = [
   { type: "img", width: 452, left: 1315, top: 59, src: "./cloud4.png" },
 
   //animated clouds
-  { type: "img", c: "ani-cloud",  width: 194, left: 78, top: 600, src: "./cloud6.png" },
+  { type: "img", c: "ani-cloud",  width: 194, left: 50, top: 600, src: "./cloud6.png" },
+  { type: "img", c: "ani-cloud-2",  width: 194, left: 100, top: 600, src: "./cloud6.png" },
+  { type: "img", c: "ani-cloud-3",  width: 194, left: 150, top: 600, src: "./cloud6.png" },
+
 
   // wall
   //{ type: "img", width: 148, left: 866, top: 700, src: "./buildingA.jpg" },
@@ -76,7 +81,14 @@ export const graphicsList = [
   // { type: "div", width: 407, height: 36, left: 1, top: 700, bg: metal1 },
   // { type: "div", width: 521, height: 37, left: 900, top: 550, bg: metal1 },
   // brick wall
-  // { type: "div", w: 800, h: 155, x: 1630, y: 645, bg: brickWall, bgs: 100 },
+   { type: "div", w: 100, h: 155, x: 150, y: 645, bg: brickWall, bgs: 100 },
+   { type: "div", w: 100, h: 155, x: 2100, y: 645, bg: brickWall, bgs: 100 },
+   //animated clouds
+   { type: "img", c: "ani-cloud",  width: 194, left: 2050, top: 600, src: "./cloud6.png" },
+  { type: "img", c: "ani-cloud-2",  width: 194, left: 2100, top: 600, src: "./cloud6.png" },
+  { type: "img", c: "ani-cloud-3",  width: 194, left: 2150, top: 600, src: "./cloud6.png" },
+
+
   // { type: "div", w: 800, h: 184, x: 2500, y: 617, bg: brickWall, bgs: 100 },
   // { type: "div", w: 800, h: 230, x: 3370, y: 572, bg: brickWall, bgs: 100 },
 ];
@@ -113,8 +125,8 @@ export const getHurt = (useRef) => [
 ];
 
 export const lowGravity = [
-  { from: 0, to: 500 },
-  { from: 1000, to: 1500 }
+  { from: 0, to: 270 },
+  { from: 2000, to: 2250 }
 ]
 
 export default {

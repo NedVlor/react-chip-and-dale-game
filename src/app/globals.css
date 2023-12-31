@@ -85,6 +85,14 @@ body {
   animation: ani-cloud 5s infinite;
   animation-timing-function: linear;
 }
+.ani-cloud-2{
+  animation: ani-cloud 6s infinite;
+  animation-timing-function: linear;
+}
+.ani-cloud-3{
+  animation: ani-cloud 7s infinite;
+  animation-timing-function: linear;
+}
 @keyframes ani-cloud {
   0% {
     top: 0;
