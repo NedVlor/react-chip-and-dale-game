@@ -17,6 +17,7 @@ function Graphics({ graphicsList, scene }) {
             }}
           >
             <img
+             className={obj.c}
               key={"graphics-" + i}
               src={obj.src}
               style={{
@@ -52,6 +53,7 @@ function Graphics({ graphicsList, scene }) {
             }}
           >
             <div
+             className={obj.c}
               key={"graphics-" + i}
               style={{
                 position: "absolute",

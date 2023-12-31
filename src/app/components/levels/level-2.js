@@ -3,7 +3,7 @@ import { useRef } from "react";
 export const level = {
   condition: "run-to-end",
   length: 4000,
-  background:"/map.png",
+  background: "/map.png",
 };
 
 const r = () => useRef(null);
@@ -11,7 +11,7 @@ const r = () => useRef(null);
 const wasp = "/wasp.gif";
 
 export const getEnemy = (useRef) => ({
-  wasp: {w: 50, h: 50, x: 100, y: 100, bg: wasp, bgs: "120%", ref: r() },
+  wasp: { w: 50, h: 50, x: 100, y: 100, bg: wasp, bgs: "120%", ref: r() },
 });
 
 export const getSolidList = (useRef) => [
@@ -20,7 +20,7 @@ export const getSolidList = (useRef) => [
   { left: 288, top: 422, width: 130, height: 8, ref: useRef(null) },
   { left: 866, top: 700, width: 1000, height: 19, ref: useRef(null) },
   { left: 0, top: 337, width: 14, height: 356, ref: useRef(null) },
- // { width: 69, height: 69, left: 661, top: 632, ref: useRef(null) },
+  // { width: 69, height: 69, left: 661, top: 632, ref: useRef(null) },
   //{ width: 69, height: 69, left: 800, top: 632, ref: useRef(null) },
   { left: 461, top: 383, width: 116, height: 8, ref: useRef(null) },
   { left: 600, top: 344, width: 130, height: 8, ref: useRef(null) },
@@ -53,13 +53,16 @@ export const graphicsList = [
   { type: "img", width: 148, left: 747, top: 270, src: "./cloud6.png" },
   { type: "img", width: 148, left: 1212, top: 270, src: "./cloud6.png" },
   { type: "img", width: 148, left: 1695, top: 270, src: "./cloud6.png" },
-  
+
 
   { type: "img", width: 452, left: 813, top: 59, src: "./cloud4.png" },
   { type: "img", width: 452, left: 1315, top: 59, src: "./cloud4.png" },
 
-// wall
-//{ type: "img", width: 148, left: 866, top: 700, src: "./buildingA.jpg" },
+  //animated clouds
+  { type: "img", c: "ani-cloud",  width: 194, left: 78, top: 600, src: "./cloud6.png" },
+
+  // wall
+  //{ type: "img", width: 148, left: 866, top: 700, src: "./buildingA.jpg" },
 
   // boxes
   // { type: "img", width: 69, left: 5, top: 632, src: "./box.jpg" },
@@ -80,40 +83,41 @@ export const graphicsList = [
 
 export const collectable = [
   //nuts
-//  { class: "nut", width: 35, left: 748, top: 643, src: "./nut.png" },
- // { class: "nut", width: 35, left: 948, top: 643, src: "./nut.png" },
- // { class: "nut", width: 35, left: 548, top: 643, src: "./nut.png" },
- // { class: "nut", width: 35, left: 1130, top: 590, src: "./nut.png" },
- // { class: "nut", width: 35, left: 1239, top: 590, src: "./nut.png" },
+  //  { class: "nut", width: 35, left: 748, top: 643, src: "./nut.png" },
+  // { class: "nut", width: 35, left: 948, top: 643, src: "./nut.png" },
+  // { class: "nut", width: 35, left: 548, top: 643, src: "./nut.png" },
+  // { class: "nut", width: 35, left: 1130, top: 590, src: "./nut.png" },
+  // { class: "nut", width: 35, left: 1239, top: 590, src: "./nut.png" },
   //{ class: "nut", width: 35, left: 1739, top: 590, src: "./nut.png" },
 ];
 
 const thorn = "url(/thorn.png)";
-const fire= "url(/fire.gif)";
+const fire = "url(/fire.gif)";
 export const getHurt = (useRef) => [
   // { c: "acute", w: 500, h: 10, x: 1048, y: 689, bg: thorn, bgs: 10, ref: r() },
-  { c: "fire", w: 50, h: 10, x: 855, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
-  { c: "fire", w: 50, h: 10, x: 938, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
-  { c: "fire", w: 50, h: 10, x: 1021, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
-  { c: "fire", w: 50, h: 10, x: 1104, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
-  { c: "fire", w: 50, h: 10, x: 1187, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
-  { c: "fire", w: 50, h: 10, x: 1270, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
-  { c: "fire", w: 50, h: 10, x: 1353, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
-  { c: "fire", w: 50, h: 10, x: 1436, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
-  { c: "fire", w: 50, h: 10, x: 1519, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
-  { c: "fire", w: 50, h: 10, x: 1602, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
-  { c: "fire", w: 50, h: 10, x: 1685, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
-  { c: "fire", w: 50, h: 10, x: 1768, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
-  { c: "fire", w: 50, h: 10, x: 1851, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
-  { c: "fire", w: 50, h: 10, x: 1934, y: 694, bg: fire, bgs: 100, ref: r(), a:180 },
+  { c: "fire", w: 50, h: 10, x: 855, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 938, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 1021, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 1104, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 1187, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 1270, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 1353, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 1436, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 1519, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 1602, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 1685, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 1768, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 1851, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 1934, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
 
 ];
 
 export const lowGravity = [
-  {from: 0, to: 500}
+  { from: 0, to: 500 },
+  { from: 1000, to: 1500 }
 ]
 
-export default{
+export default {
   getSolidList,
   graphicsList,
   collectable,

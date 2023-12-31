@@ -80,3 +80,30 @@ body {
     height: 0;
   }
 }
+
+.ani-cloud{
+  animation: ani-cloud 5s infinite;
+  animation-timing-function: linear;
+}
+@keyframes ani-cloud {
+  0% {
+    top: 0;
+    opacity: 0;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+ 25% {
+    top: -100px;
+    opacity: 1;
+  }
+  75%{
+    top: -300;
+    opacity: 1;
+  }
+  100% {
+    top: -400px;
+    opacity: 0;
+    transform: scale(1.5);
+    filter: blur(5px);
+  }
+}
