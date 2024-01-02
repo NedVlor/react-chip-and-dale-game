@@ -37,7 +37,10 @@ export const getSolidList = (useRef) => [
   //{ left: 2018, top: 589, width: 935, height: 39, ref: useRef(null) },
   { left: 2207, top: 254, width: 162, height: 9, ref: useRef(null) },
   { left: 2066, top: 583, width: 116, height: 8, ref: useRef(null) },
-
+  { left: 2166, top: 520, width: 116, height: 8, ref: useRef(null) },
+  { left: 2266, top: 460, width: 116, height: 8, ref: useRef(null) },
+  { left: 2366, top: 400, width: 116, height: 8, ref: useRef(null) },
+  { left: 2595, top: 499, width: 1205, height: 8, ref: useRef(null) },
 
 ];
 
@@ -77,16 +80,21 @@ export const graphicsList = [
   // { type: "img", width: 69, left: 800, top: 632, src: "./box.jpg" },
   // metal constractions 1
   { type: "div", width: 1000, height: 31, left: 866, top: 695, bg: pipe },
+  { type: "div", width: 1000, height: 31, left: 2701, top: 493, bg: pipe },
+
   // { type: "div", width: 521, height: 37, left: 1050, top: 700, bg: metal1 },
   // { type: "div", width: 407, height: 36, left: 1, top: 700, bg: metal1 },
   // { type: "div", width: 521, height: 37, left: 900, top: 550, bg: metal1 },
   // brick wall
    { type: "div", w: 100, h: 155, x: 150, y: 645, bg: brickWall, bgs: 100 },
    { type: "div", w: 100, h: 155, x: 2100, y: 645, bg: brickWall, bgs: 100 },
+   { type: "div", w: 100, h: 300, x: 2600, y: 500, bg: brickWall, bgs: 100 },
+   { type: "div", w: 100, h: 300, x: 3700, y: 500, bg: brickWall, bgs: 100 },
+
    //animated clouds
    { type: "img", c: "ani-cloud",  width: 194, left: 2050, top: 600, src: "./cloud6.png" },
   { type: "img", c: "ani-cloud-2",  width: 194, left: 2100, top: 600, src: "./cloud6.png" },
-  { type: "img", c: "ani-cloud-3",  width: 194, left: 2150, top: 600, src: "./cloud6.png" },
+  { type: "img", c: "ani-cloud-3",  width: 194, left: 2700, top: 493, src: "./cloud6.png" },
 
 
   // { type: "div", w: 800, h: 184, x: 2500, y: 617, bg: brickWall, bgs: 100 },
@@ -119,9 +127,19 @@ export const getHurt = (useRef) => [
   { c: "fire", w: 50, h: 10, x: 1602, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
   { c: "fire", w: 50, h: 10, x: 1685, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
   { c: "fire", w: 50, h: 10, x: 1768, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
-  { c: "fire", w: 50, h: 10, x: 1851, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
-  { c: "fire", w: 50, h: 10, x: 1934, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
-
+  // next group
+  { c: "fire", w: 50, h: 10, x: 2700, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 2780, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 2860, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 2940, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 3020, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 3100, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 3180, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 3260, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 3340, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 3420, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 3500, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
+  { c: "fire", w: 50, h: 10, x: 3580, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
 ];
 
 export const lowGravity = [

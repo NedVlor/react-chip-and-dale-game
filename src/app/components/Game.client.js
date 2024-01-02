@@ -62,8 +62,8 @@ function Game() {
   });
 
   const [char, setChar] = useState({
-    x: 100,
-    y: 200,
+    x: 2400,
+    y: 300,
     prevX: 400,
     prevY: 200,
     action: "standing",
@@ -178,7 +178,7 @@ function Game() {
             addHealth();
             return false;
           }
-          
+
         });
       });
       return { ...prevChar }
