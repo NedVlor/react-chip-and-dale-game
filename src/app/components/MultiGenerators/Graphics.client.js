@@ -14,6 +14,7 @@ function Graphics({ graphicsList, scene }) {
               position: "absolute",
               left: obj.left + "px",
               top: obj.top + "px",
+              transform: `rotate(${obj.a}deg)`,
             }}
           >
             <img
@@ -50,6 +51,7 @@ function Graphics({ graphicsList, scene }) {
               position: "absolute",
               left: (obj.left || obj.x) + "px",
               top: (obj.top || obj.y) + "px",
+              transform: `rotate(${obj.a}deg)`,
             }}
           >
             <div

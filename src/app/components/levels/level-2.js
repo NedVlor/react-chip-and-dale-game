@@ -58,61 +58,41 @@ export const graphicsList = [
   { type: "img", width: 148, left: 747, top: 270, src: "./cloud6.png" },
   { type: "img", width: 148, left: 1212, top: 270, src: "./cloud6.png" },
   { type: "img", width: 148, left: 1695, top: 270, src: "./cloud6.png" },
-
-
+// big clouds
   { type: "img", width: 452, left: 813, top: 59, src: "./cloud4.png" },
   { type: "img", width: 452, left: 1315, top: 59, src: "./cloud4.png" },
-
   //animated clouds
   { type: "img", c: "ani-cloud",  width: 194, left: 50, top: 600, src: "./cloud6.png" },
   { type: "img", c: "ani-cloud-2",  width: 194, left: 100, top: 600, src: "./cloud6.png" },
   { type: "img", c: "ani-cloud-3",  width: 194, left: 150, top: 600, src: "./cloud6.png" },
-
-
   // wall
   //{ type: "img", width: 148, left: 866, top: 700, src: "./buildingA.jpg" },
-
   // boxes
   // { type: "img", width: 69, left: 5, top: 632, src: "./box.jpg" },
-  // { type: "img", width: 69, left: 74, top: 632, src: "./box.jpg" },
-  // { type: "img", width: 69, left: 143, top: 632, src: "./box.jpg" },
-  // { type: "img", width: 69, left: 661, top: 632, src: "./box.jpg" },
-  // { type: "img", width: 69, left: 800, top: 632, src: "./box.jpg" },
   // metal constractions 1
   { type: "div", width: 1000, height: 31, left: 866, top: 695, bg: pipe },
   { type: "div", width: 1000, height: 31, left: 2701, top: 493, bg: pipe },
-
-  // { type: "div", width: 521, height: 37, left: 1050, top: 700, bg: metal1 },
-  // { type: "div", width: 407, height: 36, left: 1, top: 700, bg: metal1 },
-  // { type: "div", width: 521, height: 37, left: 900, top: 550, bg: metal1 },
   // brick wall
    { type: "div", w: 100, h: 155, x: 150, y: 645, bg: brickWall, bgs: 100 },
    { type: "div", w: 100, h: 155, x: 2100, y: 645, bg: brickWall, bgs: 100 },
    { type: "div", w: 100, h: 300, x: 2600, y: 500, bg: brickWall, bgs: 100 },
    { type: "div", w: 100, h: 300, x: 3700, y: 500, bg: brickWall, bgs: 100 },
+   { type: "div", w: 100, h: 300, x: 3900, y: 500, bg: brickWall, bgs: 100, a:45 },
 
    //animated clouds
    { type: "img", c: "ani-cloud",  width: 194, left: 2050, top: 600, src: "./cloud6.png" },
   { type: "img", c: "ani-cloud-2",  width: 194, left: 2100, top: 600, src: "./cloud6.png" },
   { type: "img", c: "ani-cloud-3",  width: 194, left: 2700, top: 493, src: "./cloud6.png" },
-
-
-  // { type: "div", w: 800, h: 184, x: 2500, y: 617, bg: brickWall, bgs: 100 },
-  // { type: "div", w: 800, h: 230, x: 3370, y: 572, bg: brickWall, bgs: 100 },
+  
 ];
 
 export const collectable = [
   //nuts
-  //  { class: "nut", width: 35, left: 748, top: 643, src: "./nut.png" },
-  // { class: "nut", width: 35, left: 948, top: 643, src: "./nut.png" },
-  // { class: "nut", width: 35, left: 548, top: 643, src: "./nut.png" },
-  // { class: "nut", width: 35, left: 1130, top: 590, src: "./nut.png" },
-  // { class: "nut", width: 35, left: 1239, top: 590, src: "./nut.png" },
-  //{ class: "nut", width: 35, left: 1739, top: 590, src: "./nut.png" },
 ];
 
 const thorn = "url(/thorn.png)";
 const fire = "url(/fire.gif)";
+const hl= "url(/homeless.gif)";
 export const getHurt = (useRef) => [
   // { c: "acute", w: 500, h: 10, x: 1048, y: 689, bg: thorn, bgs: 10, ref: r() },
   { c: "fire", w: 50, h: 10, x: 855, y: 694, bg: fire, bgs: 100, ref: r(), a: 180 },
@@ -140,6 +120,9 @@ export const getHurt = (useRef) => [
   { c: "fire", w: 50, h: 10, x: 3420, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
   { c: "fire", w: 50, h: 10, x: 3500, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
   { c: "fire", w: 50, h: 10, x: 3580, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
+  // houmsless
+  { c: "", w: 100, h: 100, x: 3580, y: 408, bg: hl, bgs: 100, ref: r(), a: 0 },
+
 ];
 
 export const lowGravity = [
