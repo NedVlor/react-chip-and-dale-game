@@ -77,10 +77,11 @@ export const graphicsList = [
    { type: "div", w: 100, h: 155, x: 2100, y: 645, bg: brickWall, bgs: 100 },
    { type: "div", w: 100, h: 300, x: 2600, y: 500, bg: brickWall, bgs: 100 },
    { type: "div", w: 100, h: 300, x: 3700, y: 500, bg: brickWall, bgs: 100 },
-   { type: "div", w: 100, h: 300, x: 3900, y: 500, bg: brickWall, bgs: 100, a:45 },
+   // trash box 
+   { type: "img", w: 38, h: 300, x: 3652, y: 446, src: "./trash-box.png", a:0 },
 
    //animated clouds
-   { type: "img", c: "ani-cloud",  width: 194, left: 2050, top: 600, src: "./cloud6.png" },
+  { type: "img", c: "ani-cloud",  width: 194, left: 2050, top: 600, src: "./cloud6.png" },
   { type: "img", c: "ani-cloud-2",  width: 194, left: 2100, top: 600, src: "./cloud6.png" },
   { type: "img", c: "ani-cloud-3",  width: 194, left: 2700, top: 493, src: "./cloud6.png" },
   
@@ -119,9 +120,10 @@ export const getHurt = (useRef) => [
   { c: "fire", w: 50, h: 10, x: 3340, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
   { c: "fire", w: 50, h: 10, x: 3420, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
   { c: "fire", w: 50, h: 10, x: 3500, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
-  { c: "fire", w: 50, h: 10, x: 3580, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
+  //{ c: "fire", w: 50, h: 10, x: 3580, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
   // houmsless
-  { c: "", w: 100, h: 100, x: 3580, y: 408, bg: hl, bgs: 100, ref: r(), a: 0 },
+  { c: "", w: 50, h: 50, x: 3580, y: 453, bg: hl, bgs: 50, ref: r(), a: 0 },
+  { c: "", w: 100, h: 100, x: 3557, y: 407, bg: hl, bgs: 100, ref: r(), a: 0 },
 
 ];
 

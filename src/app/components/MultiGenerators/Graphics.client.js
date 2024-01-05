@@ -10,10 +10,10 @@ function Graphics({ graphicsList, scene }) {
             key={"graphics-" + i}
             style={{
               zIndex: "100",
-              width: obj.width + "px",
+              width: (obj.width || obj.w) + "px",
               position: "absolute",
-              left: obj.left + "px",
-              top: obj.top + "px",
+              left: (obj.left || obj.x) + "px",
+              top: (obj.top || obj.y) + "px",
               transform: `rotate(${obj.a}deg)`,
             }}
           >
@@ -22,7 +22,7 @@ function Graphics({ graphicsList, scene }) {
               key={"graphics-" + i}
               src={obj.src}
               style={{
-                width: obj.width + "px",
+                width: (obj.width || obj.w) + "px",
                 position: "absolute",
                 left: 0,
                 top: 0,
