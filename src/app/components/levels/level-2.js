@@ -33,7 +33,7 @@ export const getSolidList = (useRef) => [
   { left: 836, top: 196, width: 401, height: 10, ref: useRef(null) },
   { left: 1337, top: 196, width: 401, height: 10, ref: useRef(null) },
 
-  { left: 1865, top: 635, width: 160, height: 39, ref: useRef(null) },
+  { left: 1865, top: 635, width: 160, height: 9, ref: useRef(null) },
   //{ left: 2018, top: 589, width: 935, height: 39, ref: useRef(null) },
   { left: 2207, top: 254, width: 162, height: 9, ref: useRef(null) },
   { left: 2066, top: 583, width: 116, height: 8, ref: useRef(null) },
@@ -41,12 +41,15 @@ export const getSolidList = (useRef) => [
   { left: 2266, top: 460, width: 116, height: 8, ref: useRef(null) },
   { left: 2366, top: 400, width: 116, height: 8, ref: useRef(null) },
   { left: 2595, top: 499, width: 1205, height: 8, ref: useRef(null) },
+  { left: 3802, top: 438, width: 116, height: 8, ref: useRef(null) },
+  { left: 3912, top: 405, width: 87, height: 8, ref: useRef(null) },
 
 ];
 
 const metal1 = "url(/metal-construction.png)";
 //const brickWall = "url(/brick-wall.jpg)";
 const brickWall = "url(/brick-wall2.jpg)";
+const bigPipe = "url(/pipa.png)";
 const pipe = "url(/pipe.png)";
 
 export const graphicsList = [
@@ -58,9 +61,20 @@ export const graphicsList = [
   { type: "img", width: 148, left: 747, top: 270, src: "./cloud6.png" },
   { type: "img", width: 148, left: 1212, top: 270, src: "./cloud6.png" },
   { type: "img", width: 148, left: 1695, top: 270, src: "./cloud6.png" },
+  { type: "img", width: 152, left: 1780, top: 270, src: "./cloud6.png" },
+  { type: "img", width: 156, left: 2045, top: 546, src: "./cloud6.png" },
+  { type: "img", width: 163, left: 2148, top: 479, src: "./cloud6.png" },
+  { type: "img", width: 172, left: 2250, top: 416, src: "./cloud6.png" },
+  { type: "img", width: 157, left: 2349, top: 366, src: "./cloud6.png" },
+  { type: "img", width: 228, left: 1839, top: 581, src: "./cloud6.png" },
+  { type: "img", width: 148, left: 3788, top: 402, src: "./cloud6.png" },
+  { type: "img", width: 115, left: 3897, top: 376, src: "./cloud6.png" },
+ 
+
 // big clouds
   { type: "img", width: 452, left: 813, top: 59, src: "./cloud4.png" },
   { type: "img", width: 452, left: 1315, top: 59, src: "./cloud4.png" },
+  { type: "img", width: 202, left: 2190, top: 198, src: "./cloud4.png" },
   //animated clouds
   { type: "img", c: "ani-cloud",  width: 194, left: 50, top: 600, src: "./cloud6.png" },
   { type: "img", c: "ani-cloud-2",  width: 194, left: 100, top: 600, src: "./cloud6.png" },
@@ -73,12 +87,12 @@ export const graphicsList = [
   { type: "div", width: 1000, height: 31, left: 866, top: 695, bg: pipe },
   { type: "div", width: 1000, height: 31, left: 2701, top: 493, bg: pipe },
   // brick wall
-   { type: "div", w: 100, h: 155, x: 150, y: 645, bg: brickWall, bgs: 100 },
-   { type: "div", w: 100, h: 155, x: 2100, y: 645, bg: brickWall, bgs: 100 },
-   { type: "div", w: 100, h: 300, x: 2600, y: 500, bg: brickWall, bgs: 100 },
-   { type: "div", w: 100, h: 300, x: 3700, y: 500, bg: brickWall, bgs: 100 },
+   { type: "div", w: 100, h: 155, x: 150, y: 645, bg: bigPipe, bgs: 100 },
+   { type: "div", w: 100, h: 155, x: 2100, y: 645, bg: bigPipe, bgs: 100 },
+   { type: "div", w: 100, h: 300, x: 2600, y: 500, bg: bigPipe, bgs: 100 },
+   { type: "div", w: 100, h: 300, x: 3700, y: 500, bg: bigPipe, bgs: 100 },
    // trash box 
-   { type: "img", w: 38, h: 300, x: 3652, y: 446, src: "./trash-box.png", a:0 },
+   //{ type: "img", w: 38, h: 300, x: 3652, y: 446, src: "./trash-box.png", a:0 },
 
    //animated clouds
   { type: "img", c: "ani-cloud",  width: 194, left: 2050, top: 600, src: "./cloud6.png" },
@@ -89,6 +103,26 @@ export const graphicsList = [
 
 export const collectable = [
   //nuts
+  { class: "nut", width: 35, left: 509, top: 317, src: "./nut.png" },
+  { class: "nut", width: 35, left: 806, top: 242, src: "./nut.png" },
+  { class: "nut", width: 35, left: 1267, top: 242, src: "./nut.png" },
+  { class: "nut", width: 35, left: 1064, top: 652, src: "./nut.png" },
+  { class: "nut", width: 35, left: 1312, top: 652, src: "./nut.png" },
+  { class: "nut", width: 35, left: 1570, top: 652, src: "./nut.png" },
+  { class: "nut", width: 35, left: 1570, top: 652, src: "./nut.png" },
+  { class: "nut", width: 35, left: 2305, top: 401, src: "./nut.png" },
+  { class: "nut", width: 35, left: 2209, top: 457, src: "./nut.png" },
+  { class: "nut", width: 35, left: 2102, top: 525, src: "./nut.png" },
+  { class: "nut", width: 35, left: 1833, top: 242, src: "./nut.png" },
+  { class: "nut", width: 35, left: 1751, top: 242, src: "./nut.png" },
+  { class: "nut", width: 35, left: 2408, top: 348, src: "./nut.png" },
+  { class: "nut", width: 35, left: 2625, top: 448, src: "./nut.png" },
+  { class: "nut", width: 35, left: 2915, top: 448, src: "./nut.png" },
+  { class: "nut", width: 35, left: 3149, top: 448, src: "./nut.png" },
+  { class: "nut", width: 35, left: 3391, top: 448, src: "./nut.png" },
+  { class: "nut", width: 35, left: 3390, top: 448, src: "./nut.png" },
+  { class: "nut", width: 35, left: 3735, top: 448, src: "./nut.png" },
+
 ];
 
 const thorn = "url(/thorn.png)";
@@ -122,8 +156,15 @@ export const getHurt = (useRef) => [
   { c: "fire", w: 50, h: 10, x: 3500, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
   //{ c: "fire", w: 50, h: 10, x: 3580, y: 490, bg: fire, bgs: 100, ref: r(), a: 180 },
   // houmsless
-  { c: "", w: 50, h: 50, x: 3580, y: 453, bg: hl, bgs: 50, ref: r(), a: 0 },
-  { c: "", w: 100, h: 100, x: 3557, y: 407, bg: hl, bgs: 100, ref: r(), a: 0 },
+  { c: "", w: 50, h: 50, x: 3646, y: 453, bg: hl, bgs: 50, ref: r(), a: 0 },
+  { c: "", w: 100, h: 100, x: 3627, y: 407, bg: hl, bgs: 100, ref: r(), a: 0 },
+  { c: "", w: 100, h: 100, x: 2202, y: 156, bg: hl, bgs: 100, ref: r(), a: 0 },
+  { c: "", w: 100, h: 100, x: 81, y: 368, bg: hl, bgs: 100, ref: r(), a: 0 },
+  { c: "", w: 40, h: 40, x: 125, y: 428, bg: hl, bgs: 40, ref: r(), a: 0 },
+  { c: "", w: 100, h: 100, x: 50, y: 852, bg: hl, bgs: 100, ref: r(), a: 0 },
+
+
+ // { c: "", w: 100, h: 100, x: 3557, y: 407, bg: hl, bgs: 100, ref: r(), a: 0 },
 
 ];
 
