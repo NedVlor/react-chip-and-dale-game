@@ -3,7 +3,7 @@ import { useRef } from "react";
 export const level = {
   condition: "run-to-end",
   length: 3920,
-  background: "/night-city.jpg",
+  background: "/bgs3.png",
 };
 
 const r = () => useRef(null);

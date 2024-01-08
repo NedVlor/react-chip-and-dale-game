@@ -4,6 +4,7 @@ import Chip from "./Chip.client.js";
 import styled from "styled-components";
 import level_1 from "./levels/level-1.js";
 import level_2 from "./levels/level-2.js";
+import level_3 from "./levels/level-3.js";
 import { keyboard } from "../core/keyboard.js";
 import { scroll } from "../core/scroll.js";
 import GamePanel from "./GamePanel.client.js";
@@ -32,8 +33,10 @@ function Game() {
 
   if (levelNumber == 1) level = level_1;
   if (levelNumber == 2) level = level_2;
+  if (levelNumber == 3) level = level_3;
 
-  if (levelNumber > 2) {
+
+  if (levelNumber > 3) {
     localStorage.setItem('level', 1);
     location.reload();
   }
@@ -62,8 +65,8 @@ function Game() {
   });
 
   const [char, setChar] = useState({
-    x: 2400,
-    y: 300,
+    x: 150,
+    y: 150,
     prevX: 400,
     prevY: 200,
     action: "standing",
@@ -384,7 +387,7 @@ function Game() {
 
     if (enemyList.wasp && !scene.isGameOver) {
       window.waspOnterval = setInterval(() => {
-        // wasp();
+        //wasp();
        // console.log('WASP INTERVAL')
       }, 1000);
     }
