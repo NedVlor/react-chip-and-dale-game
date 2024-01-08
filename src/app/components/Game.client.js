@@ -77,6 +77,8 @@ function Game() {
     verticalSpeed: 10,
   });
 
+  const [firebolls, setFirebolls] = useState([])
+
   const stop = { fall: false };
 
   const gameOver = () => {
@@ -292,7 +294,7 @@ function Game() {
       if (!barier) {
         // console.log("No barier, should falling");
         shiftY = prevChar.verticalSpeed;
-        if (prevChar.isLowGravity)  shiftY = prevChar.verticalSpeed/6
+        if (prevChar.isLowGravity) shiftY = prevChar.verticalSpeed / 6
       }
       if (prevChar.jump) shiftY = -prevChar.verticalSpeed;
 
@@ -328,10 +330,10 @@ function Game() {
 
         let isLowGravity = false;
 
-        lowGravity.forEach((range)=>{
-         if(prevChar.x > range.from && prevChar.x < range.to) isLowGravity=true;         
-         console.log('isLowGravity', isLowGravity, prevChar.x , range.from , prevChar.x , range.to)
-         console.log('>>>', lowGravity)
+        lowGravity.forEach((range) => {
+          if (prevChar.x > range.from && prevChar.x < range.to) isLowGravity = true;
+          console.log('isLowGravity', isLowGravity, prevChar.x, range.from, prevChar.x, range.to)
+          console.log('>>>', lowGravity)
         })
 
         return {
@@ -339,7 +341,7 @@ function Game() {
           y: prev.y,
           x: prev.x,
           verticalSpeed: 1,
-         isLowGravity
+          isLowGravity
         };
       }
     });
@@ -377,7 +379,7 @@ function Game() {
       checkIntersection();
     }, 50);
     window.interval2 = setInterval(() => {
-     // console.log("interwal2")
+      // console.log("interwal2")
       checkCollecting(char);
       checkHurt();
     }, 200);
@@ -388,13 +390,13 @@ function Game() {
     if (enemyList.wasp && !scene.isGameOver) {
       window.waspOnterval = setInterval(() => {
         //wasp();
-       // console.log('WASP INTERVAL')
+        // console.log('WASP INTERVAL')
       }, 1000);
     }
-    if (levelNumber==3){
-      window.firebolls=setInterval(()=>{
-        firebolls()
-      },1000)
+    if (levelNumber == 3) {
+      window.firebolls = setInterval(() => {
+        firebollsLoop()
+      }, 1000)
     }
 
     if (!window.gamedStarred) window.gamedStarred = true
@@ -427,7 +429,18 @@ function Game() {
     clearInterval(window.waspOnterval);
     clearInterval(window.firebolls);
   }
-function firebolls (){ console.log("FIREBOLL, FIREBOLL, FIREBOLL")}
+
+  function firebollsLoop() {
+    console.log("FIREBOLL, FIREBOLL, FIREBOLL", firebolls)
+    setFirebolls((prevFirebolls) => {
+      const movedPrevFireBolls = prevFirebolls.map((fb) => {
+        return { x: fb.x + 100, y: fb.y }
+      });
+      console.log('>>>>>', movedPrevFireBolls)
+      return [...movedPrevFireBolls, { x: 1000, y: 300 }]
+    })
+  }
+
   function wasp() {
     setEnemyListR(enemy => {
       const wasp = enemy.wasp;
@@ -522,8 +535,8 @@ function firebolls (){ console.log("FIREBOLL, FIREBOLL, FIREBOLL")}
           PREV X Y: {char.prevX}, {char.prevY}
         </div>
         <div>verticalSpeed: {char.verticalSpeed}</div>
-        <div>isLowGravity: {(char.isLowGravity)? '+' : '-'}</div>
-        
+        <div>isLowGravity: {(char.isLowGravity) ? '+' : '-'}</div>
+
         <button onClick={toggleGraphics}>Graphics toggle</button>
         <button onClick={toggleGraphicsInfo}>Graphics info</button>
       </div>
