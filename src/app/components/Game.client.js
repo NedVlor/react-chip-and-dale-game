@@ -391,6 +391,11 @@ function Game() {
        // console.log('WASP INTERVAL')
       }, 1000);
     }
+    if (levelNumber==3){
+      window.firebolls=setInterval(()=>{
+        firebolls()
+      },1000)
+    }
 
     if (!window.gamedStarred) window.gamedStarred = true
     else return;
@@ -420,8 +425,9 @@ function Game() {
     clearInterval(window.interval2);
     clearInterval(window.interval3);
     clearInterval(window.waspOnterval);
+    clearInterval(window.firebolls);
   }
-
+function firebolls (){ console.log("FIREBOLL, FIREBOLL, FIREBOLL")}
   function wasp() {
     setEnemyListR(enemy => {
       const wasp = enemy.wasp;
