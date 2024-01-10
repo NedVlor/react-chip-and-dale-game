@@ -402,7 +402,7 @@ function Game() {
     if (levelNumber == 3) {
       window.firebolls = setInterval(() => {
         firebollsLoop()
-      }, 1000)
+      }, 500)
     }
 
     if (!window.gamedStarred) window.gamedStarred = true
@@ -437,7 +437,7 @@ function Game() {
   }
 
   function firebollsLoop() {
-    console.log("FIREBOLL, FIREBOLL, FIREBOLL", firebolls)
+    //console.log("FIREBOLL, FIREBOLL, FIREBOLL", firebolls)
     setFirebolls((prevFirebolls) => {
       const movedPrevFireBolls = prevFirebolls.map((fb) => {
         return { x: fb.x - 300, y: fb.y+random(-300,300) }
@@ -445,7 +445,21 @@ function Game() {
       const actualFirebolls= movedPrevFireBolls.filter((fb)=>{
         return fb.x>0
       })
-      console.log('>>>>>', movedPrevFireBolls)
+      actualFirebolls.forEach((fb)=>{
+        //console.log("CHIPPPP!!!!!!!!", char.x)
+        const approximateFbX = Math.round(fb.x/25)
+        const approximateFbY = Math.round(fb.y/200)
+
+        const approximateCharX = Math.round(char.x/25)
+        const approximateCharY = Math.round(char.y/200)
+
+        if (approximateFbX==approximateCharX && approximateFbY==approximateCharY){
+          console.warn("damage")
+        }
+
+        //console.log(approximateFbX)
+      })
+      //console.log('>>>>>', movedPrevFireBolls)
       return [...actualFirebolls, { x: 2378, y: 300 }]
     })
   }
@@ -583,7 +597,7 @@ function Game() {
         </div>}
         {firebolls.map((fb,i)=>{
           return (<img 
-            class="vibration"
+            className="vibration"
             key={"fb-" + i}
             src="Fireball.webp"
             style={{
