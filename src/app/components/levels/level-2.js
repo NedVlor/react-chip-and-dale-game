@@ -80,10 +80,10 @@ export const graphicsList = [
   { type: "img", c: "ani-cloud-2",  width: 194, left: 100, top: 600, src: "./cloud6.png" },
   { type: "img", c: "ani-cloud-3",  width: 194, left: 150, top: 600, src: "./cloud6.png" },
   // wall
-  //{ type: "img", width: 148, left: 866, top: 700, src: "./buildingA.jpg" },
-  // boxes
-  // { type: "img", width: 69, left: 5, top: 632, src: "./box.jpg" },
-  // metal constractions 1
+  { type: "img", width: 148, left: 866, top: 700, src: "./buildingA.jpg" },
+  //boxes
+  { type: "img", width: 69, left: 5, top: 632, src: "./box.jpg" },
+  //metal constractions 1
   { type: "div", width: 1000, height: 31, left: 866, top: 695, bg: pipe },
   { type: "div", width: 1000, height: 31, left: 2701, top: 493, bg: pipe },
   // brick wall

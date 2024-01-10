@@ -434,10 +434,13 @@ function Game() {
     console.log("FIREBOLL, FIREBOLL, FIREBOLL", firebolls)
     setFirebolls((prevFirebolls) => {
       const movedPrevFireBolls = prevFirebolls.map((fb) => {
-        return { x: fb.x + 100, y: fb.y }
+        return { x: fb.x - 100, y: fb.y }
       });
+      const actualFirebolls= movedPrevFireBolls.filter((fb)=>{
+        return fb.x>0
+      })
       console.log('>>>>>', movedPrevFireBolls)
-      return [...movedPrevFireBolls, { x: 1000, y: 300 }]
+      return [...actualFirebolls, { x: 1000, y: 300 }]
     })
   }
 
