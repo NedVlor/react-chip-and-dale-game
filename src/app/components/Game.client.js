@@ -18,6 +18,12 @@ import GameOverScreen from "./Screens/GameOverScreen.client.js";
 import StartScreen from "./Screens/StartScreen.client.js";
 import WinScreen from "./Screens/WinScreen.client.js";
 
+function random(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 let level = level_1;
 
 const GameContainer = styled.div`
@@ -434,7 +440,7 @@ function Game() {
     console.log("FIREBOLL, FIREBOLL, FIREBOLL", firebolls)
     setFirebolls((prevFirebolls) => {
       const movedPrevFireBolls = prevFirebolls.map((fb) => {
-        return { x: fb.x - 100, y: fb.y }
+        return { x: fb.x - 100, y: fb.y+random(-300,300) }
       });
       const actualFirebolls= movedPrevFireBolls.filter((fb)=>{
         return fb.x>0
@@ -575,6 +581,20 @@ function Game() {
             transition: "1s",
           }}>
         </div>}
+        {firebolls.map((fb,i)=>{
+          return (<img 
+            key={"fb-" + i}
+            src="Fireball.webp"
+            style={{
+              position:"absolute",
+              zIndex: 1000,
+              top:fb.y+"px",
+              left:fb.x+"px",
+width:"50px",
+transition: "1s",
+            }}
+            />)
+        })}
 
     </GameContainer >
   );
