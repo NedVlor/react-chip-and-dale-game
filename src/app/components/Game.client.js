@@ -440,13 +440,13 @@ function Game() {
     console.log("FIREBOLL, FIREBOLL, FIREBOLL", firebolls)
     setFirebolls((prevFirebolls) => {
       const movedPrevFireBolls = prevFirebolls.map((fb) => {
-        return { x: fb.x - 100, y: fb.y+random(-300,300) }
+        return { x: fb.x - 300, y: fb.y+random(-300,300) }
       });
       const actualFirebolls= movedPrevFireBolls.filter((fb)=>{
         return fb.x>0
       })
       console.log('>>>>>', movedPrevFireBolls)
-      return [...actualFirebolls, { x: 1000, y: 300 }]
+      return [...actualFirebolls, { x: 2378, y: 300 }]
     })
   }
 
@@ -583,6 +583,7 @@ function Game() {
         </div>}
         {firebolls.map((fb,i)=>{
           return (<img 
+            class="vibration"
             key={"fb-" + i}
             src="Fireball.webp"
             style={{
