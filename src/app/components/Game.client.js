@@ -440,33 +440,37 @@ function Game() {
     //console.log("FIREBOLL, FIREBOLL, FIREBOLL", firebolls)
     setFirebolls((prevFirebolls) => {
       const movedPrevFireBolls = prevFirebolls.map((fb) => {
-        return { x: fb.x - 300+random(0, 100), y: fb.y+random(-300,300) }
+        if (fb.vector=="left") return { x: fb.x - 300 + random(0, 100), y: fb.y + random(-300, 300),vector:fb.vector }
+        
+        else return { x: fb.x + 300 + random(0, 100), y: fb.y + random(-300, 300), vector:fb.vector}
       });
-      const actualFirebolls= movedPrevFireBolls.filter((fb)=>{
-        return fb.x>0
-      })
-      actualFirebolls.forEach((fb)=>{
+      const actualFirebolls = movedPrevFireBolls.filter((fb) => {
+        return fb.x > 0
+      }) 
+      console.log(actualFirebolls)
+      actualFirebolls.forEach((fb) => {
         //console.log("CHIPPPP!!!!!!!!", char.x)
-        const approximateFbX = Math.round(fb.x/25)
-        const approximateFbY = Math.round(fb.y/200)
+        const approximateFbX = Math.round(fb.x / 25)
+        const approximateFbY = Math.round(fb.y / 200)
 
-        const approximateCharX = Math.round(char.x/25)
-        const approximateCharY = Math.round(char.y/200)
+        const approximateCharX = Math.round(char.x / 25)
+        const approximateCharY = Math.round(char.y / 200)
 
-        if (approximateFbX==approximateCharX && approximateFbY==approximateCharY){
+        if (approximateFbX == approximateCharX && approximateFbY == approximateCharY) {
           console.warn("damage")
           setScene((prevScene) => ({
             ...prevScene,
-            health: prevScene.health-30,
+            health: prevScene.health - 30,
           }));
         }
 
         //console.log(approximateFbX)
       })
       //console.log('>>>>>', movedPrevFireBolls)
-      const isAddFireboll= !!random(-1, 1)
-     if (isAddFireboll)return [...actualFirebolls, { x: 2378, y: 300 }]
-     else return actualFirebolls
+      const isAddFireboll = !!random(-1, 1)
+      const vector=(char.x<2378)?"left":"right"
+      if (isAddFireboll) return [...actualFirebolls, { x: 2378, y: 300, vector }]
+      else return actualFirebolls
     })
   }
 
@@ -601,21 +605,21 @@ function Game() {
             transition: "1s",
           }}>
         </div>}
-        {firebolls.map((fb,i)=>{
-          return (<img 
-            className="vibration"
-            key={"fb-" + i}
-            src="Fireball.webp"
-            style={{
-              position:"absolute",
-              zIndex: 1000,
-              top:fb.y+"px",
-              left:fb.x+"px",
-width:"50px",
-transition: "1s",
-            }}
-            />)
-        })}
+      {firebolls.map((fb, i) => {
+        return (<img
+          className="vibration"
+          key={"fb-" + i}
+          src="Fireball.webp"
+          style={{
+            position: "absolute",
+            zIndex: 1000,
+            top: fb.y + "px",
+            left: fb.x + "px",
+            width: "50px",
+            transition: "1s",
+          }}
+        />)
+      })}
 
     </GameContainer >
   );
