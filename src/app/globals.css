@@ -116,6 +116,7 @@ main {
   animation-timing-function: linear;
 }
 
+
 .ani-cloud-3 {
   animation: ani-cloud 7s infinite;
   animation-timing-function: linear;
@@ -158,24 +159,77 @@ main {
   0% {
     transform: scale(1) translate(0, 0);
     box-shadow: 0 0 34px yellow;
-
   }
 
   25% {
     transform: scale(1.2) translate(15px, 0);
     box-shadow: 0 0 0 yellow;
-
   }
 
   75% {
     transform: scale(.8) translate(0, 15px);
     box-shadow: 0 0 0 yellow;
-
   }
 
   100% {
     transform: scale(1) translate(0, 0);
     box-shadow: 0 0 34px yellow;
+  }
+}
 
+.fsg {
+  animation: fsg .3s infinite;
+  animation-timing-function: linear;
+  box-shadow: 0 0 34px rgb(94, 94, 192);
+  ;
+  border-radius: 5rem;
+}
+
+@keyframes fsg {
+  0% {
+    transform: scale(1) translate(0, 0);
+    box-shadow: 0 0 50px rgb(94, 94, 192);
+    opacity: 0;
+  }
+
+  25% {
+    transform: scale(2) translate(15px, 0);
+    box-shadow: 0 0 0 rgb(99, 49, 173);
+    opacity: .3;
+  }
+
+  75% {
+    transform: scale(.2) translate(0, 15px);
+    box-shadow: 0 0 0 rgba(12, 12, 152, 0.468);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1) translate(0, 0);
+    box-shadow: 0 0 50px rgb(94, 94, 192);
+  }
+}
+
+.fg {
+  animation: fg .3s infinite;
+  animation-timing-function: linear;
+  /* box-shadow: 0 0 34px rgb(94, 94, 192); */
+  border-radius: 5rem;
+}
+
+@keyframes fg {
+  0% {
+    /* transform: scale(1) translate(0, 0); */
+    filter: drop-shadow(0 0 0.75rem rgb(23, 22, 22)) drop-shadow(0 0 0.75rem rgb(23, 22, 22));
+  }
+
+  50% {
+    /* transform: scale(2) translate(15px, 0); */
+    filter: drop-shadow(0 0 1.75rem rgb(6, 6, 6)) drop-shadow(0 0 0.75rem rgb(6, 6, 6)) ;
+  }
+
+  100% {
+    /* transform: scale(1) translate(0, 0); */
+    filter: drop-shadow(0 0 0.75rem rgb(0, 0, 0)) drop-shadow(0 0 0.75rem rgb(0, 0, 0) );
   }
 }

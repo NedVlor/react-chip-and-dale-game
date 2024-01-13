@@ -39,8 +39,9 @@ const bigPipe = "url(/pipa.png)";
 const pipe = "url(/pipe.png)";
 
 export const graphicsList = [
+  { type: "img", c: "fsg", width: 194, left: 78, top: 411, src: "./fireSfereGenerator.gif" },
+  { type: "img", c: "fg",width: 194, left: 78, top: 411, src: "./FireGenerator.gif" },
   // clouds
-  // { type: "img", width: 194, left: 78, top: 411, src: "./cloud6.png" },
   // { type: "img", width: 168, left: 274, top: 383, src: "./cloud6.png" },
   // { type: "img", width: 147, left: 446, top: 345, src: "./cloud6.png" },
   // { type: "img", width: 165, left: 584, top: 304, src: "./cloud6.png" },

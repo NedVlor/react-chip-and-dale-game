@@ -440,7 +440,7 @@ function Game() {
     //console.log("FIREBOLL, FIREBOLL, FIREBOLL", firebolls)
     setFirebolls((prevFirebolls) => {
       const movedPrevFireBolls = prevFirebolls.map((fb) => {
-        return { x: fb.x - 300, y: fb.y+random(-300,300) }
+        return { x: fb.x - 300+random(0, 100), y: fb.y+random(-300,300) }
       });
       const actualFirebolls= movedPrevFireBolls.filter((fb)=>{
         return fb.x>0
@@ -457,14 +457,16 @@ function Game() {
           console.warn("damage")
           setScene((prevScene) => ({
             ...prevScene,
-            health: prevScene.health-10,
+            health: prevScene.health-30,
           }));
         }
 
         //console.log(approximateFbX)
       })
       //console.log('>>>>>', movedPrevFireBolls)
-      return [...actualFirebolls, { x: 2378, y: 300 }]
+      const isAddFireboll= !!random(-1, 1)
+     if (isAddFireboll)return [...actualFirebolls, { x: 2378, y: 300 }]
+     else return actualFirebolls
     })
   }
 
