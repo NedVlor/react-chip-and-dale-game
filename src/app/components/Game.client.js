@@ -455,6 +455,10 @@ function Game() {
 
         if (approximateFbX==approximateCharX && approximateFbY==approximateCharY){
           console.warn("damage")
+          setScene((prevScene) => ({
+            ...prevScene,
+            health: prevScene.health-10,
+          }));
         }
 
         //console.log(approximateFbX)
