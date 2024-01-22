@@ -397,6 +397,12 @@ function Game() {
     localStorage.setItem('level', level);
     location.reload();
   }
+  function playAgain() {
+    let level = scene.level;
+    level=1;
+    localStorage.setItem('level', level);
+    location.reload();
+  }
 
   let audio;
 
@@ -549,7 +555,7 @@ function Game() {
       {scene.isGameOver && <GameOverScreen data={scene} />}
       {!scene.isStarted && <StartScreen data={scene} onStart={start} />}
       {scene.isWin && <WinScreen data={scene} onNextLevel={nextLevel} />}
-      {scene.isFinish && <FinishScreen data={scene} onNextLevel={nextLevel} />}
+      {scene.isFinish && <FinishScreen data={scene} onPlayAgain={playAgain} />}
 
       {scene.isDamage &&
         <div

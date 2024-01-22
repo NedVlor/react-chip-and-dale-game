@@ -18,8 +18,8 @@ function FinishScreen(props) {
     };
   }, [audio]);
 
-  function nextLevel() {
-    props.onNextLevel();
+  function playAgain() {
+    props.onPlayAgain();
   }
 
   return (
@@ -49,21 +49,21 @@ function FinishScreen(props) {
           fontWeight: "600",
         }}
       >
-        {/* <img
-          src="./shtorm.gif"
+        <img
+          src="./finish.png"
           style={{
             width: "100%",
             borderRadius: "20rem",
           }}
-        /> */}
+        />
         <button
-          onClick={nextLevel}
+          onClick={playAgain}
           style={{
             transform: "scale(3)",
             marginTop: "3rem",
           }}
         >
-          Next Level
+         Play Again
         </button>
         <img
           src="./dale.png"
