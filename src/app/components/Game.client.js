@@ -17,6 +17,7 @@ import Hurt from "./MultiGenerators/Hurt.client.js";
 import GameOverScreen from "./Screens/GameOverScreen.client.js";
 import StartScreen from "./Screens/StartScreen.client.js";
 import WinScreen from "./Screens/WinScreen.client.js";
+import FinishScreen from "./Screens/FinishScreen.client.js";
 
 function random(min, max) {
   min = Math.ceil(min);
@@ -66,6 +67,7 @@ function Game() {
     isGameOver: false,
     isStarted: false,
     isWin: false,
+    isFinish: false,
     level: levelNumber,
     isDamage: false
   });
@@ -106,6 +108,22 @@ function Game() {
         ...prevScene,
         isWin: true,
         timer: 60,
+      }));
+      stopGameLoops();
+    }, 1000)
+  }
+
+  function finish() {
+    //setChar((prevChar) => ({
+    //  ...prevChar,
+    //  x: 100,
+    //}));
+    stopLevelMusic();
+    setTimeout(() => {
+      setScene((prevScene) => ({
+        ...prevScene,
+        isFinish: true,
+        //timer: 60,
       }));
       stopGameLoops();
     }, 1000)
@@ -304,7 +322,10 @@ function Game() {
       }
       if (prevChar.jump) shiftY = -prevChar.verticalSpeed;
 
-      if (prevChar.x > level.level.length && level.level.condition == "run-to-end") win();
+      if (prevChar.x > level.level.length && level.level.condition == "run-to-end") {
+        if (levelNumber == 3) finish()
+        else win();
+      };
 
       if (prevChar.y > 900) {
         //fall
@@ -440,13 +461,13 @@ function Game() {
     //console.log("FIREBOLL, FIREBOLL, FIREBOLL", firebolls)
     setFirebolls((prevFirebolls) => {
       const movedPrevFireBolls = prevFirebolls.map((fb) => {
-        if (fb.vector=="left") return { x: fb.x - 300 + random(0, 100), y: fb.y + random(-300, 300),vector:fb.vector }
-        
-        else return { x: fb.x + 300 + random(0, 100), y: fb.y + random(-300, 300), vector:fb.vector}
+        if (fb.vector == "left") return { x: fb.x - 300 + random(0, 100), y: fb.y + random(-300, 300), vector: fb.vector }
+
+        else return { x: fb.x + 300 + random(0, 100), y: fb.y + random(-300, 300), vector: fb.vector }
       });
       const actualFirebolls = movedPrevFireBolls.filter((fb) => {
         return fb.x > 0
-      }) 
+      })
       console.log(actualFirebolls)
       actualFirebolls.forEach((fb) => {
         //console.log("CHIPPPP!!!!!!!!", char.x)
@@ -468,7 +489,7 @@ function Game() {
       })
       //console.log('>>>>>', movedPrevFireBolls)
       const isAddFireboll = !!random(-1, 1)
-      const vector=(char.x<2378)?"left":"right"
+      const vector = (char.x < 2378) ? "left" : "right"
       if (isAddFireboll) return [...actualFirebolls, { x: 2378, y: 300, vector }]
       else return actualFirebolls
     })
@@ -528,6 +549,7 @@ function Game() {
       {scene.isGameOver && <GameOverScreen data={scene} />}
       {!scene.isStarted && <StartScreen data={scene} onStart={start} />}
       {scene.isWin && <WinScreen data={scene} onNextLevel={nextLevel} />}
+      {scene.isFinish && <FinishScreen data={scene} onNextLevel={nextLevel} />}
 
       {scene.isDamage &&
         <div

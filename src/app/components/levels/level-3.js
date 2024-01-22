@@ -2,7 +2,7 @@ import { useRef } from "react";
 
 export const level = {
   condition: "run-to-end",
-  length: 3920,
+  length: 3826,
   background: "/bgs3.png",
 };
 
@@ -22,11 +22,11 @@ export const getSolidList = (useRef) => [
   { left: 0, top: 337, width: 14, height: 356, ref: useRef(null) },
   // { width: 69, height: 69, left: 661, top: 632, ref: useRef(null) },
   //{ width: 69, height: 69, left: 800, top: 632, ref: useRef(null) },
-  { left: 1128, top: 600, width: 483, height: 9, ref: useRef(null) },
-  { left: 3329, top: 600, width: 483, height: 9, ref: useRef(null) },
-  { left: 1854, top: 600, width: 121, height: 9, ref: useRef(null) },
-  { left: 2000, top: 600, width: 121, height: 9, ref: useRef(null) },
-  { left: 2820, top: 600, width: 121, height: 9, ref: useRef(null) },
+  //{ left: 1128, top: 600, width: 483, height: 9, ref: useRef(null) },
+  //{ left: 3329, top: 600, width: 483, height: 9, ref: useRef(null) },
+ // { left: 1854, top: 600, width: 121, height: 9, ref: useRef(null) },
+  //{ left: 2000, top: 600, width: 121, height: 9, ref: useRef(null) },
+  //{ left: 2820, top: 600, width: 121, height: 9, ref: useRef(null) },
 
   //{ left: 2018, top: 589, width: 935, height: 39, ref: useRef(null) },
 
@@ -41,6 +41,20 @@ const pipe = "url(/pipe.png)";
 export const graphicsList = [
   { type: "img", c: "fsg", width: 194, left: 2300, top: 290, src: "./fireSfereGenerator.gif" },
   { type: "img", c: "fg",width: 194, left: 2300, top: 300, src: "./FireGenerator.gif" },
+  
+  // drons
+   { type: "img", width: 113, left: 294, top: 421, src: "./dron1.png" },
+   { type: "img", width: 113, left: 117, top: 462, src: "./dron2.png" },
+   { type: "img", width: 113, left: 388, top: 216, src: "./dron2.png" },
+   { type: "img", width: 113, left: 483, top: 216, src: "./dron2.png" },
+   { type: "img", width: 113, left: 1265, top: 462, src: "./dron2.png" },
+   { type: "img", width: 113, left: 3060, top: 462, src: "./dron2.png" },
+   { type: "img", width: 113, left: 3182, top: 462, src: "./dron2.png" },
+   { type: "img", width: 113, left: 3290, top: 462, src: "./dron2.png" },
+  
+   // team
+   { type: "img", width: 175, left: 3826, top:612, src: "./team.png" },
+
   // clouds
   // { type: "img", width: 168, left: 274, top: 383, src: "./cloud6.png" },
   // { type: "img", width: 147, left: 446, top: 345, src: "./cloud6.png" },
@@ -57,6 +71,9 @@ export const graphicsList = [
   // { type: "img", width: 148, left: 3788, top: 402, src: "./cloud6.png" },
   // { type: "img", width: 115, left: 3897, top: 376, src: "./cloud6.png" },
  
+  // metal floor
+  { type: "img", width: 5000, left: 413, top: 700, src: "./b1.jpg" },
+
 
 // big clouds
   // { type: "img", width: 452, left: 813, top: 59, src: "./cloud4.png" },
