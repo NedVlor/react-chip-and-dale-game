@@ -1,5 +1,10 @@
 export const scroll = (chipNode) => {
 
+  if (!chipNode){
+    console.warn('No Chip NODE !!!!!')
+    return;
+  } 
+
   console.log('scroll', new Date())
 
   function getAbsoluteCoords(element) {
@@ -26,65 +31,69 @@ export const scroll = (chipNode) => {
   if (absChip.x < leftThreshold) {
     console.log('logic left-->',  absChip.x - leftThreshold,  absChip.x,  rightThreshold,)
     
+    var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0;
+    smoothScrollToHorizontal(document.querySelector('html'), scrollLeft - 300, 3000);
+
     // Прокрутка влево
-    window.scrollBy({
-      //left: absChip.x - leftThreshold,
-      left: -200,
-      behavior: "smooth",
-    });
+    // window.scrollBy({
+    //   //left: absChip.x - leftThreshold,
+    //   left: -200,
+    //   behavior: "smooth",
+    // });
   }
   // Проверяем, не выходит ли персонаж за правый край
   else if (absChip.x > rightThreshold) {
     console.log('logic-->',  absChip.x - rightThreshold,  absChip.x,  rightThreshold,)
+
+    var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0;
+    smoothScrollToHorizontal(document.querySelector('html'), scrollLeft + 300, 3000);
+
     // Прокрутка вправо
-    window.scrollBy({
-      //left: (absChip.x - rightThreshold) *7,
-      left: +200,
-      behavior: "smooth",
-    });
+    // window.scrollBy({
+    //   //left: (absChip.x - rightThreshold) *7,
+    //   left: +200,
+    //   behavior: "smooth",
+    // });
   }
 };
 
 
-function smoothScrollTo(element, target, duration) {
+function smoothScrollToHorizontal(element, target, duration) {
   target = Math.round(target);
   duration = Math.round(duration);
   if (duration < 0) {
       return Promise.reject("bad duration");
   }
   if (duration === 0) {
-      element.scrollTop = target;
+      element.scrollLeft = target;
       return Promise.resolve();
   }
 
   const startTime = Date.now();
   const endTime = startTime + duration;
 
-  const startTop = element.scrollTop;
-  const distance = target - startTop;
+  const startLeft = element.scrollLeft;
+  const distance = target - startLeft;
 
-  // Это функция анимации
   const smoothStep = (start, end, point) => {
       if (point <= start) { return 0; }
       if (point >= end) { return 1; }
-      const x = (point - start) / (end - start); // интерполяция
+      const x = (point - start) / (end - start);
       return x * x * (3 - 2 * x);
   }
 
   return new Promise((resolve, reject) => {
-      // Это функция шага анимации
       const scrollFrame = () => {
-          if (element.scrollTop === target) {
+          if (element.scrollLeft === target) {
               resolve();
               return;
           }
 
           const now = Date.now();
           const point = smoothStep(startTime, endTime, now);
-          const frameTop = Math.round(startTop + distance * point);
-          element.scrollTop = frameTop;
+          const frameLeft = Math.round(startLeft + distance * point);
+          element.scrollLeft = frameLeft;
 
-          // Продолжить, если время анимации не закончилось
           if (now >= endTime) {
               resolve();
               return;
@@ -93,7 +102,6 @@ function smoothScrollTo(element, target, duration) {
           window.requestAnimationFrame(scrollFrame);
       }
 
-      // Начать процесс анимации
       window.requestAnimationFrame(scrollFrame);
   });
 }
