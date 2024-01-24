@@ -237,12 +237,13 @@ function Game() {
     });
   };
 
+  const chipNode = rChar.current;
+
   const checkIntersection = () => {
     let bariers = []; // for gravity
     let intersection = false; // for X
     let shiftY = 0;
     let shiftX = 0;
-    const chipNode = rChar.current;
     const chip = getChip();
 
     // lowGravity block
@@ -378,7 +379,6 @@ function Game() {
         intersection: intersection,
       };
     });
-    scroll(chipNode);
   }; // END checkIntersection
 
   function countdown() {
@@ -389,6 +389,8 @@ function Game() {
         timer: prevScene.timer - 1,
       };
     });
+    scroll(chipNode);
+
   }
 
   function nextLevel() {
@@ -397,6 +399,7 @@ function Game() {
     localStorage.setItem('level', level);
     location.reload();
   }
+
   function playAgain() {
     let level = scene.level;
     level=1;
@@ -429,7 +432,7 @@ function Game() {
     if (levelNumber == 3) {
       window.firebolls = setInterval(() => {
         firebollsLoop()
-      }, 500)
+      }, 300)
     }
 
     if (!window.gamedStarred) window.gamedStarred = true
@@ -467,14 +470,14 @@ function Game() {
     //console.log("FIREBOLL, FIREBOLL, FIREBOLL", firebolls)
     setFirebolls((prevFirebolls) => {
       const movedPrevFireBolls = prevFirebolls.map((fb) => {
-        if (fb.vector == "left") return { x: fb.x - 300 + random(0, 100), y: fb.y + random(-300, 300), vector: fb.vector }
+        if (fb.vector == "left") return { x: fb.x - 200 + random(0, 100), y: fb.y + random(-300, 300), vector: fb.vector }
 
-        else return { x: fb.x + 300 + random(0, 100), y: fb.y + random(-300, 300), vector: fb.vector }
+        else return { x: fb.x + 200 + random(0, 100), y: fb.y + random(-300, 300), vector: fb.vector }
       });
       const actualFirebolls = movedPrevFireBolls.filter((fb) => {
         return fb.x > 0
       })
-      console.log(actualFirebolls)
+     // console.log(actualFirebolls)
       actualFirebolls.forEach((fb) => {
         //console.log("CHIPPPP!!!!!!!!", char.x)
         const approximateFbX = Math.round(fb.x / 25)
