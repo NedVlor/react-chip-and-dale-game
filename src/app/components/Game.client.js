@@ -409,6 +409,13 @@ function Game() {
 
   let audio;
 
+function startButton(){
+  document.body.scrollTop = 0; // Для Chrome, Safari и Opera 
+document.documentElement.scrollTop = 0; // Для IE и Firefox
+
+  start()
+}
+
   function start() {
     stopGameLoops()
     window.interval = setInterval(() => {
@@ -556,7 +563,7 @@ function Game() {
   return (
     <GameContainer style={{ backgroundImage: `url(${level.level.background})` }}>
       {scene.isGameOver && <GameOverScreen data={scene} />}
-      {!scene.isStarted && <StartScreen data={scene} onStart={start} />}
+      {!scene.isStarted && <StartScreen data={scene} onStart={startButton} />}
       {scene.isWin && <WinScreen data={scene} onNextLevel={nextLevel} />}
       {scene.isFinish && <FinishScreen data={scene} onPlayAgain={playAgain} />}
 
