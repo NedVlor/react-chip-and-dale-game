@@ -20,6 +20,10 @@ export const getSolidList = (useRef) => [
   { left: 288, top: 422, width: 130, height: 8, ref: useRef(null) },
   { left: 413, top: 700, width: 5000, height: 19, ref: useRef(null) },
   { left: 0, top: 337, width: 14, height: 356, ref: useRef(null) },
+  { left: 1000, top: 641, width: 52, height: 62, ref: useRef(null) },
+
+
+
   // { width: 69, height: 69, left: 661, top: 632, ref: useRef(null) },
   //{ width: 69, height: 69, left: 800, top: 632, ref: useRef(null) },
   //{ left: 1128, top: 600, width: 483, height: 9, ref: useRef(null) },
@@ -51,6 +55,10 @@ export const graphicsList = [
    { type: "img", width: 113, left: 3060, top: 462, src: "./dron2.png" },
    { type: "img", width: 113, left: 3182, top: 462, src: "./dron2.png" },
    { type: "img", width: 113, left: 3290, top: 462, src: "./dron2.png" },
+
+   //robots
+  { type: "img", width: 52, left: 1000, top: 634, src: "./robot1.png" },
+
   
    // team
    { type: "img", width: 175, left: 3826, top:612, src: "./team.png" },

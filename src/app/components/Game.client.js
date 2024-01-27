@@ -413,7 +413,7 @@ function startButton(){
   document.body.scrollTop = 0; // Для Chrome, Safari и Opera 
 document.documentElement.scrollTop = 0; // Для IE и Firefox
 
-  start()
+  setTimeout(()=>{start()},500)
 }
 
   function start() {
@@ -487,17 +487,17 @@ document.documentElement.scrollTop = 0; // Для IE и Firefox
      // console.log(actualFirebolls)
       actualFirebolls.forEach((fb) => {
         //console.log("CHIPPPP!!!!!!!!", char.x)
-        const approximateFbX = Math.round(fb.x / 25)
-        const approximateFbY = Math.round(fb.y / 200)
+        const approximateFbX = Math.round(fb.x / 50)
+        const approximateFbY = Math.round(fb.y / 400)
 
-        const approximateCharX = Math.round(char.x / 25)
-        const approximateCharY = Math.round(char.y / 200)
+        const approximateCharX = Math.round(char.x / 50)
+        const approximateCharY = Math.round(char.y / 400)
 
         if (approximateFbX == approximateCharX && approximateFbY == approximateCharY) {
           console.warn("damage")
           setScene((prevScene) => ({
             ...prevScene,
-            health: prevScene.health - 30,
+            health: prevScene.health - 90,
           }));
         }
 
