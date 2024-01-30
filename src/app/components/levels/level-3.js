@@ -2,7 +2,7 @@ import { useRef } from "react";
 
 export const level = {
   condition: "run-to-end",
-  length: 3826,
+  length: 3784,
   background: "/bgs3.png",
 };
 
@@ -20,7 +20,16 @@ export const getSolidList = (useRef) => [
   { left: 288, top: 422, width: 130, height: 8, ref: useRef(null) },
   { left: 413, top: 700, width: 5000, height: 19, ref: useRef(null) },
   { left: 0, top: 337, width: 14, height: 356, ref: useRef(null) },
+  { left: 1086, top: 653, width: 75, height: 48, ref: useRef(null) },
   { left: 1000, top: 641, width: 52, height: 62, ref: useRef(null) },
+  { left: 914, top: 641, width: 52, height: 62, ref: useRef(null) },
+  { left: 828, top: 641, width: 52, height: 62, ref: useRef(null) },
+  { left: 742, top: 641, width: 52, height: 62, ref: useRef(null) },
+  { left: 656, top: 641, width: 52, height: 62, ref: useRef(null) },
+  { left: 570, top: 641, width: 52, height: 62, ref: useRef(null) },
+  { left: 484, top: 641, width: 52, height: 62, ref: useRef(null) },
+  { left: 398, top: 641, width: 52, height: 62, ref: useRef(null) },
+
 
 
 
@@ -58,8 +67,20 @@ export const graphicsList = [
 
    //robots
   { type: "img", width: 52, left: 1000, top: 634, src: "./robot1.png" },
+  { type: "img", width: 75, left: 1086, top: 653, src: "./r2.png" },
+  { type: "img", width: 52, left: 914, top: 634, src: "./robot1.png" },
+  { type: "img", width: 52, left: 828, top: 634, src: "./robot1.png" },
+  { type: "img", width: 52, left: 742, top: 634, src: "./robot1.png" },
+  { type: "img", width: 52, left: 656, top: 634, src: "./robot1.png" },
+  { type: "img", width: 52, left: 570, top: 634, src: "./robot1.png" },
+  { type: "img", width: 52, left: 484, top: 634, src: "./robot1.png" },
+  { type: "img", width: 52, left: 398, top: 634, src: "./robot1.png" },
+  { type: "img", width: 61, left: 352, top: 720, src: "./r.png" },
 
-  
+ 
+
+
+
    // team
    { type: "img", width: 175, left: 3826, top:612, src: "./team.png" },
 
@@ -115,7 +136,30 @@ export const graphicsList = [
 
 export const collectable = [
   //nuts
-  // { class: "nut", width: 35, left: 509, top: 317, src: "./nut.png" },
+   { class: "nut", width: 35, left: 422, top: 302, src: "./nut.png" },
+   { class: "nut", width: 35, left: 520, top: 302, src: "./nut.png" },
+   { class: "nut", width: 35, left: 1008, top: 590, src: "./nut.png" },
+   { class: "nut", width: 35, left: 1008, top: 590, src: "./nut.png" },
+   { class: "nut", width: 35, left: 1186, top: 653, src: "./disk.png" },
+   { class: "nut", width: 35, left: 2382, top: 653, src: "./disk.png" },
+  // { class: "nut", width: 35, left: 2682, top: 653, src: "./disk.png" },
+   { class: "nut", width: 35, left: 3756, top: 653, src: "./disk.png" },
+
+   { class: "nut", width: 35, left: 1134, top: 590, src: "./nut.png" },
+   { class: "nut", width: 35, left: 843, top: 590, src: "./nut.png" },
+   { class: "nut", width: 35, left: 677, top: 590, src: "./nut.png" },
+   { class: "nut", width: 35, left: 477, top: 590, src: "./nut.png" },
+   { class: "nut", width: 35, left: 1301, top: 541, src: "./nut.png" },
+   { class: "nut", width: 35, left: 3100, top: 537, src: "./nut.png" },
+   { class: "nut", width: 35, left: 3222, top: 537, src: "./nut.png" },
+   { class: "nut", width: 35, left: 3329, top: 537, src: "./nut.png" },
+   { class: "nut", width: 35, left: 1618, top: 649, src: "./nut.png" },
+   { class: "nut", width: 35, left: 1711, top: 649, src: "./nut.png" },
+   { class: "nut", width: 35, left: 1810, top: 649, src: "./nut.png" },
+
+
+
+
   // { class: "nut", width: 35, left: 806, top: 242, src: "./nut.png" },
   // { class: "nut", width: 35, left: 1267, top: 242, src: "./nut.png" },
   // { class: "nut", width: 35, left: 1064, top: 652, src: "./nut.png" },

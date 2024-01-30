@@ -497,6 +497,7 @@ document.documentElement.scrollTop = 0; // Для IE и Firefox
           console.warn("damage")
           setScene((prevScene) => ({
             ...prevScene,
+            //make this bigger late
             health: prevScene.health - 90,
           }));
         }

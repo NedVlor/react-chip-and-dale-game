@@ -122,6 +122,7 @@ export const collectable = [
   { class: "nut", width: 35, left: 3391, top: 448, src: "./nut.png" },
   { class: "nut", width: 35, left: 3390, top: 448, src: "./nut.png" },
   { class: "nut", width: 35, left: 3735, top: 448, src: "./nut.png" },
+  { class: "nut", width: 100, left: 3930, top: 323, src: "./teleport.gif" },
 
 ];
 
