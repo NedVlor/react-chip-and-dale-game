@@ -62,8 +62,8 @@ function Game() {
     isGraphicsInfoShow: false,
     intersection: false,
     lifeAmount: 5,
-    health: 100,
-    timer: 1000000,
+    health: 250,
+    timer: 360,
     isGameOver: false,
     isStarted: false,
     isWin: false,
@@ -246,18 +246,8 @@ function Game() {
     let shiftX = 0;
     const chip = getChip();
 
-    // lowGravity block
-    // setChar((prevChar) => {
-    //   return {
-    //     ...prevChar,
-    //     isLowGravity: prevChar.x > lowGravity.from && prevChar.x < lowGravity.to
-    //   }
-    // });
-
-
     solidList.forEach((el, i) => {
       const element2 = el.ref.current;
-      //console.log("---i---", i);
       if (element2 && chipNode) {
         const rect2 = element2.getBoundingClientRect(); // cordinate and size for current solid object
         // graviry intersection checking 1
@@ -267,16 +257,11 @@ function Game() {
         ) {
           bariers[i] = false;
         } else {
-          //  console.log("first barier");
           bariers[i] = true;
         }
         // gravity intersection checking 2
-        if (
-          chip.top > rect2.bottom //|| // нижче
-        ) {
+        if (chip.top > rect2.bottom) { // нижче
           bariers[i] = false;
-        } else {
-          // console.log("secound barier");
         }
 
         setChar((prevChar) => {
@@ -301,7 +286,6 @@ function Game() {
 
     const barier = bariers.some((b) => b);
 
-    // let pointer
     const setPrevChip = (x, y) => {
       if (!window.prev) window.prev = [];
       else {
@@ -311,18 +295,15 @@ function Game() {
       }
     };
     const getPrevChip = () => {
-      // console.log(window.prev);
       return window.prev ? window.prev.pop() : { x: 0, y: 0 };
     };
 
     setChar((prevChar) => {
       if (!barier) {
-        // console.log("No barier, should falling");
         shiftY = prevChar.verticalSpeed;
         if (prevChar.isLowGravity) shiftY = prevChar.verticalSpeed / 6
       }
       if (prevChar.jump) shiftY = -prevChar.verticalSpeed;
-
       if (prevChar.x > level.level.length && level.level.condition == "run-to-end") {
         if (levelNumber == 3) finish()
         else win();
@@ -402,19 +383,18 @@ function Game() {
 
   function playAgain() {
     let level = scene.level;
-    level=1;
+    level = 1;
     localStorage.setItem('level', level);
     location.reload();
   }
 
   let audio;
 
-function startButton(){
-  document.body.scrollTop = 0; // Для Chrome, Safari и Opera 
-document.documentElement.scrollTop = 0; // Для IE и Firefox
-
-  setTimeout(()=>{start()},500)
-}
+  function startButton() {
+    document.body.scrollTop = 0; // Для Chrome, Safari и Opera 
+    document.documentElement.scrollTop = 0; // Для IE и Firefox
+    setTimeout(() => { start() }, 500)
+  }
 
   function start() {
     stopGameLoops()
@@ -422,7 +402,6 @@ document.documentElement.scrollTop = 0; // Для IE и Firefox
       checkIntersection();
     }, 50);
     window.interval2 = setInterval(() => {
-      // console.log("interwal2")
       checkCollecting(char);
       checkHurt();
     }, 200);
@@ -432,8 +411,7 @@ document.documentElement.scrollTop = 0; // Для IE и Firefox
 
     if (enemyList.wasp && !scene.isGameOver) {
       window.waspOnterval = setInterval(() => {
-        //wasp();
-        // console.log('WASP INTERVAL')
+        wasp();
       }, 1000);
     }
     if (levelNumber == 3) {
@@ -474,37 +452,29 @@ document.documentElement.scrollTop = 0; // Для IE и Firefox
   }
 
   function firebollsLoop() {
-    //console.log("FIREBOLL, FIREBOLL, FIREBOLL", firebolls)
     setFirebolls((prevFirebolls) => {
       const movedPrevFireBolls = prevFirebolls.map((fb) => {
         if (fb.vector == "left") return { x: fb.x - 200 + random(0, 100), y: fb.y + random(-300, 300), vector: fb.vector }
-
         else return { x: fb.x + 200 + random(0, 100), y: fb.y + random(-300, 300), vector: fb.vector }
       });
       const actualFirebolls = movedPrevFireBolls.filter((fb) => {
         return fb.x > 0
       })
-     // console.log(actualFirebolls)
       actualFirebolls.forEach((fb) => {
-        //console.log("CHIPPPP!!!!!!!!", char.x)
         const approximateFbX = Math.round(fb.x / 50)
         const approximateFbY = Math.round(fb.y / 400)
-
+        //
         const approximateCharX = Math.round(char.x / 50)
         const approximateCharY = Math.round(char.y / 400)
-
+        // 
         if (approximateFbX == approximateCharX && approximateFbY == approximateCharY) {
           console.warn("damage")
           setScene((prevScene) => ({
             ...prevScene,
-            //make this bigger late
             health: prevScene.health - 90,
           }));
         }
-
-        //console.log(approximateFbX)
       })
-      //console.log('>>>>>', movedPrevFireBolls)
       const isAddFireboll = !!random(-1, 1)
       const vector = (char.x < 2378) ? "left" : "right"
       if (isAddFireboll) return [...actualFirebolls, { x: 2378, y: 300, vector }]
@@ -635,7 +605,6 @@ document.documentElement.scrollTop = 0; // Для IE и Firefox
             zIndex: 1000,
             top: `${enemyListR.wasp.y}px`,
             left: `${enemyListR.wasp.x}px`,
-            // background: "#ff000057",
             width: `${enemyListR.wasp.w}px`,
             height: `${enemyListR.wasp.h}px`,
             backgroundImage: `url(${enemyListR.wasp.bg})`,
