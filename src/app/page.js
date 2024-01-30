@@ -1,7 +1,13 @@
 // import CounterButton from "./components/CounterButton.client.js";
 // import Image from "next/image";
 import styles from "./page.module.css";
-import Game from "./components/Game.client.js";
+//import Game from "./components/Game.client.js";
+
+import dynamic from 'next/dynamic';
+
+const Game = dynamic(() => import('./components/Game.client.js'), {
+  ssr: false
+});
 
 export default function Home() {
   return (

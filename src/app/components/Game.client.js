@@ -36,15 +36,17 @@ const GameContainer = styled.div`
 
 function Game() {
 
-  let levelNumber = +localStorage.getItem('level') || 1;
+  let levelNumber = 1;
 
-  if (levelNumber == 1) level = level_1;
-  if (levelNumber == 2) level = level_2;
-  if (levelNumber == 3) level = level_3;
-
+  if (typeof window !== "undefined") {
+    levelNumber = +localStorage.getItem('level') || 1;
+    if (levelNumber == 1) level = level_1;
+    if (levelNumber == 2) level = level_2;
+    if (levelNumber == 3) level = level_3;
+  }
 
   if (levelNumber > 3) {
-    localStorage.setItem('level', 1);
+    if (typeof window !== "undefined") localStorage.setItem('level', 1);
     location.reload();
   }
 
@@ -57,7 +59,7 @@ function Game() {
   const lowGravity = level.lowGravity;
 
   const [scene, setScene] = useState({
-    isSolidShow: true,
+    isSolidShow: false,
     isGraphicsShow: true,
     isGraphicsInfoShow: false,
     intersection: false,
@@ -492,11 +494,11 @@ function Game() {
       const isLeft = differenceX < 0;
       const isUp = differenceY < 0;
       //
-      if (isLeft) wasp.x = wasp.x + 30
-      else wasp.x = wasp.x - 30;
+      if (isLeft) wasp.x = wasp.x + 20
+      else wasp.x = wasp.x - 20;
       //
-      if (isUp) wasp.y = wasp.y + 30
-      else wasp.y = wasp.y - 30;
+      if (isUp) wasp.y = wasp.y + 20
+      else wasp.y = wasp.y - 20;
       //
       if (Math.abs(differenceX) < 50 && Math.abs(differenceY) < 50) {
         setScene((prevScene) => ({
@@ -554,7 +556,7 @@ function Game() {
       <GamePanel data={scene} />
       <TimePanel data={scene} />
       <LevelPanel data={scene} />
-      <div
+      {/* <div
         style={{
           width: "200px",
           background: "#0000ff21",
@@ -581,7 +583,7 @@ function Game() {
 
         <button onClick={toggleGraphics}>Graphics toggle</button>
         <button onClick={toggleGraphicsInfo}>Graphics info</button>
-      </div>
+      </div> */}
       <Chip
         ref={rChar}
         data={char}
