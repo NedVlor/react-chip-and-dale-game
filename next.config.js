@@ -4,7 +4,7 @@ const nextConfig = {
         ignoreDuringBuilds: true,
     },
     output: 'export',
-    basePath: '/chip-and-dale-game',
+    // basePath: '/chip-and-dale-game',
 }
 
 module.exports = nextConfig

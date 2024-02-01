@@ -18,7 +18,7 @@ function Graphics({ graphicsList, scene }) {
             }}
           >
             <img
-             className={obj.c}
+              className={obj.c}
               key={"graphics-" + i}
               src={obj.src}
               style={{
@@ -55,7 +55,7 @@ function Graphics({ graphicsList, scene }) {
             }}
           >
             <div
-             className={obj.c}
+              className={obj.c}
               key={"graphics-" + i}
               style={{
                 position: "absolute",
@@ -74,9 +74,18 @@ function Graphics({ graphicsList, scene }) {
                   background: "#00000082",
                 }}
               >
-                i:{i}, x:{obj.left || obj.x}, y:{obj.top || obj.y}, w:
-                {obj.width || obj.w}, h:
-                {obj.height || obj.h}
+                {scene.isGraphicsInfoShow && (
+                  <span
+                    style={{
+                      position: "absolute",
+                      background: "#00000082",
+                    }}
+                  >
+                    i:{i}, x:{obj.left || obj.x}, y:{obj.top || obj.y}, w:
+                    {obj.width || obj.w}, h:
+                    {obj.height || obj.h}
+                  </span>
+                )}
               </span>
             )}
           </div>
