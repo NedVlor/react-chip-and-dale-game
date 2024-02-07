@@ -32,8 +32,8 @@ function Collectible({ col, scene }) {
                 background: "#00000082",
               }}
             >
-              i:{i}, x:{obj.left}, y:{obj.top}, w:{obj.width}, h:
-              {obj.height}
+              {/* i:{i}, x:{obj.left}, y:{obj.top}, w:{obj.width}, h:
+              {obj.height} */}
             </span>
           )}
         </div>

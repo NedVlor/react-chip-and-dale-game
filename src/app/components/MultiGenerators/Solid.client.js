@@ -16,7 +16,6 @@ function Collectible({ list, scene }) {
             background: scene.isSolidShow ? "blue" : "",
           }}
         >
-         {scene.isSolidShow ? ( <span> i:{i}, x:{obj.left}, y:{obj.top}, w:{obj.width}, h:{obj.height} </span>) : null}
         </div>
       );
     });
@@ -26,3 +25,5 @@ function Collectible({ list, scene }) {
   }
 }
 export default Collectible;
+
+//{/* {scene.isSolidShow ? ( <span> i:{i}, x:{obj.left}, y:{obj.top}, w:{obj.width}, h:{obj.height} </span>) : null} */}

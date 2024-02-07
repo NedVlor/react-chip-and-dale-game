@@ -35,8 +35,8 @@ function Graphics({ graphicsList, scene }) {
                   background: "#00000082",
                 }}
               >
-                i:{i}, x:{obj.left}, y:{obj.top}, w:{obj.width}, h:
-                {obj.height}
+                {/* i:{i}, x:{obj.left}, y:{obj.top}, w:{obj.width}, h:
+                {obj.height} */}
               </span>
             )}
           </div>
@@ -76,14 +76,11 @@ function Graphics({ graphicsList, scene }) {
               >
                 {scene.isGraphicsInfoShow && (
                   <span
-                    style={{
-                      position: "absolute",
-                      background: "#00000082",
-                    }}
+                  
                   >
-                    i:{i}, x:{obj.left || obj.x}, y:{obj.top || obj.y}, w:
+                    {/* i:{i}, x:{obj.left || obj.x}, y:{obj.top || obj.y}, w:
                     {obj.width || obj.w}, h:
-                    {obj.height || obj.h}
+                    {obj.height || obj.h} */}
                   </span>
                 )}
               </span>
